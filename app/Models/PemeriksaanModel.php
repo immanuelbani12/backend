@@ -6,19 +6,24 @@ use CodeIgniter\Model;
 
 class PemeriksaanModel extends Model
 {
-    protected $DBGroup          = 'default';
     protected $table            = 'pemeriksaan';
     protected $primaryKey       = 'id_pemeriksaan';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    // protected $returnType       = Pemeriksaan::class;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user', 'hasil_diabetes', 'hasil_kolesterol', 'hasil_stroke'];
+    protected $allowedFields    = [
+        'id_user', 
+        'hasil_diabetes', 
+        'hasil_kolesterol', 
+        'hasil_stroke'
+    ];
 
     // Dates
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+
+    protected $validationRules = [
+        'id_user' => 'required'
+    ];
 }

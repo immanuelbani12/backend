@@ -64,9 +64,9 @@ class DetailDiabetes extends Migration
                 'constraint' => '1',
                 'null' => true,
             ],
-            'hasil_diabetes' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,3',
+            'score_diabetes' => [
+                'type' => 'INT',
+                'constraint' => '2',
                 'null' => true,
             ],
             'updated_at' => [

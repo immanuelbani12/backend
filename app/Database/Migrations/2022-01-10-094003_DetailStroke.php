@@ -74,7 +74,7 @@ class DetailStroke extends Migration
                 'constraint' => '1',
                 'null' => true,
             ],
-            'gula_darah' => [
+            'kadar_gula' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
@@ -96,11 +96,6 @@ class DetailStroke extends Migration
                 'constraint' => '2',
                 'null' => true,
                 'default' => '0',
-            ],
-            'hasil_stroke' => [
-                'type' => 'INT',
-                'constraint' => '1',
-                'null' => true,
             ],
             'updated_at' => [
                 'type' => 'datetime',

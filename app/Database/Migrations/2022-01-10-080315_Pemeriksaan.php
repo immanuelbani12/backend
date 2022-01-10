@@ -21,18 +21,18 @@ class Pemeriksaan extends Migration
                 'unsigned' => true,
             ],
             'hasil_diabetes' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,3',
+                'type' => 'VARCHAR',
+                'constraint' => '20',
                 'null' => true,
             ],
             'hasil_kolesterol' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,3',
+                'type' => 'VARCHAR',
+                'constraint' => '20',
                 'null' => true,
             ],
             'hasil_stroke' => [
-                'type' => 'INT',
-                'constraint' => '1',
+                'type' => 'VARCHAR',
+                'constraint' => '20',
                 'null' => true,
             ],
             'updated_at' => [

@@ -38,15 +38,15 @@ class Pemeriksaan extends ResourceController
 
     public function create()
     {
-        $data = $this->request->getPost();
+        $data = $this->request->getJSON();
 
         $diabetes = $this->get_diabetes($data);
         $stroke = $this->get_stroke($data);
 
         $data_pemeriksaan = array(
-            'id_user' => $data['id_user'],
+            'id_user' => $data->id_user,
             'hasil_diabetes' => $diabetes['hasil'],
-            // 'hasil_kolesterol' => $kolesterol['hasil'],
+            // 'hasil_kolesterol' => $kolesterol->hasil,
             'hasil_stroke' => $stroke['hasil']
         );
 
@@ -55,14 +55,14 @@ class Pemeriksaan extends ResourceController
             return $this->fail($this->model->errors());
         }
 
-        $data['id_pemeriksaan'] = $this->model->insertID();
+        $data->id_pemeriksaan = $this->model->insertID();
 
-        $data['low_score'] = $stroke['low'];
-        $data['medium_score'] = $stroke['medium'];
-        $data['high_score'] =$stroke['high'];  
+        $data->low_score = $stroke['low'];
+        $data->medium_score = $stroke['medium'];
+        $data->high_score =$stroke['high'];  
 
-        $data['score_diabetes'] = $diabetes['score']; 
-        $data['bmi'] = intval($data['berat_badan']) / pow(intval($data['tinggi_badan'])/100,2); 
+        $data->score_diabetes = $diabetes['score']; 
+        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2); 
 
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
@@ -76,9 +76,9 @@ class Pemeriksaan extends ResourceController
         $score = 0;
         $diabetes_risk = "";
 
-        $gender = $data['jenis_kelamin']; 
+        $gender = $data->jenis_kelamin; 
 
-        $birth_day = explode("/", $data['tanggal_lahir']);
+        $birth_day = explode("/", $data->tanggal_lahir);
         $birth_year = $birth_day[2];
         $age = intval($year) - intval($birth_year);
 
@@ -92,7 +92,7 @@ class Pemeriksaan extends ResourceController
             $score += 2;
         }
 
-        $bmi = intval($data['berat_badan']) / pow(intval($data['tinggi_badan'])/100,2);
+        $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if($bmi > 30){
             $score += 3;
         }
@@ -100,43 +100,43 @@ class Pemeriksaan extends ResourceController
             $score += 1;
         }
 
-        if($data['aktivitas_fisik'] == 2){
+        if($data->aktivitas_fisik == 2){
             $score += 2;
         }
 
         if($gender == "Laki-laki"){
-            if(intval($data['lingkar_pinggang']) > 102){
+            if(intval($data->lingkar_pinggang) > 102){
                 $score += 4;
             }
-            elseif(intval($data['lingkar_pinggang']) >= 94){
+            elseif(intval($data->lingkar_pinggang) >= 94){
                 $score += 3;
             }
         }
         else{
-            if(intval($data['lingkar_pinggang']) > 88){
+            if(intval($data->lingkar_pinggang) > 88){
                 $score += 4;
             }
-            elseif(intval($data['lingkar_pinggang']) >= 80){
+            elseif(intval($data->lingkar_pinggang) >= 80){
                 $score += 3;
             }
         }
 
-        if($data['gula_darah']){
+        if($data->gula_darah){
             $score += 5;
         }
 
-        if(!$data['buah_sayur']){
+        if(!$data->buah_sayur){
             $score += 1;
         }
 
-        if($data['obat_hipertensi']){
+        if($data->obat_hipertensi){
             $score += 2;
         }
 
-        if($data['keturunan'] == 2){
+        if($data->keturunan == 2){
             $score += 5;
         }
-        elseif($data['keturunan'] == 1){
+        elseif($data->keturunan == 1){
             $score += 3;
         }
 
@@ -169,7 +169,7 @@ class Pemeriksaan extends ResourceController
         $low = 0;
         $year = date('d/m/Y');
         
-        $bmi = intval($data['berat_badan']) / pow(intval($data['tinggi_badan'])/100,2);
+        $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
             $low++;
         }
@@ -180,57 +180,57 @@ class Pemeriksaan extends ResourceController
             $high++;
         }
 
-        if($data['aktivitas_fisik'] == 2){
+        if($data->aktivitas_fisik == 2){
             $low++;
-        } else if($data['aktivitas_fisik'] == 1) {
+        } else if($data->aktivitas_fisik == 1) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['merokok'] == 0){
+        if($data->merokok == 0){
             $low++;
-        } else if($data['merokok'] == 1) {
+        } else if($data->merokok == 1) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['tekanan_darah'] == 0){
+        if($data->tekanan_darah == 0){
             $low++;
-        } else if($data['tekanan_darah'] == 2) {
+        } else if($data->tekanan_darah == 2) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['kadar_kolesterol'] == 0){
+        if($data->kadar_kolesterol == 0){
             $low++;
-        } else if($data['kadar_kolesterol']  == 1) {
+        } else if($data->kadar_kolesterol  == 1) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['riwayat_stroke']  == 0){
+        if($data->riwayat_stroke  == 0){
             $low++;
-        } else if($data['riwayat_stroke']  == 1) {
+        } else if($data->riwayat_stroke  == 1) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['irama_jantung'] == 0){
+        if($data->irama_jantung == 0){
             $low++;
-        } else if($data['irama_jantung']  == 1) {
+        } else if($data->irama_jantung  == 1) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data['kadar_gula'] == 0){
+        if($data->kadar_gula == 0){
             $low++;
-        } else if($data['kadar_gula'] == 1) {
+        } else if($data->kadar_gula == 1) {
             $medium++;
         } else {
             $high++;

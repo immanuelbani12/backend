@@ -4,14 +4,14 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class DetailDiabetes extends Migration
+class DetailKolesterol extends Migration
 {
     public function up()
     {
         $this->db->disableForeignKeyChecks();
 
         $this->forge->addField([
-            'id_detail_diabetes' => [
+            'id_detail_kolesterol' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'auto_increment' => true,
@@ -20,42 +20,11 @@ class DetailDiabetes extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
-            // 'umur' => [
-            //     'type' => 'INT',
-            //     'null' => true,
-            // ],
-            'bmi' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,3',
-                'null' => true,
-            ],
-            'aktivitas_fisik' => [
+            'merokok' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Ya, 1 = jarang, 0 = Tidak'
-            ],
-            // 'gender' => [
-            //     'type' => 'VARCHAR',
-            //     'constraint' => '10',
-            //     'null' => true,
-            // ],
-            'lingkar_pinggang' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,3',
-                'null' => true,
-            ],
-            'gula_darah' => [
-                'type' => 'INT',
-                'constraint' => '1',
-                'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
-            ],
-            'buah_sayur' => [
-                'type' => 'INT',
-                'constraint' => '1',
-                'null' => true,
-                'comment' => '1 = Ya, 0 = Tidak'
+                'comment' => '2 = Merokok, 1 = Sedang berusaha berhenti merokok, 0 = Tidak Merokok'
             ],
             'obat_hipertensi' => [
                 'type' => 'INT',
@@ -63,16 +32,29 @@ class DetailDiabetes extends Migration
                 'null' => true,
                 'comment' => '1 = Ya, 0 = Tidak'
             ],
-            'keturunan' => [
+            'kadar_gula' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Orang tua, Kakak, Adik, Anak kandung | 1 = Kakek/Nenek, Bibi, Paman, atau sepupu dekat | 0 = tidak'
+                'comment' => '0 = < 120, 1 = 120 - 150, 2 = sisanya'
             ],
-            'score_diabetes' => [
+            'tekanan_darah' => [
+                'type' => 'INT',
+                'constraint' => '1',
+                'null' => true,
+                'comment' => '0 = < 120/80, 1 = 120 - 139 / 80 - 89, 2 = sisanya'
+            ],
+            'kadar_kolesterol' => [
+                'type' => 'INT',
+                'constraint' => '1',
+                'null' => true,
+                'comment' => '0 = <200, 1 = 200-239, 2 = sisanya'
+            ],
+            'score_kolesterol' => [
                 'type' => 'INT',
                 'constraint' => '2',
                 'null' => true,
+                'default' => '0',
             ],
             'updated_at' => [
                 'type' => 'datetime',
@@ -80,15 +62,15 @@ class DetailDiabetes extends Migration
             ],
             'created_at datetime default current_timestamp',
         ]);
-        $this->forge->addKey('id_detail_diabetes', true);
+        $this->forge->addKey('id_detail_kolesterol', true);
         $this->forge->addForeignKey('id_pemeriksaan', 'pemeriksaan', 'id_pemeriksaan');
-        $this->forge->createTable('detail_diabetes', true);
+        $this->forge->createTable('detail_kolesterol', true);
 
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('detail_diabetes', true);
+        $this->forge->dropTable('detail_kolesterol', true);
     }
 }

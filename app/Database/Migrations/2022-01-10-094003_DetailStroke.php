@@ -43,41 +43,49 @@ class DetailStroke extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '2 = Ya, 1 = jarang, 0 = Tidak'
             ],
             'merokok' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '2 = Merokok, 1 = Sedang berusaha berhenti merokok, 0 = Tidak Merokok'
             ],
             'tekanan_darah' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = < 120/80, 1 = 120 - 139 / 80 - 89, 2 = sisanya'
             ],
             'kadar_kolesterol' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = <200, 1 = 200-239, 2 = sisanya'
             ],
             'riwayat_stroke' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = tidak, 1 = tidak diketahui, 2 = iya'
             ],
             'irama_jantung' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = tidak pernah, 1 = tidak diketahui, 2 = pernah'
             ],
             'riwayat_stroke' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = tidak, 1 = tidak diketahui, 2 = iya'
             ],
             'kadar_gula' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
+                'comment' => '0 = < 120, 1 = 120 - 150, 2 = sisanya'
             ],
             'high_score' => [
                 'type' => 'INT',

@@ -43,49 +43,49 @@ class DetailStroke extends Migration
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Ya, 1 = jarang, 0 = Tidak'
+                'comment' => '1 = Ya, 2 = Tidak, 3 = Jarang'
             ],
             'merokok' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '2 = Merokok, 1 = Sedang berusaha berhenti merokok, 0 = Tidak Merokok'
+                'comment' => '1 = Perokok Aktif, 2 = Sedang berusaha berhenti merokok, 3 = Tidak Merokok'
             ],
             'tekanan_darah' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = < 120/80, 1 = 120 - 139 / 80 - 89, 2 = sisanya'
+                'comment' => '1 = > 140/90, 2 = 120 - 139 / 80 - 89, 3 = < 120/80, 4 = Tidak diketahui'
             ],
             'kadar_kolesterol' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = <200, 1 = 200-239, 2 = sisanya'
+                'comment' => '1 > 240, 2 = 200-239, 3 = < 200, 4 = Tidak diketahui'
             ],
             'riwayat_stroke' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = tidak, 1 = tidak diketahui, 2 = iya'
+                'comment' => '1 = Ya, 2 = Tidak , 3 = Tidak diketahui'
             ],
             'irama_jantung' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = tidak pernah, 1 = tidak diketahui, 2 = pernah'
+                'comment' => '1 = Ya, 2 = Tidak diketahui, 3 = Tidak pernah'
             ],
-            'riwayat_stroke' => [
-                'type' => 'INT',
-                'constraint' => '1',
-                'null' => true,
-                'comment' => '0 = tidak, 1 = tidak diketahui, 2 = iya'
-            ],
+            // 'riwayat_stroke' => [
+            //     'type' => 'INT',
+            //     'constraint' => '1',
+            //     'null' => true,
+            //     'comment' => '0 = tidak, 1 = tidak diketahui, 2 = iya'
+            // ],
             'kadar_gula' => [
                 'type' => 'INT',
                 'constraint' => '1',
                 'null' => true,
-                'comment' => '0 = < 120, 1 = 120 - 150, 2 = sisanya'
+                'comment' => '1 = < 120, 2 = 120 - 150, 3 = > 150,  4 = Tidak diketahui'
             ],
             'high_score' => [
                 'type' => 'INT',

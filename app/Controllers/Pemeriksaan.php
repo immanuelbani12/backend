@@ -41,6 +41,21 @@ class Pemeriksaan extends ResourceController
     public function create()
     {
         $data = $this->request->getJSON();
+		
+		/*Contoh Input API dari Android	[{"answer":"Laki-laki","question":"jenis_kelamin"},{"answer":"11/1/2022","question":"tanggal_lahir"},{"answer":"3432","question":"tinggi_badan"},{"answer":"34324","question":"berat_badan"},{"answer":"2","question":"aktivitas_fisik"},{"answer":"2","question":"merokok"},{"answer":"324234","question":"lingkar_pinggang"},{"answer":"1","question":"histori_hipertensi"},{"answer":"2","question":"tekanan_darah"},{"answer":"1","question":"gula_darah"},{"answer":"3","question":"kadar_gula"},{"answer":"3","question":"kadar_kolesterol"},{"answer":"3","question":"riwayat_stroke"},{"answer":"3","question":"irama_jantung"},{"answer":"2","question":"buah_sayur"},{"answer":"2","question":"obat_hipertensi"},{"answer":"2","question":"keturunan"},{"answer":"4","question":"kolesterol_hdl"},{"answer":"69","question":"id_user"}]
+		*/
+
+        // Update Following Input API yang ada di repo AlgoTA
+        $decoded_json = array();
+
+        foreach($data as $indicator)
+        {
+            $decoded_json[$indicator->question] = $indicator->answer;
+        }
+
+        $data = (object) $decoded_json;
+        // Update Ends Here
+
 
         $diabetes   = $this->get_diabetes($data);
         $stroke     = $this->get_stroke($data);
@@ -62,10 +77,10 @@ class Pemeriksaan extends ResourceController
 
         $data->low_score = $stroke['low'];
         $data->medium_score = $stroke['medium'];
-        $data->high_score =$stroke['high'];  
+        $data->high_score =$stroke['high'];
 
-        $data->score_diabetes = $diabetes['score']; 
-        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2); 
+        $data->score_diabetes = $diabetes['score'];
+        $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
@@ -74,13 +89,14 @@ class Pemeriksaan extends ResourceController
         return $this->respondCreated($this->model->find($this->model->insertID()), 'Pemeriksaan created');
     }
 
+    // Update All Indicator
     public function get_diabetes($data)
     {
         $year = date('Y');
         $score = 0;
         $diabetes_risk = "";
 
-        $gender = $data->jenis_kelamin; 
+        $gender = $data->jenis_kelamin;
 
         $birth_day = explode("/", $data->tanggal_lahir);
         $birth_year = $birth_day[2];
@@ -104,7 +120,7 @@ class Pemeriksaan extends ResourceController
             $score += 1;
         }
 
-        if($data->aktivitas_fisik == 2){
+        if($data->aktivitas_fisik !== 1){
             $score += 2;
         }
 
@@ -125,22 +141,22 @@ class Pemeriksaan extends ResourceController
             }
         }
 
-        if($data->gula_darah){
+        if($data->gula_darah == 1){
             $score += 5;
         }
 
-        if(!$data->buah_sayur){
+        if($data->buah_sayur == 2){
             $score += 1;
         }
 
-        if($data->obat_hipertensi){
+        if($data->obat_hipertensi == 2){
             $score += 2;
         }
 
-        if($data->keturunan == 2){
+        if($data->keturunan == 3){
             $score += 5;
         }
-        elseif($data->keturunan == 1){
+        elseif($data->keturunan == 2){
             $score += 3;
         }
 
@@ -166,12 +182,13 @@ class Pemeriksaan extends ResourceController
         );
     }
 
+    // Update All Indicator
     public function get_stroke($data)
     {
         $high = 0;
         $medium = 0;
         $low = 0;
-        
+
         $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
             $low++;
@@ -183,23 +200,23 @@ class Pemeriksaan extends ResourceController
             $high++;
         }
 
-        if($data->aktivitas_fisik == 2){
+        if($data->aktivitas_fisik == 1){
             $low++;
-        } else if($data->aktivitas_fisik == 1) {
+        } else if($data->aktivitas_fisik == 2) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data->merokok == 0){
+        if($data->merokok == 3){
             $low++;
-        } else if($data->merokok == 1) {
+        } else if($data->merokok == 2) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data->tekanan_darah == 0){
+        if($data->tekanan_darah == 3){
             $low++;
         } else if($data->tekanan_darah == 2) {
             $medium++;
@@ -207,47 +224,88 @@ class Pemeriksaan extends ResourceController
             $high++;
         }
 
-        if($data->kadar_kolesterol == 0){
+        if($data->kadar_kolesterol == 3){
             $low++;
-        } else if($data->kadar_kolesterol  == 1) {
+        } else if($data->kadar_kolesterol  == 2) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data->riwayat_stroke  == 0){
+        if($data->riwayat_stroke  == 2){
             $low++;
-        } else if($data->riwayat_stroke  == 1) {
+        } else if($data->riwayat_stroke  == 3) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data->irama_jantung == 0){
+        if($data->irama_jantung == 3){
             $low++;
-        } else if($data->irama_jantung  == 1) {
+        } else if($data->irama_jantung  == 2) {
             $medium++;
         } else {
             $high++;
         }
 
-        if($data->kadar_gula == 0){
+        if($data->kadar_gula == 1){
             $low++;
-        } else if($data->kadar_gula == 1) {
+        } else if($data->kadar_gula == 2) {
             $medium++;
         } else {
             $high++;
         }
 
         $hasil = "";
-        if ($high > 2) $hasil = "Strokecard Tinggi";
-        if ($medium > 3 && $medium < 7) $hasil = "Strokecard Menengah";
-        if ($low > 5 && $low < 9) $hasil = "Strokecard Rendah";
+        //Use Complex Nested IF for Now
+        if ($high >= 3) {
+            $hasil = "Stroke Resiko Tinggi";
+        } else {
+            if ($high == 2){
+                if ($medium >= 3) {
+                    $hasil = "Stroke Resiko Tinggi";
+                } else if ($medium >= 2) {
+                    $hasil = "Waspada Struk";
+                } else {
+                    $hasil = "Stroke Resiko Rendah";
+                }
+            }
+            else if ($high == 1){
+                if ($medium >= 5) {
+                    $hasil = "Stroke Resiko Tinggi";
+                } else if ($medium >= 3) {
+                    $hasil = "Waspada Struk";
+                } else {
+                    $hasil = "Stroke Resiko Rendah";
+                }
+            }
+            else if ($medium >= 4) {
+                $hasil = "Waspada Struk";
+            } else {
+                if ($medium == 3){
+                    if ($low >= 3) {
+                        $hasil = "Waspada Struk";
+                    } else {
+                        $hasil = "Stroke Resiko Rendah";
+                    }
+                }
+                else if ($medium == 2){
+                    if ($low >= 5) {
+                        $hasil = "Waspada Struk";
+                    } else {
+                        $hasil = "Stroke Resiko Rendah";
+                    }
+                }
+                else if ($low >= 6){
+                    $hasil = "Stroke Resiko Rendah";
+                }
+            }
+        }
 
         return array(
             'high' => $high,
             'medium' => $medium,
-            'low' => $low, 
+            'low' => $low,
             'hasil' => $hasil
         );
     }
@@ -268,11 +326,11 @@ class Pemeriksaan extends ResourceController
             $isMale = True;
         }
 
-        if($data->merokok == 0){
+        if($data->merokok == 3){
             $smoker = False;
         }
 
-        if ($data->obat_hipertensi == 1){
+        if ($data->obat_hipertensi == 2){
             $hypertensive = True;
         }
 
@@ -280,17 +338,17 @@ class Pemeriksaan extends ResourceController
            $diabetic = True;
         }
 
-        if($data->tekanan_darah == 0){
+        if($data->tekanan_darah == 3){
             $sbp = 110;
-        }else if($data->tekanan_darah == 1){
+        }else if($data->tekanan_darah == 2){
             $sbp = 130;
         }else{
             $sbp = 150;
         }
 
-        if($data->kadar_kolesterol == 0){
+        if($data->kadar_kolesterol == 3){
             $chol = 190;
-        }else if($data->kadar_kolesterol == 1){
+        }else if($data->kadar_kolesterol == 2){
             $chol = 220;
         }else{
             $chol = 250;
@@ -309,7 +367,7 @@ class Pemeriksaan extends ResourceController
 
         if ($age < 40 || $age > 79){
             return array(
-                'score' => -1, 
+                'score' => -1,
                 'hasil' => "Tidak diketahui"
             );
         }
@@ -432,7 +490,7 @@ class Pemeriksaan extends ResourceController
         }
 
         return array(
-            'score' => $kolesterol_res, 
+            'score' => $kolesterol_res,
             'hasil' => $hasil
         );
     }

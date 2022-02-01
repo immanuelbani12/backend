@@ -24,8 +24,18 @@ class Pemeriksaan extends ResourceController
         return $this->respond($this->model->findAll());
     }
 
-    public function show($id = null)
+    public function show($slug = null, $id = null)
     {
+        if($slug == 'user'){
+            $data = $this->model->get_user_by_id_latest($id);
+            return $this->respond($data);
+        }
+
+        if($slug == 'userAll'){
+            $data = $this->model->get_user_by_id_all($id);
+            return $this->respond($data);
+        }
+
         $record = $this->model->find($id);
         if (!$record) {
             # code...

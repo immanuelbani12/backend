@@ -171,19 +171,19 @@ class Pemeriksaan extends ResourceController
         }
 
         if($score > 20){
-            $diabetes_risk = "Sangat Tinggi";
+            $diabetes_risk = "Risiko Sangat Tinggi";
         }
         elseif($score >= 15){
-            $diabetes_risk = "Tinggi";
+            $diabetes_risk = "Risiko Tinggi";
         }
         elseif($score >= 12){
-            $diabetes_risk = "Sedang";
+            $diabetes_risk = "Risiko Sedang";
         }
         elseif($score >= 7){
-            $diabetes_risk = "Rendah";
+            $diabetes_risk = "Risiko Rendah";
         }
         else{
-            $diabetes_risk = "Sangat Rendah";
+            $diabetes_risk = "Risiko Sangat Rendah";
         }
 
         return array(
@@ -269,45 +269,45 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
         //Use Complex Nested IF for Now
         if ($high >= 3) {
-            $hasil = "Risiko Tinggi";
+            $hasil = "Tinggi";
         } else {
             if ($high == 2){
                 if ($medium >= 3) {
-                    $hasil = "Risiko Tinggi";
+                    $hasil = "Tinggi";
                 } else if ($medium >= 2) {
-                    $hasil = "Risiko Menengah";
+                    $hasil = "Menengah";
                 } else {
-                    $hasil = "Risiko Rendah";
+                    $hasil = "Rendah";
                 }
             }
             else if ($high == 1){
                 if ($medium >= 5) {
-                    $hasil = "Risiko Tinggi";
+                    $hasil = "Tinggi";
                 } else if ($medium >= 3) {
-                    $hasil = "Risiko Menengah";
+                    $hasil = "Menengah";
                 } else {
-                    $hasil = "Risiko Rendah";
+                    $hasil = "Rendah";
                 }
             }
             else if ($medium >= 4) {
-                $hasil = "Risiko Menengah";
+                $hasil = "Menengah";
             } else {
                 if ($medium == 3){
                     if ($low >= 3) {
-                        $hasil = "Risiko Menengah";
+                        $hasil = "Menengah";
                     } else {
-                        $hasil = "Risiko Rendah";
+                        $hasil = "Rendah";
                     }
                 }
                 else if ($medium == 2){
                     if ($low >= 5) {
-                        $hasil = "Risiko Menengah";
+                        $hasil = "Menengah";
                     } else {
-                        $hasil = "Risiko Rendah";
+                        $hasil = "Rendah";
                     }
                 }
                 else if ($low >= 6){
-                    $hasil = "Risiko Rendah";
+                    $hasil = "Rendah";
                 }
             }
         }

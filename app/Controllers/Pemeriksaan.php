@@ -269,45 +269,45 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
         //Use Complex Nested IF for Now
         if ($high >= 3) {
-            $hasil = "Stroke Resiko Tinggi";
+            $hasil = "Risiko Tinggi";
         } else {
             if ($high == 2){
                 if ($medium >= 3) {
-                    $hasil = "Stroke Resiko Tinggi";
+                    $hasil = "Risiko Tinggi";
                 } else if ($medium >= 2) {
-                    $hasil = "Waspada Struk";
+                    $hasil = "Risiko Menengah";
                 } else {
-                    $hasil = "Stroke Resiko Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
             else if ($high == 1){
                 if ($medium >= 5) {
-                    $hasil = "Stroke Resiko Tinggi";
+                    $hasil = "Risiko Tinggi";
                 } else if ($medium >= 3) {
-                    $hasil = "Waspada Struk";
+                    $hasil = "Risiko Menengah";
                 } else {
-                    $hasil = "Stroke Resiko Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
             else if ($medium >= 4) {
-                $hasil = "Waspada Struk";
+                $hasil = "Risiko Menengah";
             } else {
                 if ($medium == 3){
                     if ($low >= 3) {
-                        $hasil = "Waspada Struk";
+                        $hasil = "Risiko Menengah";
                     } else {
-                        $hasil = "Stroke Resiko Rendah";
+                        $hasil = "Risiko Rendah";
                     }
                 }
                 else if ($medium == 2){
                     if ($low >= 5) {
-                        $hasil = "Waspada Struk";
+                        $hasil = "Risiko Menengah";
                     } else {
-                        $hasil = "Stroke Resiko Rendah";
+                        $hasil = "Risiko Rendah";
                     }
                 }
                 else if ($low >= 6){
-                    $hasil = "Stroke Resiko Rendah";
+                    $hasil = "Risiko Rendah";
                 }
             }
         }

@@ -33,8 +33,8 @@ class Database extends Config
     public $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
+        'username' => 'apadok',
+        'password' => 'apadok123',
         'database' => 'apadok',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',

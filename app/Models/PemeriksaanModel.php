@@ -36,10 +36,11 @@ class PemeriksaanModel extends Model
         return $query->getResult();
     }
 
-    public function get_user_by_id_all(){
+    public function get_user_by_id_all($id){
         $builder = $this->db->table('pemeriksaan');
         $builder->select('*');
         // $builder->join('user', 'user.id_user = pemeriksaan.id_user');
+        $builder->where('pemeriksaan.id_user', $id);
         $builder->orderBy('pemeriksaan.created_at', 'DESC');
         $query = $builder->get();
         return $query->getResult();

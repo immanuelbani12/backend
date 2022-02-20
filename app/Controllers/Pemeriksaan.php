@@ -347,6 +347,12 @@ class Pemeriksaan extends ResourceController
         if ($data->gula_darah == 1){
            $diabetic = True;
         }
+        if($data->keturunan == 3){
+            $diabetic = True;
+        }
+        elseif($data->keturunan == 2){
+            $diabetic = True;
+        }
 
         if($data->tekanan_darah == 3){
             $sbp = 110;
@@ -364,9 +370,9 @@ class Pemeriksaan extends ResourceController
             $chol = 250;
         }
 
-        if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "< 30"){
+        if($data->kolesterol_hdl == 1){
             $hdl = 20;
-        }else if($data->{"Berapakah kadar kolesterol sehat (HDL) anda saat ini (mmol/L)"} == "30 - 50"){
+        }else if($data->kolesterol_hdl == 2){
             $hdl = 40;
         }else{
             $hdl = 60;

@@ -30,6 +30,9 @@ $RECYCLE.BIN/
 # Linux
 *~
 
+#config
+app/Config/Database.php
+
 # KDE directory preferences
 .directory
 

@@ -32,7 +32,10 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->resource('pemeriksaan');
+$routes->group('api', ['namespace' => 'App\Controllers\api'], function ($routes) {
+    $routes->resource('pemeriksaan');
+});
+// $routes->resource('pemeriksaan');
 
 /*
  * --------------------------------------------------------------------

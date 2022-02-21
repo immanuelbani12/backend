@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\api;
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\DetailStrokeModel;

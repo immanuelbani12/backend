@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Login extends Migration
+class User extends Migration
 {
     public function up()
     {
@@ -20,7 +20,7 @@ class Login extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'username' => [
+            'email' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'unique' => true,

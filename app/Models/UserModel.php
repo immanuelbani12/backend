@@ -25,10 +25,10 @@ class UserModel extends Model
     //     'id_user' => 'required'
     // ];
 
-    function getLogin($email, $password){
+    function getLogin($username, $password){
         $builder = $this->db->table('login');
         $builder->select('*');
-        $builder->where('email', $email);
+        $builder->where('username', $username);
         $builder->where('password = MD5("'.$password.'")');
         $query = $builder->get();
         return $query->getResult();
@@ -37,7 +37,7 @@ class UserModel extends Model
     function getLoginToken($username, $token){
         $builder = $this->db->table('login');
         $builder->select('*');
-        $builder->where('email', $username);
+        $builder->where('username', $username);
         $builder->where('token', $token);
         $query = $builder->get();
         return $query->getResult();

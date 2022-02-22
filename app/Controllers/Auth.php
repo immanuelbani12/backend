@@ -13,7 +13,7 @@ class Auth extends BaseController
 
     public function masuk()
     {
-        if (isset($_SESSION['email']) && isset($_SESSION['token'])){
+        if (isset($_SESSION['username']) && isset($_SESSION['token'])){
             redirect(site_url().'/Auth/login');
         }else{
             return view('pages/masuk');
@@ -22,16 +22,16 @@ class Auth extends BaseController
 
     public function login()
     {
-        if (isset($_SESSION['email']) && isset($_SESSION['token'])){
-            $email = $_SESSION['email'];
+        if (isset($_SESSION['username']) && isset($_SESSION['token'])){
+            $username = $_SESSION['username'];
             $token = $_SESSION['token'];
 
-            $query = $this->UserModel->getLoginToken($email, $token);
+            $query = $this->UserModel->getLoginToken($username, $token);
         }else{
-            $email = $this->request->getPost("email");
+            $username = $this->request->getPost("username");
             $password = $this->request->getPost("password");
 
-            $query = $this->UserModel->getLogin($email, $password);
+            $query = $this->UserModel->getLogin($username, $password);
             if(!count($query)>0) {
                 return redirect()->to('/Auth/masuk');
             } 
@@ -47,7 +47,7 @@ class Auth extends BaseController
             {
                 $session->set("id_login",$row->id_login);
                 $session->set("nama",$row->nama);
-                $session->set("email",$row->email);
+                $session->set("username",$row->username);
                 $session->set("role",$row->role);
                 $session->set("token",$token);
                 if ($row->role == "A"){

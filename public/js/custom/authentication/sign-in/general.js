@@ -14,14 +14,14 @@ var KTSigninGeneral = function() {
 			form,
 			{
 				fields: {					
-					'email': {
+					'username': {
                         validators: {
 							notEmpty: {
-								message: 'Email address is required'
+								message: 'Username address is required'
 							},
-                            emailAddress: {
-								message: 'The value is not a valid email address'
-							}
+                            // emailAddress: {
+							// 	message: 'The value is not a valid email address'
+							// }
 						}
 					},
                     'password': {

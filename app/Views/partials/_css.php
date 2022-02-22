@@ -1,26 +1,13 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-<link rel="icon" href="<?= base_url('/img/siwalan_logomarkxxxhdpi.png')?>" type="image/x-icon">
-<link rel="stylesheet" href="<?= base_url('/css/app.css')?>">
-<link rel="stylesheet" href="<?= base_url('/css/sweetalert.css')?>">
-<style>
-    .loader {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #F5F8FA;
-        z-index: 9998;
-        text-align: center;
-    }
-
-    .plane-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-    }
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="<?= base_url('/media/logos/favicon.ico')?>" />
+<!--begin::Fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<!--end::Fonts-->
+<!--begin::Page Vendor Stylesheets(used by this page)-->
+<link href="<?= base_url('/plugins/custom/datatables/datatables.bundle.css')?>" rel="stylesheet" type="text/css" />
+<!--end::Page Vendor Stylesheets-->
+<!--begin::Global Stylesheets Bundle(used by all pages)-->
+<link href="<?= base_url('/plugins/global/plugins.bundle.css')?>" rel="stylesheet" type="text/css" />
+<link href="<?= base_url('/css/style.bundle.css')?>" rel="stylesheet" type="text/css" />
+<!--end::Global Stylesheets Bundle-->

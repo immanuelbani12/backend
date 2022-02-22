@@ -13,11 +13,11 @@ class Pemeriksaan extends ResourceController
     protected $format = 'json';
 
     public function __construct()
-        {
-            $this->DiabetesModel    = new DetailDiabetesModel();
-            $this->StrokeModel      = new DetailStrokeModel();
-            $this->KolesterolModel  = new DetailKolesterolModel();
-        }
+    {
+        $this->DiabetesModel    = new DetailDiabetesModel();
+        $this->StrokeModel      = new DetailStrokeModel();
+        $this->KolesterolModel  = new DetailKolesterolModel();
+    }
 
     public function index()
     {

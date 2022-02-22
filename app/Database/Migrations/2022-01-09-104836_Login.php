@@ -34,6 +34,10 @@ class Login extends Migration
                 'constraint' => 100,
                 'unique' => true,
             ],
+            'role' => [
+                'type' => 'VARCHAR',
+                'constraint' => 1,
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

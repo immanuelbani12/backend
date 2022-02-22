@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class Auth extends BaseController
 {
-    // public function index()
-    // {
-    //     return view('welcome_message');
-    // }
+    public function __construct()
+    {
+        $this->UserModel = new UserModel();
+    }
 
     public function masuk()
     {
@@ -24,40 +26,46 @@ class Auth extends BaseController
             $email = $_SESSION['email'];
             $token = $_SESSION['token'];
 
-            $query = $this->User_model->getLoginToken($email, $token);
+            $query = $this->UserModel->getLoginToken($email, $token);
         }else{
             $email = $this->request->getPost("email");
             $password = $this->request->getPost("password");
 
-            $query = $this->User_model->getLogin($email, $password);
-            if(count($query->result())>0) $token = $this->getToken(20);
+            $query = $this->UserModel->getLogin($email, $password);
+            if(!count($query)>0) {
+                return redirect()->to('/Auth/masuk');
+            } 
+            
+            $token = $this->getToken(50);
 
-            $this->User_model->update_data('id_login', 'login', $query->row()->id_login, array('token' => $token));
+            $this->UserModel->update_data('id_login', 'login', $query[0]->id_login, array('token' => $token));
         }
 
-        if (count($query->result())>0){
-            foreach ($query->result() as $row)
+        if (count($query)>0){
+            $session = \Config\Services::session();
+            foreach ($query as $row)
             {
-                $this->session->set_userdata("id_login",$row->id_login);
-                $this->session->set_userdata("nama",$row->nama);
-                $this->session->set_userdata("email",$row->email);
-                $this->session->set_userdata("role",$row->role);
-                $this->session->set_userdata("token",$token);
+                $session->set("id_login",$row->id_login);
+                $session->set("nama",$row->nama);
+                $session->set("email",$row->email);
+                $session->set("role",$row->role);
+                $session->set("token",$token);
                 if ($row->role == "A"){
-                    redirect(site_url().'/Monitoring/StatusDokter');
+                    return redirect()->to('/Monitoring');
                 }
                 else if ($row->role == "K"){
-                    redirect(site_url().'/DataResep');
+                    // return redirect()->to(site_url().'/Auth/masuk');
                 }
             }
         }else{
-            redirect(site_url().'/Auth/masuk');
+            return redirect()->to('/Auth/masuk');
         }
     }
 
     public function logout()
     {
-        $this->session->sess_destroy();
+        $session = \Config\Services::session();
+        $session->destroy();
         redirect(site_url().'/Auth/masuk');
     }
 

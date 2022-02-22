@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Controllers;
+use Firebase\JWT\JWT;
 
-use App\Models\UserModel;
+use App\Models\LoginModel;
 
 class Auth extends BaseController
 {
     public function __construct()
     {
-        $this->UserModel = new UserModel();
+        $this->LoginModel = new loginModel();
     }
 
     public function masuk()
@@ -26,19 +27,27 @@ class Auth extends BaseController
             $username = $_SESSION['username'];
             $token = $_SESSION['token'];
 
-            $query = $this->UserModel->getLoginToken($username, $token);
+            $query = $this->LoginModel->getLoginToken($username, $token);
         }else{
             $username = $this->request->getPost("username");
             $password = $this->request->getPost("password");
 
-            $query = $this->UserModel->getLogin($username, $password);
+            $query = $this->LoginModel->getLogin($username, $password);
             if(!count($query)>0) {
                 return redirect()->to('/Auth/masuk');
             } 
             
-            $token = $this->getToken(50);
+            $key = getenv('TOKEN_SECRET');
+            $payload = array(
+                "iat" => 1356999524,
+                "nbf" => 1357000000,
+                "id_login" => $query[0]->id_login,
+                "username" => $query[0]->username
+            );
+ 
+            $token = JWT::encode($payload, $key, "HS256");
 
-            $this->UserModel->update_data('id_login', 'login', $query[0]->id_login, array('token' => $token));
+            $this->LoginModel->update_data('id_login', 'login', $query[0]->id_login, array('token' => $token));
         }
 
         if (count($query)>0){

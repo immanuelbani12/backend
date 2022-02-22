@@ -6,6 +6,10 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\DetailStrokeModel;
 use App\Models\DetailDiabetesModel;
 use App\Models\DetailKolesterolModel;
+use App\Models\LoginModel;
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class Pemeriksaan extends ResourceController
 {
@@ -17,15 +21,41 @@ class Pemeriksaan extends ResourceController
         $this->DiabetesModel    = new DetailDiabetesModel();
         $this->StrokeModel      = new DetailStrokeModel();
         $this->KolesterolModel  = new DetailKolesterolModel();
+        $this->LoginModel       = new loginModel();
+    }
+
+    public function checkToken(){
+        $key = getenv('TOKEN_SECRET');
+        $header = $this->request->getServer('HTTP_AUTHORIZATION');
+        if(!$header) return false;
+        $token = explode(' ', $header)[1];
+ 
+        try {
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+
+            $data = $this->LoginModel->getLoginToken($decoded->username, $token);
+            if(!count($data)>0) return false;
+
+            return true;
+        
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 
     public function index()
     {
+        $check = $this->checkToken();
+        if(!$check) return $this->fail('Invalid Token');
+        
         return $this->respond($this->model->findAll());
     }
 
     public function show($slug = null, $id = null)
     {
+        $check = $this->checkToken();
+        if(!$check) return $this->fail('Invalid Token');
+
         if($slug == 'user'){
             $data = $this->model->get_user_by_id_latest($id);
             return $this->respond($data);
@@ -50,6 +80,9 @@ class Pemeriksaan extends ResourceController
 
     public function create()
     {
+        $check = $this->checkToken();
+        if(!$check) return $this->fail('Invalid Token');
+
         $data = $this->request->getJSON();
 		
 		/*Contoh Input API dari Android	[{"answer":"Laki-laki","question":"jenis_kelamin"},{"answer":"11/1/2022","question":"tanggal_lahir"},{"answer":"3432","question":"tinggi_badan"},{"answer":"34324","question":"berat_badan"},{"answer":"2","question":"aktivitas_fisik"},{"answer":"2","question":"merokok"},{"answer":"324234","question":"lingkar_pinggang"},{"answer":"1","question":"histori_hipertensi"},{"answer":"2","question":"tekanan_darah"},{"answer":"1","question":"gula_darah"},{"answer":"3","question":"kadar_gula"},{"answer":"3","question":"kadar_kolesterol"},{"answer":"3","question":"riwayat_stroke"},{"answer":"3","question":"irama_jantung"},{"answer":"2","question":"buah_sayur"},{"answer":"2","question":"obat_hipertensi"},{"answer":"2","question":"keturunan"},{"answer":"4","question":"kolesterol_hdl"},{"answer":"69","question":"id_user"}]

@@ -31,8 +31,9 @@ class Login extends Migration
             ],
             'token' => [
                 'type' => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 300,
                 'unique' => true,
+                'null' => true,
             ],
             'role' => [
                 'type' => 'VARCHAR',

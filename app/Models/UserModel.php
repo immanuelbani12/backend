@@ -25,26 +25,8 @@ class UserModel extends Model
     //     'id_user' => 'required'
     // ];
 
-    function getLogin($username, $password){
-        $builder = $this->db->table('login');
-        $builder->select('*');
-        $builder->where('username', $username);
-        $builder->where('password = MD5("'.$password.'")');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    function getLoginToken($username, $token){
-        $builder = $this->db->table('login');
-        $builder->select('*');
-        $builder->where('username', $username);
-        $builder->where('token', $token);
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
     function getUserData($id_login){
-        $builder = $this->db->table('login');
+        $builder = $this->db->table('user');
         $builder->select('*');
         $builder->where('id_login', $id_login);
         $query = $builder->get();

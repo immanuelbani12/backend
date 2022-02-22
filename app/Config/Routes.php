@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->group('api', ['namespace' => 'App\Controllers\api'], function ($routes) {
     $routes->resource('pemeriksaan');
+    $routes->post('login', 'Login::index');
 });
 // $routes->resource('pemeriksaan');
 

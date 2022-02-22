@@ -11,32 +11,38 @@ class User extends Migration
         $this->db->disableForeignKeyChecks();
 
         $this->forge->addField([
-            'id_login' => [
+            'id_user' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'nama' => [
+            'id_login' => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
+            'nama_user' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'email' => [
+            'no_telp' => [
                 'type' => 'VARCHAR',
-                'constraint' => 50,
+                'constraint' => 15,
                 'unique' => true,
             ],
-            'password' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
+            'tgl_lahir' => [
+                'type' => 'DATE',
             ],
-            'token' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'unique' => true,
-            ],
-            'role' => [
-                'type' => 'VARCHAR',
+            'jenis_kelamin' => [
+                'type' => 'CHAR',
                 'constraint' => 1,
+            ],
+            'tinggi_badan' => [
+                'type' => 'INT',
+                'constraint' => 3,
+            ],
+            'berat_badan' => [
+                'type' => 'INT',
+                'constraint' => 3,
             ],
             'updated_at' => [
                 'type' => 'datetime',
@@ -44,14 +50,15 @@ class User extends Migration
             ],
             'created_at datetime default current_timestamp',
         ]);
-        $this->forge->addKey('id_login', true);
-        $this->forge->createTable('login', true);
+        $this->forge->addKey('id_user', true);
+        $this->forge->addForeignKey('id_login', 'login', 'id_login');
+        $this->forge->createTable('user', true);
 
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('login', true);
+        $this->forge->dropTable('user', true);
     }
 }

@@ -17,7 +17,7 @@
 			<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 				<!--begin::Logo-->
 				<a href="../../demo11/dist/index.html" class="mb-12">
-					<img alt="Logo" src="<?= base_url('/media/logos/logo-1.svg')?>" class="h-40px" />
+					<img alt="Logo" src="<?= base_url('/media/logos/apadok.png')?>" class="h-80px" />
 				</a>
 				<!--end::Logo-->
 				<!--begin::Wrapper-->
@@ -59,8 +59,8 @@
 						<div class="text-center">
 							<!--begin::Submit button-->
 							<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-								<span class="indicator-label">Continue</span>
-								<span class="indicator-progress">Please wait...
+								<span class="indicator-label">Lanjutkan</span>
+								<span class="indicator-progress">Harap tunggu...
 								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 							</button>
 							<!--end::Submit button-->
@@ -81,6 +81,10 @@
 	</div>
 	<!--end::Root-->
 	<?php echo view('partials/_javascripts');?>
+	
+	<!--begin::Page Custom Javascript(used by this page)-->
+	<script src="<?= base_url('/js/custom/authentication/sign-in/general.js')?>"></script>
+	<!--end::Page Custom Javascript-->
 </body>
 <!--end::Body-->
 </html>

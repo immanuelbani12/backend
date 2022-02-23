@@ -60,7 +60,7 @@ class Auth extends BaseController
                 $session->set("role",$row->role);
                 $session->set("token",$token);
                 if ($row->role == "A"){
-                    return redirect()->to('/Monitoring');
+                    return redirect()->to('/Klinik');
                 }
                 else if ($row->role == "K"){
                     // return redirect()->to(site_url().'/Auth/masuk');

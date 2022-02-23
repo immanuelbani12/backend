@@ -19,7 +19,7 @@ class LoginSeeder extends Seeder
 
         $data = [
             'nama'    => 'UserTest',
-            'username' => 'user@gmail.com',
+            'username' => '081212121212',
             'password' => md5('user'),
             'role' => 'U',
         ];

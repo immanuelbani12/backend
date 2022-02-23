@@ -25,7 +25,6 @@ class LoginModel extends Model
         'nama' => 'required',
         'username' => 'required',
         'password' => 'required',
-        'token' => 'required',
     ];
 
     function getLogin($username, $password){

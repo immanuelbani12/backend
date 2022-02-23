@@ -15,17 +15,34 @@ var KTUsersAddUser = function () {
             form,
             {
                 fields: {
-                    'user_name': {
+                    'nama': {
                         validators: {
                             notEmpty: {
-                                message: 'Full name is required'
+                                message: 'Nama klinik wajib di isi'
                             }
                         }
                     },
-                    'user_email': {
+                    'email': {
                         validators: {
                             notEmpty: {
-                                message: 'Valid email address is required'
+                                message: 'Alamat email wajib di isi'
+                            },
+                            emailAddress: {
+								message: 'Alamat email tidak valid'
+							}
+                        }
+                    },
+                    // 'password': {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Password wajib di isi'
+                    //         }
+                    //     }
+                    // },
+                    'alamat': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Alamat klinik wajib di isi'
                             }
                         }
                     },
@@ -67,30 +84,15 @@ var KTUsersAddUser = function () {
                             // Enable button
                             submitButton.disabled = false;
 
-                            // Show popup confirmation 
-                            Swal.fire({
-                                text: "Form has been successfully submitted!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
-                                }
-                            }).then(function (result) {
-                                if (result.isConfirmed) {
-                                    modal.hide();
-                                }
-                            });
-
-                            //form.submit(); // Submit form
+                            form.submit(); // Submit form
                         }, 2000);
                     } else {
                         // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf, sepertinya ada terjadi error, mohon coba kembali.",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Baik, mengerti!",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -106,12 +108,12 @@ var KTUsersAddUser = function () {
             e.preventDefault();
 
             Swal.fire({
-                text: "Are you sure you would like to cancel?",
+                text: "Anda yakin ingin membatalkan?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
+                confirmButtonText: "Ya, batalkan!",
+                cancelButtonText: "Tidak, kembali",
                 customClass: {
                     confirmButton: "btn btn-primary",
                     cancelButton: "btn btn-active-light"
@@ -122,10 +124,10 @@ var KTUsersAddUser = function () {
                     modal.hide();	
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Your form has not been cancelled!.",
+                        text: "Formulir data anda tidak di batalkan!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Baik, mengerti!",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -140,12 +142,12 @@ var KTUsersAddUser = function () {
             e.preventDefault();
 
             Swal.fire({
-                text: "Are you sure you would like to cancel?",
+                text: "Anda yakin ingin membatalkan?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
+                confirmButtonText: "Ya, batalkan!",
+                cancelButtonText: "Tidak, kembali",
                 customClass: {
                     confirmButton: "btn btn-primary",
                     cancelButton: "btn btn-active-light"
@@ -156,10 +158,10 @@ var KTUsersAddUser = function () {
                     modal.hide();	
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Your form has not been cancelled!.",
+                        text: "Formulir data anda tidak di batalkan!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Baik, mengerti!",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }

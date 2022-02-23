@@ -63,7 +63,7 @@ class Auth extends BaseController
                     return redirect()->to('/Klinik');
                 }
                 else if ($row->role == "K"){
-                    // return redirect()->to(site_url().'/Auth/masuk');
+                    return redirect()->to('/User');
                 }
             }
         }else{
@@ -75,7 +75,7 @@ class Auth extends BaseController
     {
         $session = \Config\Services::session();
         $session->destroy();
-        redirect(site_url().'/Auth/masuk');
+        return redirect()->to('/Auth/masuk');
     }
 
     public function getToken($panjang){

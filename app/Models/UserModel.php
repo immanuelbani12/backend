@@ -6,24 +6,42 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    // protected $table            = 'pemeriksaan';
-    // protected $primaryKey       = 'id_pemeriksaan';
-    // // protected $returnType       = Pemeriksaan::class;
-    // protected $protectFields    = true;
-    // protected $allowedFields    = [
-    //     'id_user', 
-    //     'hasil_diabetes', 
-    //     'hasil_kolesterol', 
-    //     'hasil_stroke'
-    // ];
+    protected $table            = 'user';
+    protected $primaryKey       = 'id_user';
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'id_login', 
+        'id_klinik', 
+        'nama_user', 
+        'no_telp', 
+        'tgl_lahir',
+        'jenis_kelamin',
+        'tinggi_badan',
+        'berat_badan',
+    ];
 
-    // // Dates
-    // protected $createdField  = 'created_at';
-    // protected $updatedField  = 'updated_at';
+    // Dates
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
 
-    // protected $validationRules = [
-    //     'id_user' => 'required'
-    // ];
+    protected $validationRules = [
+        'id_login'      => 'required',
+        'id_klinik'     => 'required',
+        'nama_user'     => 'required',
+        'no_telp'       => 'required',
+        'tgl_lahir'     => 'required',
+        'jenis_kelamin' => 'required',
+        'tinggi_badan'  => 'required',
+        'berat_badan'   => 'required'
+    ];
+
+    function getUser($id_klinik){
+        $builder = $this->db->table('user');
+        $builder->select('*');
+        $builder->where('id_klinik', $id_klinik);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 
     function getUserData($id_login){
         $builder = $this->db->table('user');

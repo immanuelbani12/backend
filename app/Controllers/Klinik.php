@@ -46,6 +46,28 @@ class Klinik extends BaseController
         return redirect()->to('/Klinik');
     }
 
+    public function update(){
+        $session = session();
+
+        $data = array(
+            'nama'      => $this->request->getPost('nama'),
+            'username'  => $this->request->getPost('email'),
+        );
+
+        $this->LoginModel->update($this->request->getPost('id_login'), $data);
+
+        $data = array(
+            'nama_klinik'   => $this->request->getPost('nama'),
+            'email_klinik'  => $this->request->getPost('email'),
+            'alamat_klinik' => $this->request->getPost('alamat')
+        );
+
+        $this->KlinikModel->update($this->request->getPost('id_klinik'), $data);
+
+        $session->setFlashdata('msg', 'Data berhasil di edit');
+        return redirect()->to('/Klinik');
+    }
+
     public function delete($id_klinik, $id_login){
         $session = session();
 

@@ -33,4 +33,12 @@ class KlinikModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getKlinik_by_id_login($id_login){
+        $builder = $this->db->table('klinik');
+        $builder->select('*');
+        $builder->where('id_login', $id_login);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

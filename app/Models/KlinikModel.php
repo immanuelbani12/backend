@@ -41,4 +41,12 @@ class KlinikModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getKlinik_by_id($id_klinik){
+        $builder = $this->db->table('klinik');
+        $builder->select('*');
+        $builder->where('id_klinik', $id_klinik);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

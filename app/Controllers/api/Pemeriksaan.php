@@ -21,7 +21,7 @@ class Pemeriksaan extends ResourceController
         $this->DiabetesModel    = new DetailDiabetesModel();
         $this->StrokeModel      = new DetailStrokeModel();
         $this->KolesterolModel  = new DetailKolesterolModel();
-        $this->LoginModel       = new loginModel();
+        $this->LoginModel       = new LoginModel();
     }
 
     public function checkToken(){

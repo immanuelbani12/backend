@@ -18,8 +18,17 @@ class LoginSeeder extends Seeder
         $this->db->table('login')->insert($data);
 
         $data = [
-            'nama'    => 'UserTest',
-            'username' => '081212121212',
+            'nama'     => 'Klinik Sutorejo',
+            'username' => 'klinik@gmail.com',
+            'password' => md5('klinik'),
+            'role' => 'K',
+        ];
+        // Using Query Builder
+        $this->db->table('login')->insert($data);
+
+        $data = [
+            'nama'    => 'Bambang',
+            'username' => '08123456789',
             'password' => md5('user'),
             'role' => 'U',
         ];

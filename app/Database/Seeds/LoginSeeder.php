@@ -34,5 +34,23 @@ class LoginSeeder extends Seeder
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
+
+        $data = [
+            'nama'    => 'Rahayu',
+            'username' => '08111111111',
+            'password' => md5('user'),
+            'role' => 'U',
+        ];
+        // Using Query Builder
+        $this->db->table('login')->insert($data);
+
+        $data = [
+            'nama'    => 'Sutejo',
+            'username' => '08222222222',
+            'password' => md5('user'),
+            'role' => 'U',
+        ];
+        // Using Query Builder
+        $this->db->table('login')->insert($data);
     }
 }

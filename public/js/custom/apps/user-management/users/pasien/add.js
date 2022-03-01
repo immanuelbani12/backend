@@ -39,20 +39,20 @@ var KTUsersAddUser = function () {
                     //         }
                     //     }
                     // },
-                    'tgl_lahir': {
-                        validators: {
-                            notEmpty: {
-                                message: 'Tanggal lahir wajib di isi'
-                            }
-                        }
-                    },
-                    'jenis_kelamin': {
-                        validators: {
-                            notEmpty: {
-                                message: 'Jenis kelamin wajib di isi'
-                            }
-                        }
-                    },
+                    // 'tgl_lahir': {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Tanggal lahir wajib di isi'
+                    //         }
+                    //     }
+                    // },
+                    // 'jenis_kelamin': {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: 'Jenis kelamin wajib di isi'
+                    //         }
+                    //     }
+                    // },
                     // 'tinggi_badan': {
                     //     validators: {
                     //         notEmpty: {

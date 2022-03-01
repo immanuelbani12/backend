@@ -24,7 +24,7 @@ class LoginModel extends Model
     protected $validationRules = [
         'nama' => 'required',
         'username' => 'required',
-        'password' => 'required',
+        // 'password' => 'required',
     ];
 
     function getLogin($username, $password){

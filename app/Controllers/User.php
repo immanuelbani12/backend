@@ -33,7 +33,7 @@ class User extends BaseController
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
-            'password'  => md5($this->request->getPost('password')),
+            // 'password'  => md5($this->request->getPost('password')),
             'role'      => "U",
         );
 

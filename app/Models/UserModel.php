@@ -29,10 +29,10 @@ class UserModel extends Model
         'id_klinik'     => 'required',
         'nama_user'     => 'required',
         'no_telp'       => 'required',
-        'tgl_lahir'     => 'required',
-        'jenis_kelamin' => 'required',
-        'tinggi_badan'  => 'required',
-        'berat_badan'   => 'required'
+        // 'tgl_lahir'     => 'required',
+        // 'jenis_kelamin' => 'required',
+        // 'tinggi_badan'  => 'required',
+        // 'berat_badan'   => 'required'
     ];
 
     function getUser($id_klinik){

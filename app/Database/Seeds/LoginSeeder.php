@@ -29,7 +29,7 @@ class LoginSeeder extends Seeder
         $data = [
             'nama'    => 'Bambang',
             'username' => '08123456789',
-            'password' => md5('user'),
+            // 'password' => md5('user'),
             'role' => 'U',
         ];
         // Using Query Builder
@@ -38,7 +38,7 @@ class LoginSeeder extends Seeder
         $data = [
             'nama'    => 'Rahayu',
             'username' => '08111111111',
-            'password' => md5('user'),
+            // 'password' => md5('user'),
             'role' => 'U',
         ];
         // Using Query Builder
@@ -47,7 +47,7 @@ class LoginSeeder extends Seeder
         $data = [
             'nama'    => 'Sutejo',
             'username' => '08222222222',
-            'password' => md5('user'),
+            // 'password' => md5('user'),
             'role' => 'U',
         ];
         // Using Query Builder

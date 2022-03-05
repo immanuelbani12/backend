@@ -51,6 +51,7 @@ class Login extends ResourceController
             "nama_user" => $userData[0]->nama_user,
             "id_klinik" => $userData[0]->id_klinik,
             "nama_klinik" => $klinikData[0]->nama_klinik,
+            "logo_klinik" => $klinikData[0]->logo,
             "token"   => $token
         );
         $this->model->update_data('id_login', 'login', $user['id_login'], array('token' => $token));

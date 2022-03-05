@@ -124,11 +124,11 @@ class Klinik extends BaseController
             return $data;
         }
 
-        // dd($img);
+        // dd(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'klinik'.DIRECTORY_SEPARATOR);
 
         if (! $img->hasMoved()) {
             $name = $img->getRandomName();
-            $img->move('./media/klinik/', $name, true);
+            $img->move(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'klinik'.DIRECTORY_SEPARATOR, $name, true);
 
             $data = ['path' => $name];
             return $data;

@@ -12,8 +12,10 @@ class KlinikModel extends Model
     protected $allowedFields    = [
         'id_login', 
         'nama_klinik', 
-        'email_klinik', 
-        'alamat_klinik'
+        'email_klinik',
+        'no_telp_klinik', 
+        'alamat_klinik',
+        'logo',
     ];
 
     // Dates
@@ -24,7 +26,9 @@ class KlinikModel extends Model
         'id_login' => 'required',
         'nama_klinik' => 'required',
         'email_klinik' => 'required',
+        'no_telp_klinik' => 'required',
         'alamat_klinik' => 'required',
+        // 'logo' => 'required',
     ];
 
     function getKlinik(){

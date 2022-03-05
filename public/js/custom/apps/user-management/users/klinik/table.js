@@ -13,8 +13,7 @@ var KTUsersList = function () {
             'order': [],
             "pageLength": 10,
             "lengthChange": false,
-            "dom": 'Bfrtip',
-            "searching": false,
+            "dom": 'Brtip',
             "buttons": [
                 {
                     extend: 'copyHtml5',

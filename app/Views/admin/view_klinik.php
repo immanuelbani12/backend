@@ -127,7 +127,9 @@
 												<!--begin::Modal body-->
 												<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 													<!--begin::Form-->
-													<form id="kt_modal_add_user_form" class="form" method="post" action="<?= site_url('Klinik/add') ?>">
+													<form id="kt_modal_add_user_form" class="form" method="post" action="<?= site_url('Klinik/add') ?>" enctype="multipart/form-data">
+														<input type="hidden" name="id_login" id="id_login">
+														<input type="hidden" name="id_klinik" id="id_klinik">
 														<!--begin::Scroll-->
 														<div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 															<!--begin::Input group-->
@@ -153,6 +155,16 @@
 															<!--begin::Input group-->
 															<div class="fv-row mb-7">
 																<!--begin::Label-->
+																<label class="required fw-bold fs-6 mb-2">Nomor Telepon</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<input type="no_telp" name="no_telp" id="no_telp" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nomor Telepon" autocomplete="off"/>
+																<!--end::Input-->
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="fv-row mb-7">
+																<!--begin::Label-->
 																<label class="required fw-bold fs-6 mb-2">Password</label>
 																<!--end::Label-->
 																<!--begin::Input-->
@@ -170,13 +182,20 @@
 																<!--end::Input-->
 															</div>
 															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="fv-row mb-7">
+																<!--begin::Label-->
+																<label class="fw-bold fs-6 mb-2">Logo</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<input type="file" name="logo" id="logo" class="form-control form-control-solid mb-3 mb-lg-0"/>
+																<!--end::Input-->
+															</div>
+															<!--end::Input group-->
 														</div>
 														<!--end::Scroll-->
 														<!--begin::Actions-->
 														<div class="text-center pt-15">
-															<input type="hidden" name="id_login" id="id_login">
-															<input type="hidden" name="id_klinik" id="id_klinik">
-
 															<button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Batalkan</button>
 															<button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
 																<span class="indicator-label">Simpan</span>
@@ -209,6 +228,7 @@
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
 											<th class="min-w-125px">Nama Klinik</th>
 											<th class="min-w-125px">Email</th>
+											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Alamat</th>
 											<th class="text-end min-w-100px">Actions</th>
 										</tr>
@@ -220,21 +240,16 @@
 										<!--begin::Table row-->
 										<?php foreach ($klinik as $row):?>
 										<tr>
-											<!--begin::Role=-->
 											<input type="hidden" name="id_klinik" class="idKlinik" value="<?=  $row->id_klinik; ?>">
 											<input type="hidden" name="id_login" class="idLogin" value="<?=  $row->id_login; ?>">
 											<td class="namaKlinik"><?= $row->nama_klinik; ?></td>
-											<!--end::Role=-->
-											<!--begin::Last login=-->
 											<td>
 												<div class="badge badge-light fw-bolder emailKlinik"><?= $row->email_klinik; ?></div>
 											</td>
-											<!--end::Last login=-->
-											<!--begin::Two step=-->
+											<td class="noTelp"><?= $row->no_telp_klinik; ?></td>
 											<td>
 												<div class="badge badge-light-success fw-bolder alamatKlinik"><?= $row->alamat_klinik; ?></div>
 											</td>
-											<!--end::Two step=-->
 											<!--begin::Action=-->
 											<td class="text-end">
 												<a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -316,13 +331,15 @@
 			});
 		<?php }?>
 
-		$('#btnEdit').on('click', function() {
+		$('.btnEdit').on('click', function() {
+			console.log('edit');
             $('.form').attr('action', "<?php echo site_url('/Klinik/update')?>");
             var $item = $(this).closest("tr");
             $("#id_login").val($.trim($item.find(".idLogin").val()));
             $("#id_klinik").val($.trim($item.find(".idKlinik").val()));
             $("#nama").val($.trim($item.find(".namaKlinik").text()));
             $("#email").val($.trim($item.find(".emailKlinik").text()));
+            $("#no_telp").val($.trim($item.find(".noTelp").text()));
             $("#alamat").val($.trim($item.find(".alamatKlinik").text()));
         });
 

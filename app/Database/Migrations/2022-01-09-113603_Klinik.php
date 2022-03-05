@@ -29,7 +29,15 @@ class Klinik extends Migration
                 'constraint' => 50,
                 'unique' => true,
             ],
+            'no_telp_klinik' => [
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+            ],
             'alamat_klinik' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+            'logo' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],

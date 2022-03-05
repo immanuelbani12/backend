@@ -86,6 +86,18 @@
 								<div class="card-toolbar">
 									<!--begin::Toolbar-->
 									<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+										<!--begin::Export-->
+										<button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upload">
+											<!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<rect opacity="0.3" x="12.75" y="4.25" width="12" height="2" rx="1" transform="rotate(90 12.75 4.25)" fill="black" />
+													<path d="M12.0573 6.11875L13.5203 7.87435C13.9121 8.34457 14.6232 8.37683 15.056 7.94401C15.4457 7.5543 15.4641 6.92836 15.0979 6.51643L12.4974 3.59084C12.0996 3.14332 11.4004 3.14332 11.0026 3.59084L8.40206 6.51643C8.0359 6.92836 8.0543 7.5543 8.44401 7.94401C8.87683 8.37683 9.58785 8.34458 9.9797 7.87435L11.4427 6.11875C11.6026 5.92684 11.8974 5.92684 12.0573 6.11875Z" fill="black" />
+													<path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4" />
+												</svg>
+											</span>
+											<!--end::Svg Icon-->Unggah Data</button>
+											<!--end::Export-->
 										<!--begin::Add user-->
 										<button type="button" id="addButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
 										<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -229,6 +241,140 @@
 										<!--end::Modal dialog-->
 									</div>
 									<!--end::Modal - Add task-->
+									<!--begin::Modal - Upload-->
+									<div class="modal fade" id="kt_modal_upload" tabindex="-1" aria-hidden="true">
+										<!--begin::Modal dialog-->
+										<div class="modal-dialog modal-dialog-centered mw-650px">
+											<!--begin::Modal content-->
+											<div class="modal-content">
+												<!--begin::Modal header-->
+												<div class="modal-header" id="kt_modal_upload_header">
+													<!--begin::Modal title-->
+													<h2 class="fw-bolder" >Unggah Data</h2>
+													<!--end::Modal title-->
+													<!--begin::Close-->
+													<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-upload-modal-action="close">
+														<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+														<span class="svg-icon svg-icon-1">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+																<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+															</svg>
+														</span>
+														<!--end::Svg Icon-->
+													</div>
+													<!--end::Close-->
+												</div>
+												<!--end::Modal header-->
+												<!--begin::Modal body-->
+												<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+														<!--begin::Actions-->
+														<!--begin::Input group-->
+														<div class="fv-row mb-7">
+																<!--begin::Label-->
+																<label class="fw-bold fs-6 mb-2">Unduh</label>
+																<!--end::Label-->
+																<button type="button" class="btn btn-light-primary me-3 form-control">
+																<span class="svg-icon svg-icon-muted svg-icon-2hx">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																		<rect opacity="0.3" width="12" height="2" rx="1" transform="matrix(0 -1 -1 0 12.75 19.75)" fill="black"/>
+																		<path d="M12.0573 17.8813L13.5203 16.1256C13.9121 15.6554 14.6232 15.6232 15.056 16.056C15.4457 16.4457 15.4641 17.0716 15.0979 17.4836L12.4974 20.4092C12.0996 20.8567 11.4004 20.8567 11.0026 20.4092L8.40206 17.4836C8.0359 17.0716 8.0543 16.4457 8.44401 16.056C8.87683 15.6232 9.58785 15.6554 9.9797 16.1256L11.4427 17.8813C11.6026 18.0732 11.8974 18.0732 12.0573 17.8813Z" fill="black"/>
+																		<path d="M18.75 15.75H17.75C17.1977 15.75 16.75 15.3023 16.75 14.75C16.75 14.1977 17.1977 13.75 17.75 13.75C18.3023 13.75 18.75 13.3023 18.75 12.75V5.75C18.75 5.19771 18.3023 4.75 17.75 4.75L5.75 4.75C5.19772 4.75 4.75 5.19771 4.75 5.75V12.75C4.75 13.3023 5.19771 13.75 5.75 13.75C6.30229 13.75 6.75 14.1977 6.75 14.75C6.75 15.3023 6.30229 15.75 5.75 15.75H4.75C3.64543 15.75 2.75 14.8546 2.75 13.75V4.75C2.75 3.64543 3.64543 2.75 4.75 2.75L18.75 2.75C19.8546 2.75 20.75 3.64543 20.75 4.75V13.75C20.75 14.8546 19.8546 15.75 18.75 15.75Z" fill="#C4C4C4"/>
+																	</svg>
+																</span>
+																<!--end::Svg Icon-->
+																Download</button>
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="fv-row mb-7">
+																<!--begin::Form-->
+																<form action="#" id="kt_modal_upload_form" method="post">
+																	<!--begin::Input group-->
+																	<div class="form-group row">
+																		<!--begin::Label-->
+																		<label class="col-lg-2 col-form-label text-lg-right">Unggah File:</label>
+																		<!--end::Label-->
+
+																		<!--begin::Col-->
+																		<div class="col-lg-10">
+																			<!--begin::Dropzone-->
+																			<div class="dropzone dropzone-queue mb-2" id="kt_dropzonejs_example_3">
+																				<!--begin::Controls-->
+																				<div class="dropzone-panel mb-lg-0 mb-2">
+																					<a class="dropzone-select btn btn-sm btn-primary me-2">Tambahkan file</a>
+																					<a class="dropzone-remove-all btn btn-sm btn-light-primary">Hapus semuanya</a>
+																				</div>
+																				<!--end::Controls-->
+
+																				<!--begin::Items-->
+																				<div class="dropzone-items wm-200px">
+																					<div class="dropzone-item" style="display:none">
+																						<!--begin::File-->
+																						<div class="dropzone-file">
+																							<div class="dropzone-filename" title="some_image_file_name.jpg">
+																								<span data-dz-name>some_image_file_name.jpg</span>
+																								<strong>(<span data-dz-size>340kb</span>)</strong>
+																							</div>
+
+																							<div class="dropzone-error" data-dz-errormessage></div>
+																						</div>
+																						<!--end::File-->
+
+																						<!--begin::Progress-->
+																						<div class="dropzone-progress">
+																							<div class="progress">
+																								<div
+																									class="progress-bar bg-primary"
+																									role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-dz-uploadprogress>
+																								</div>
+																							</div>
+																						</div>
+																						<!--end::Progress-->
+
+																						<!--begin::Toolbar-->
+																						<div class="dropzone-toolbar">
+																							<span class="dropzone-delete" data-dz-remove><i class="bi bi-x fs-1"></i></span>
+																						</div>
+																						<!--end::Toolbar-->
+																					</div>
+																				</div>
+																				<!--end::Items-->
+																			</div>
+																			<!--end::Dropzone-->
+
+																			<!--begin::Hint-->
+																			<span class="form-text text-muted">Maksimum ukuran file 1MB dengan jumlah 1.</span>
+																			<!--end::Hint-->
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</form>
+																<!--end::Form-->
+															</div>
+															<!--end::Input group-->
+															<div class="text-center pt-15">
+																<input type="hidden" name="id_login" id="id_login">
+																<input type="hidden" name="id_user" id="id_user">
+
+																<button type="reset" class="btn btn-light me-3" data-kt-upload-modal-action="cancel">Batalkan</button>
+																<button type="submit" class="btn btn-primary" data-kt-upload-modal-action="submit">
+																	<span class="indicator-label">Simpan</span>
+																	<span class="indicator-progress">Please wait...
+																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+																</button>
+															</div>
+														<!--end::Actions-->
+													<!--end::Form-->
+												</div>
+												<!--end::Modal body-->
+											</div>
+											<!--end::Modal content-->
+										</div>
+										<!--end::Modal dialog-->
+									</div>
+									<!--end::Modal - Upload-->
 								</div>
 								<!--end::Card toolbar-->
 							</div>
@@ -332,6 +478,7 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table.js')?>"></script>
 	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/add.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/upload.js')?>"></script>
 	
 	<script>
 		<?php
@@ -348,6 +495,61 @@
 				}
 			});
 		<?php }?>
+
+		// set the dropzone container id
+		const id = "#kt_dropzonejs_example_3";
+		const dropzone = document.querySelector(id);
+
+		// set the preview element template
+		var previewNode = dropzone.querySelector(".dropzone-item");
+		previewNode.id = "";
+		var previewTemplate = previewNode.parentNode.innerHTML;
+		previewNode.parentNode.removeChild(previewNode);
+
+		var myDropzone = new Dropzone(id, { // Make the whole body a dropzone
+			url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
+			parallelUploads: 20,
+			maxFilesize: 1, // Max filesize in MB
+			previewTemplate: previewTemplate,
+			previewsContainer: id + " .dropzone-items", // Define the container to display the previews
+			clickable: id + " .dropzone-select" // Define the element that should be used as click trigger to select files.
+		});
+
+		myDropzone.on("addedfile", function (file) {
+			// Hookup the start button
+			const dropzoneItems = dropzone.querySelectorAll('.dropzone-item');
+			dropzoneItems.forEach(dropzoneItem => {
+				dropzoneItem.style.display = '';
+			});
+		});
+
+		// Update the total progress bar
+		myDropzone.on("totaluploadprogress", function (progress) {
+			const progressBars = dropzone.querySelectorAll('.progress-bar');
+			progressBars.forEach(progressBar => {
+				progressBar.style.width = progress + "%";
+			});
+		});
+
+		myDropzone.on("sending", function (file) {
+			// Show the total progress bar when upload starts
+			const progressBars = dropzone.querySelectorAll('.progress-bar');
+			progressBars.forEach(progressBar => {
+				progressBar.style.opacity = "1";
+			});
+		});
+
+		// Hide the total progress bar when nothing"s uploading anymore
+		myDropzone.on("complete", function (progress) {
+			const progressBars = dropzone.querySelectorAll('.dz-complete');
+
+			setTimeout(function () {
+				progressBars.forEach(progressBar => {
+					progressBar.querySelector('.progress-bar').style.opacity = "0";
+					progressBar.querySelector('.progress').style.opacity = "0";
+				});
+			}, 300);
+		});
 
 		$('.btnEdit').on('click', function() {
             $('.form').attr('action', "<?php echo site_url('/User/update')?>");

@@ -7,6 +7,7 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <div data-kt-menu-trigger="click" class="menu-item here menu-accordion">
+                    <?php if(false){?>
                     <span class="menu-link">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
@@ -89,6 +90,8 @@
                             </a>
                         </div>
                     </div>
+                    <?php } ?>
+                    
                     <?php if(in_array($_SESSION['role'], ['A'])){?>
                     <div class="menu-item">
                         <a class="menu-link active" href="<?= site_url('/Klinik') ?>">

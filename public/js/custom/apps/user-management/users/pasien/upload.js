@@ -10,40 +10,30 @@ var KTUUpload = function () {
     // Init add schedule modal
     var initUpload = () => {
 
-        // // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-        // var validator = FormValidation.formValidation(
-        //     form,
-        //     {
-        //         fields: {
-        //             'nama': {
-        //                 validators: {
-        //                     notEmpty: {
-        //                         message: 'Nama pasien wajib di isi'
-        //                     }
-        //                 }
-        //             },
-        //             'no_telp': {
-        //                 validators: {
-        //                     notEmpty: {
-        //                         message: 'Nomor telepon wajib di isi'
-        //                     },
-        //                     numeric: {
-        //                         message: 'Nomor telepon berupa angka',
-        //                     },
-        //                 }
-        //             },
-        //         },
+        // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+        var validator = FormValidation.formValidation(
+            form,
+            {
+                fields: {
+                    'data_pasien': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Data pasien wajib di pilih'
+                            }
+                        }
+                    },
+                },
 
-        //         plugins: {
-        //             trigger: new FormValidation.plugins.Trigger(),
-        //             bootstrap: new FormValidation.plugins.Bootstrap5({
-        //                 rowSelector: '.fv-row',
-        //                 eleInvalidClass: '',
-        //                 eleValidClass: ''
-        //             })
-        //         }
-        //     }
-        // );
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: '.fv-row',
+                        eleInvalidClass: '',
+                        eleValidClass: ''
+                    })
+                }
+            }
+        );
 
         // Submit button handler
         const submitButton = element.querySelector('[data-kt-upload-modal-action="submit"]');
@@ -51,41 +41,41 @@ var KTUUpload = function () {
             e.preventDefault();
 
             // Validate form before submit
-            // if (validator) {
-            //     validator.validate().then(function (status) {
-            //         console.log('validated!');
+            if (validator) {
+                validator.validate().then(function (status) {
+                    console.log('validated!');
 
-            //         if (status == 'Valid') {
-            //             // Show loading indication
-            //             submitButton.setAttribute('data-kt-indicator', 'on');
+                    if (status == 'Valid') {
+                        // Show loading indication
+                        submitButton.setAttribute('data-kt-indicator', 'on');
 
-            //             // Disable button to avoid multiple click 
-            //             submitButton.disabled = true;
+                        // Disable button to avoid multiple click 
+                        submitButton.disabled = true;
 
-            //             // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-            //             setTimeout(function () {
-            //                 // Remove loading indication
-            //                 submitButton.removeAttribute('data-kt-indicator');
+                        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        setTimeout(function () {
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
 
-            //                 // Enable button
-            //                 submitButton.disabled = false;
+                            // Enable button
+                            submitButton.disabled = false;
 
-            //                 form.submit(); // Submit form
-            //             }, 2000);
-            //         } else {
-            //             // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-            //             Swal.fire({
-            //                 text: "Maaf, sepertinya ada terjadi error, mohon coba kembali.",
-            //                 icon: "error",
-            //                 buttonsStyling: false,
-            //                 confirmButtonText: "Baik, mengerti!",
-            //                 customClass: {
-            //                     confirmButton: "btn btn-primary"
-            //                 }
-            //             });
-            //         }
-            //     });
-            // }
+                            form.submit(); // Submit form
+                        }, 2000);
+                    } else {
+                        // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        Swal.fire({
+                            text: "Maaf, sepertinya ada terjadi error, mohon coba kembali.",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Baik, mengerti!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
+            }
         });
 
         // Cancel button handler

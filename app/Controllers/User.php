@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 use App\Models\UserModel;
 use App\Models\LoginModel;
 use App\Models\KlinikModel;
@@ -92,5 +95,72 @@ class User extends BaseController
         $session->setFlashdata('msg', 'Data berhasil dihapus');
 
         echo site_url('/User');
+    }
+
+    public function UserTemplate(){
+        $inputFileName = '../public/excel/data_pasien.xlsx';
+
+        /** Load $inputFileName to a Spreadsheet Object  **/
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+
+        $filename = 'DataPasien.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $filename);
+        header('Cache-Control: max-age=0');
+        
+        $writer = new Xlsx($spreadsheet);
+        setlocale(LC_ALL, 'en_US');
+        $writer->save('php://output');
+        exit();
+    }
+
+    public function UserUpload(){
+        $session = session();
+        $file_excel = $this->request->getFile('data_pasien');
+        
+        $ext = $file_excel->getClientExtension();
+        if($ext == 'xls') {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        } else {
+            $render = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        }
+        $spreadsheet = $render->load($file_excel);
+
+        $data = $spreadsheet->getActiveSheet()->toArray();
+
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($session->get("id_login"));
+
+        foreach($data as $x => $row) {
+            $db = \Config\Database::connect();
+            $cekLogin = $db->table('login')->getWhere(['username'=>$row[2]])->getResult();
+
+            if ($row[1] == NULL || $row[2] == NULL || $row[0] == "No" || count($cekLogin) > 0) 
+                continue;
+            
+            $nama       = $row[1];
+            $no_telp    = $row[2];
+
+            $data = array(
+                'nama'      => $nama,
+                'username'  => $no_telp,
+                'role'      => "U",
+            );
+    
+            $this->LoginModel->insert($data);
+    
+            $data = array(
+                'id_login'      => $this->LoginModel->insertID(),
+                'id_klinik'     => $klinik[0]->id_klinik,
+                'nama_user'     => $nama,
+                'no_telp'       => $no_telp
+            );
+    
+            $this->UserModel->insert($data);
+            
+        }
+        
+        $session->setFlashdata('msg', 'Berhasil import excel');
+        return redirect()->to('/User');
     }
 }

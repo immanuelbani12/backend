@@ -24,7 +24,7 @@ var KTProjectOverview = function () {
             data: {
                 datasets: [{
                     data: [30, 45, 25],
-                    backgroundColor: ['#00A3FF', '#50CD89', '#E4E6EF']
+                    backgroundColor: ['#00A3FF', '#FB6F22', '#E4E6EF']
                 }],
                 labels: ['Active', 'Completed', 'Yet to start']
             },

@@ -46579,8 +46579,8 @@ label.rating-label:hover ~ .rating-label > .svg-icon svg:hover [fill]:not(.perma
   border: 1px dashed #323248 !important;
 }
 .explore-btn-outline:hover, .explore-btn-outline.active {
-  border: 1px dashed #50CD89 !important;
-  background-color: #E8FFF3;
+  border: 1px dashed #FB6F22 !important;
+  background-color: #FFF6ED;
 }
 
 .explore-link {
@@ -46595,11 +46595,11 @@ label.rating-label:hover ~ .rating-label > .svg-icon svg:hover [fill]:not(.perma
 }
 
 .explore-icon-success {
-  color: #50CD89;
+  color: #FB6F22;
 }
 .explore-icon-success svg [fill]:not(.permanent):not(g) {
   transition: fill 0.3s ease;
-  fill: #50CD89;
+  fill: #FB6F22;
 }
 .explore-icon-success svg:hover [fill]:not(.permanent):not(g) {
   transition: fill 0.3s ease;
@@ -46623,7 +46623,7 @@ label.rating-label:hover ~ .rating-label > .svg-icon svg:hover [fill]:not(.perma
 
 .explore-label-pro {
   color: #ffffff;
-  background-color: #50CD89;
+  background-color: #FB6F22;
 }
 
 .stepper.stepper-links .stepper-nav {

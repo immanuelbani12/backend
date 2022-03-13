@@ -8,7 +8,7 @@ class MonitoringModel extends Model
 {
     function getTotalSudahScreening($id_klinik){
         return $this->db->query("SELECT COUNT(1) AS jumlah
-        FROM USER
+        FROM `user`
         WHERE id_klinik = $id_klinik
         AND sudah_screening = 1
         ")->getResult();
@@ -16,7 +16,7 @@ class MonitoringModel extends Model
 
     function getTotalBelumScreening($id_klinik){
         return $this->db->query("SELECT COUNT(1) AS jumlah
-        FROM USER
+        FROM `user`
         WHERE id_klinik = $id_klinik
         AND sudah_screening = 0
         ")->getResult();
@@ -24,14 +24,14 @@ class MonitoringModel extends Model
 
     function getListScreening($id_klinik){
         return $this->db->query("SELECT *
-        FROM USER
+        FROM `user`
         WHERE id_klinik = $id_klinik
         ")->getResult();
     }
 
     function getTotalDiabetes($id_klinik){
         return $this->db->query("SELECT COUNT(1) AS jumlah
-        FROM USER
+        FROM `user`
         WHERE id_klinik = $id_klinik
         AND sudah_screening = 1
         ")->getResult();

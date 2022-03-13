@@ -102,7 +102,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">47,769,700</span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $kolesterol[0]->jumlah ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -128,7 +128,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">47,769,700</span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $tidak_kolesterol[0]->jumlah ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -136,7 +136,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Tidak Memiliki Risiko Tinggi Kolesterol</span>
+											<span class="fs-6 fw-bold text-gray-400">Tidak Risiko Tinggi Kolesterol</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -188,6 +188,17 @@
 									<!--end::Table head-->
 									<!--begin::Table body-->
 									<tbody class="text-gray-600 fw-bold">
+										<?php foreach ($list as $row): ?>
+											<tr>
+												<td><?= $row->nama_user ?></td>
+												<td><?= $row->no_telp ?></td>
+												<td>
+													<div class="badge badge-<?=  $row->risiko_kolesterol? "primary" : "light" ?> fw-bolder">
+														<?= $row->risiko_kolesterol? "Risiko Tinggi Kolesterol" : "Tidak Beresiko Tinggi" ?>
+													</div>
+												</td>
+											</tr>
+										<?php endforeach; ?>
 									</tbody>
 									<!--end::Table body-->
 								</table>
@@ -278,20 +289,11 @@
 			// Set data
 			// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
 			series.data.setAll([{
-				value: 10,
-				category: "One"
+				value: <?= $kolesterol[0]->jumlah ?>,
+				category: "Risiko Tinggi Kolesterol"
 			}, {
-				value: 9,
-				category: "Two"
-			}, {
-				value: 6,
-				category: "Three"
-			}, {
-				value: 5,
-				category: "Four"
-			}, {
-				value: 4,
-				category: "Five"
+				value: <?= $tidak_kolesterol[0]->jumlah ?>,
+				category: "Tidak Risiko Tinggi Kolesterol"
 			}]);
 
 			// Create legend

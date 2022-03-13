@@ -34,21 +34,50 @@ class Monitoring extends BaseController
 
     public function RisikoPenyakit()
     {
-        return view('admin/view_monitoring_risiko_penyakit');
+        $token = checkToken($this->session->get('token'), $this->LoginModel);
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($token->id_login);
+
+        $data['diabetes']   = $this->MonitoringModel->getTotalDiabetes($klinik[0]->id_klinik);
+        $data['kolesterol'] = $this->MonitoringModel->getTotalKolesterol($klinik[0]->id_klinik);
+        $data['stroke']     = $this->MonitoringModel->getTotalStroke($klinik[0]->id_klinik);
+        $data['list']       = $this->MonitoringModel->getListScreening($klinik[0]->id_klinik);
+
+        return view('admin/view_monitoring_risiko_penyakit', $data);
     }
 
     public function RisikoDiabetes()
     {
-        return view('admin/view_monitoring_risiko_diabetes');
+        $token = checkToken($this->session->get('token'), $this->LoginModel);
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($token->id_login);
+
+        $data['diabetes']       = $this->MonitoringModel->getTotalDiabetes($klinik[0]->id_klinik);
+        $data['tidak_diabetes'] = $this->MonitoringModel->getTotalTidakDiabetes($klinik[0]->id_klinik);
+        $data['list']           = $this->MonitoringModel->getListScreening($klinik[0]->id_klinik);
+
+        return view('admin/view_monitoring_risiko_diabetes', $data);
     }
 
     public function RisikoStroke()
     {
-        return view('admin/view_monitoring_risiko_stroke');
+        $token = checkToken($this->session->get('token'), $this->LoginModel);
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($token->id_login);
+
+        $data['stroke']         = $this->MonitoringModel->getTotalStroke($klinik[0]->id_klinik);
+        $data['tidak_stroke']   = $this->MonitoringModel->getTotalTidakStroke($klinik[0]->id_klinik);
+        $data['list']           = $this->MonitoringModel->getListScreening($klinik[0]->id_klinik);
+
+        return view('admin/view_monitoring_risiko_stroke', $data);
     }
 
     public function RisikoKolesterol()
     {
-        return view('admin/view_monitoring_risiko_kolesterol');
+        $token = checkToken($this->session->get('token'), $this->LoginModel);
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($token->id_login);
+
+        $data['kolesterol']         = $this->MonitoringModel->getTotalKolesterol($klinik[0]->id_klinik);
+        $data['tidak_kolesterol']   = $this->MonitoringModel->getTotalTidakKolesterol($klinik[0]->id_klinik);
+        $data['list']               = $this->MonitoringModel->getListScreening($klinik[0]->id_klinik);
+
+        return view('admin/view_monitoring_risiko_kolesterol', $data);
     }
 }

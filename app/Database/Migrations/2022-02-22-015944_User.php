@@ -53,6 +53,21 @@ class User extends Migration
                 'constraint' => 1,
                 'default' => 0,
             ],
+            'risiko_diabetes' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
+            'risiko_kolesterol' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
+            'risiko_stroke' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

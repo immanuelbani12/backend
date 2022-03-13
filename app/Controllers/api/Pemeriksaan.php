@@ -127,7 +127,14 @@ class Pemeriksaan extends ResourceController
         $data->score_diabetes = $diabetes['score'];
         $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
-        $this->UserModel->update_data($data->id_user, ['sudah_screening' => 1]);
+        $data_update = array(
+            'sudah_screening'   => 1,
+            'risiko_diabetes'   => $diabetes['hasil'] == 'Risiko Tinggi' || $diabetes['hasil'] == 'Risiko Sangat Tinggi' ? 1 : 0,
+            'risiko_kolesterol' => $kolesterol['hasil'] == 'Risiko Tinggi' ? 1 : 0,
+            'risiko_stroke'     => $stroke['hasil'] == 'Risiko Tinggi' ? 1 : 0,
+        );
+
+        $this->UserModel->update_data($data->id_user, $data_update);
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
         $this->KolesterolModel->save($data);

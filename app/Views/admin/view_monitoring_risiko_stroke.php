@@ -184,7 +184,6 @@
 											<th class="min-w-125px">Nama Pasien</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Status</th>
-											<th class="text-end min-w-100px">Lihat</th>
 										</tr>
 										<!--end::Table row-->
 									</thead>

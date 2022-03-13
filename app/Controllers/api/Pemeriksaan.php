@@ -7,6 +7,7 @@ use App\Models\DetailStrokeModel;
 use App\Models\DetailDiabetesModel;
 use App\Models\DetailKolesterolModel;
 use App\Models\LoginModel;
+use App\Models\UserModel;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -22,6 +23,7 @@ class Pemeriksaan extends ResourceController
         $this->StrokeModel      = new DetailStrokeModel();
         $this->KolesterolModel  = new DetailKolesterolModel();
         $this->LoginModel       = new LoginModel();
+        $this->UserModel        = new UserModel();
     }
 
     public function checkToken(){
@@ -125,6 +127,7 @@ class Pemeriksaan extends ResourceController
         $data->score_diabetes = $diabetes['score'];
         $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
+        $this->UserModel->update_data($data->id_user, ['sudah_screening' => 1]);
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
         $this->KolesterolModel->save($data);

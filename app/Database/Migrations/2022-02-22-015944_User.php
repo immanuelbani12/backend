@@ -48,6 +48,11 @@ class User extends Migration
                 'type' => 'INT',
                 'constraint' => 3,
             ],
+            'sudah_screening' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

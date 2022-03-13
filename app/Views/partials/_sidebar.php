@@ -5,126 +5,102 @@
         <!--begin::Aside Menu-->
         <div class="hover-scroll-overlay-y my-5 my-lg-6" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="{lg: '25px'}">
             <!--begin::Menu-->
+            <?php
+                $request = \Config\Services::request();
+                $monitoring = in_array($request->uri->getSegment(2), ['JumlahScreening', 'RisikoPenyakit', 'RisikoDiabetes', 'RisikoStroke', 'RisikoKolesterol']);
+            ?>
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
-                <div data-kt-menu-trigger="click" class="menu-item here menu-accordion">
-                    <?php if(false){?>
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Dashboards</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion">
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=index">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Multipurpose</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/ecommerce">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">eCommerce</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/store-analytics">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Store Analytics</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/logistics">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Logistics</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/delivery">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Delivery</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/marketing">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Marketing</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=dashboards/online-courses">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Online Courses</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="?page=landing">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Landing</span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    
-                    <?php if(in_array($_SESSION['role'], ['A'])){?>
-                    <div class="menu-item">
-                        <a class="menu-link active" href="<?= site_url('/Klinik') ?>">
+                <div data-kt-menu-trigger="click" class="menu-item here menu-accordion <?= $monitoring? "hover show" : "" ?>">
+                    <?php if (in_array($_SESSION['role'], ['K'])) { ?>
+                        <span class="menu-link">
                             <span class="menu-icon">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                <span class="svg-icon svg-icon-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11 2.375L2 9.575V20.575C2 21.175 2.4 21.575 3 21.575H9C9.6 21.575 10 21.175 10 20.575V14.575C10 13.975 10.4 13.575 11 13.575H13C13.6 13.575 14 13.975 14 14.575V20.575C14 21.175 14.4 21.575 15 21.575H21C21.6 21.575 22 21.175 22 20.575V9.575L13 2.375C12.4 1.875 11.6 1.875 11 2.375Z" fill="black"/>
-                                    </svg>
-                                </span>
+                                <!--begin::Svg Icon | path: assets/media/icons/duotune/graphs/gra003.svg-->
+                                <span class="svg-icon svg-icon-muted svg-icon-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path opacity="0.3" d="M17.7 5.59999C16.7 5.19999 15.5 5.50003 14.8 6.20003L10.2 10.8C9.5 11.5 8.4 11.8 7.5 11.5L5.10001 10.8V18.9H20.1V6.40004L17.7 5.59999Z" fill="black" />
+                                        <path d="M21 18H6V3C6 2.4 5.6 2 5 2C4.4 2 4 2.4 4 3V18H3C2.4 18 2 18.4 2 19C2 19.6 2.4 20 3 20H4V21C4 21.6 4.4 22 5 22C5.6 22 6 21.6 6 21V20H21C21.6 20 22 19.6 22 19C22 18.4 21.6 18 21 18Z" fill="black" />
+                                    </svg></span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Klinik</span>
-                        </a>
-                    </div>
+                            <span class="menu-title">Monitoring</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion <?= $monitoring? "show" : "" ?>">
+                            <div class="menu-item">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'JumlahScreening'? 'active' : '' ?>" href="<?= site_url('/Monitoring/JumlahScreening') ?>">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Jumlah Screening</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoPenyakit'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoPenyakit') ?>">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Risiko Penyakit</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoDiabetes'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoDiabetes') ?>">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Risiko Diabetes</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoStroke'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoStroke') ?>">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Risiko Stroke</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoKolesterol'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoKolesterol') ?>">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Risiko Kolesterol</span>
+                                </a>
+                            </div>
+                        </div>
                     <?php } ?>
 
-                    <?php if(in_array($_SESSION['role'], ['K'])){?>
-                    <div class="menu-item">
-                        <a class="menu-link active" href="<?= site_url('/User') ?>">
-                            <span class="menu-icon">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                <span class="svg-icon svg-icon-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="black"/>
-                                        <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="black"/>
-                                    </svg>
+                    <?php if (in_array($_SESSION['role'], ['A'])) { ?>
+                        <div class="menu-item">
+                            <a class="menu-link <?= $request->uri->getSegment(1) == 'Klinik'? 'active' : '' ?>" href="<?= site_url('/Klinik') ?>">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M11 2.375L2 9.575V20.575C2 21.175 2.4 21.575 3 21.575H9C9.6 21.575 10 21.175 10 20.575V14.575C10 13.975 10.4 13.575 11 13.575H13C13.6 13.575 14 13.975 14 14.575V20.575C14 21.175 14.4 21.575 15 21.575H21C21.6 21.575 22 21.175 22 20.575V9.575L13 2.375C12.4 1.875 11.6 1.875 11 2.375Z" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
                                 </span>
-                                <!--end::Svg Icon-->
-                            </span>
-                            <span class="menu-title">Pasien</span>
-                        </a>
-                    </div>
+                                <span class="menu-title">Klinik</span>
+                            </a>
+                        </div>
+                    <?php } ?>
+
+                    <?php if (in_array($_SESSION['role'], ['K'])) { ?>
+                        <div class="menu-item">
+                            <a class="menu-link <?= $request->uri->getSegment(1) == 'User'? 'active' : '' ?>" href="<?= site_url('/User') ?>">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="black" />
+                                            <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Pasien</span>
+                            </a>
+                        </div>
                     <?php } ?>
                 </div>
             </div>

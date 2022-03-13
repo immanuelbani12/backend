@@ -357,7 +357,7 @@
 											<td>
 												<div class="badge badge-light-success fw-bolder jenisKelaminPasien"><?php if($row->jenis_kelamin != "") echo $row->jenis_kelamin=="L"? "Laki-Laki" : "Perempuan"; ?></div>
 											</td>
-											<td class="tinggiBadanPasien"><?= $row->tinggi_badan==0? "" : $row->tgl_lahir; ?></td>
+											<td class="tinggiBadanPasien"><?= $row->tinggi_badan==0? "" : $row->tinggi_badan; ?></td>
 											<td class="beratBadanPasien"><?= $row->berat_badan==0? "" : $row->berat_badan; ?></td>
 											<td class="text-end">
 												<a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

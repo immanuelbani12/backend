@@ -51,9 +51,9 @@ class UserModel extends Model
         return $query->getResult();
     }
 
-    function update_data($id,$table,$where,$data){
-        $builder = $this->db->table($table);
-        $builder->where($id, $where);
+    function update_data($where,$data){
+        $builder = $this->db->table('user');
+        $builder->where('id_user', $where);
         return $builder->update($data);
     }
 }

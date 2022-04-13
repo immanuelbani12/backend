@@ -12,7 +12,8 @@ class PemeriksaanKebugaranModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_user', 
-        'hasil_kebugaran'
+        'hasil_kebugaran',
+        'score_kebugaran'
     ];
 
     // Dates

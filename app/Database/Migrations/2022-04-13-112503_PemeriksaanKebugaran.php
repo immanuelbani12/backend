@@ -25,6 +25,12 @@ class PemeriksaanKebugaran extends Migration
                 'constraint' => '20',
                 'null' => true,
             ],
+            'score_kebugaran' => [
+                'type' => 'INT',
+                'constraint' => '2',
+                'null' => true,
+                'default' => '0',
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

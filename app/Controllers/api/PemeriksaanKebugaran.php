@@ -96,7 +96,8 @@ class PemeriksaanKebugaran extends ResourceController
 
         $data_pemeriksaan = array(
             'id_user' => $data->id_user,
-            'hasil_kebugaran' => $kebugaran['hasil']
+            'hasil_kebugaran' => $kebugaran['hasil'],
+            'score_kebugaran' => $kebugaran['score']
         );
 
         if (!$this->model->save($data_pemeriksaan)) {

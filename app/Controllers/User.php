@@ -15,24 +15,28 @@ class User extends BaseController
 {
     public function __construct()
     {
+        $this->session      = \Config\Services::session();
         $this->UserModel    = new UserModel();
         $this->LoginModel   = new LoginModel();
-        $this->KlinikModel   = new KlinikModel();
+        $this->KlinikModel  = new KlinikModel();
+
+        helper('auth_helper');
+        $this->token = checkToken($this->session->get('token'), $this->LoginModel);
     }
 
     public function index()
     {
-        $session = session();
-
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($session->get("id_login"));
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
 
         $data['pasien'] = $this->UserModel->getUser($klinik[0]->id_klinik);
         return view('admin/view_user', $data);
     }
 
-    public function add(){
-        $session = session();
+    public function view($id_user){
 
+    }
+
+    public function add(){
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
@@ -40,7 +44,7 @@ class User extends BaseController
             'role'      => "U",
         );
 
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($session->get("id_login"));
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
 
         $this->LoginModel->insert($data);
 
@@ -57,13 +61,11 @@ class User extends BaseController
 
         $this->UserModel->insert($data);
 
-        $session->setFlashdata('msg', 'Data berhasil ditambahkan');
+        $this->session->setFlashdata('msg', 'Data berhasil ditambahkan');
         return redirect()->to('/User');
     }
 
     public function update(){
-        $session = session();
-
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
@@ -82,17 +84,15 @@ class User extends BaseController
 
         $this->UserModel->update($this->request->getPost('id_user'), $data);
 
-        $session->setFlashdata('msg', 'Data berhasil di edit');
+        $this->session->setFlashdata('msg', 'Data berhasil di edit');
         return redirect()->to('/User');
     }
 
     public function delete($id_user, $id_login){
-        $session = session();
-
         $this->UserModel->delete(['id_user' => $id_user]);
         $this->LoginModel->delete(['id_login' => $id_login]);
 
-        $session->setFlashdata('msg', 'Data berhasil dihapus');
+        $this->session->setFlashdata('msg', 'Data berhasil dihapus');
 
         echo site_url('/User');
     }
@@ -116,7 +116,6 @@ class User extends BaseController
     }
 
     public function UserUpload(){
-        $session = session();
         $file_excel = $this->request->getFile('data_pasien');
         
         $ext = $file_excel->getClientExtension();
@@ -129,7 +128,7 @@ class User extends BaseController
 
         $data = $spreadsheet->getActiveSheet()->toArray();
 
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($session->get("id_login"));
+        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
 
         foreach($data as $x => $row) {
             $db = \Config\Database::connect();
@@ -160,7 +159,7 @@ class User extends BaseController
             
         }
         
-        $session->setFlashdata('msg', 'Berhasil import excel');
+        $this->session->setFlashdata('msg', 'Berhasil import excel');
         return redirect()->to('/User');
     }
 }

@@ -139,7 +139,7 @@ class Pemeriksaan extends ResourceController
         $this->StrokeModel->save($data);
         $this->KolesterolModel->save($data);
 
-        return $this->respondCreated($this->model->find($this->model->insertID()), 'Pemeriksaan created');
+        return $this->respondCreated($this->model->find($data->id_pemeriksaan), 'Pemeriksaan created');
     }
 
     // Update All Indicator

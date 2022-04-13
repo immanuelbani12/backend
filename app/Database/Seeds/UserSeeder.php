@@ -9,8 +9,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $data = [
-            'id_login'      => '3',
-            'id_klinik'     => '1',
+            'id_login'      => '4',
+            'id_klinik'     => '2',
             'nama_user'     => 'Bambang',
             'no_telp'       => '08123456789',
             'tgl_lahir'     => '1999-10-24',
@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
         $this->db->table('user')->insert($data);
 
         $data = [
-            'id_login'      => '4',
-            'id_klinik'     => '1',
+            'id_login'      => '5',
+            'id_klinik'     => '2',
             'nama_user'     => 'Rahayu',
             'no_telp'       => '08111111111',
             'tgl_lahir'     => '2001-01-19',
@@ -35,8 +35,8 @@ class UserSeeder extends Seeder
         $this->db->table('user')->insert($data);
 
         $data = [
-            'id_login'      => '5',
-            'id_klinik'     => '1',
+            'id_login'      => '6',
+            'id_klinik'     => '2',
             'nama_user'     => 'Sutejo',
             'no_telp'       => '08222222222',
             'tgl_lahir'     => '1988-03-18',

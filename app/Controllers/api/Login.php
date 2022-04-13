@@ -49,6 +49,7 @@ class Login extends ResourceController
         $data = array(
             "id_user" => $userData[0]->id_user,
             "nama_user" => $userData[0]->nama_user,
+            "role" => $user['role'],
             "id_klinik" => $userData[0]->id_klinik,
             "nama_klinik" => $klinikData[0]->nama_klinik,
             "logo_klinik" => $klinikData[0]->logo,

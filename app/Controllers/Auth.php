@@ -54,7 +54,6 @@ class Auth extends BaseController
             $session = \Config\Services::session();
             foreach ($query as $row)
             {
-                $session->set("id_login",$row->id_login);
                 $session->set("nama",$row->nama);
                 $session->set("username",$row->username);
                 $session->set("role",$row->role);

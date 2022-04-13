@@ -68,6 +68,11 @@ class User extends Migration
                 'constraint' => 1,
                 'default' => 0,
             ],
+            'risiko_kebugaran' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

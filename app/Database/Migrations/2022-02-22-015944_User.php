@@ -24,6 +24,10 @@ class User extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
+            'kode_group' => [
+                'type' => 'VARCHAR',
+                'constraint' => '20',
+            ],
             'nama_user' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,

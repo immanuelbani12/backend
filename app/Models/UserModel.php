@@ -12,6 +12,7 @@ class UserModel extends Model
     protected $allowedFields    = [
         'id_login', 
         'id_klinik', 
+        'kode_group',
         'nama_user', 
         'no_telp', 
         'tgl_lahir',

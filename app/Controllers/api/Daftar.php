@@ -43,10 +43,11 @@ class Daftar extends ResourceController
             'id_klinik'     => 1,
             'nama_user'     => $data->nama,
             'no_telp'       => $data->username,
-            'tgl_lahir'     => $data->tgl_lahir,
-            'jenis_kelamin' => $data->jenis_kelamin,
-            'tinggi_badan'  => $data->tinggi_badan,
-            'berat_badan'   => $data->berat_badan,
+            'kode_group'    => $data->kode_group,
+            // 'tgl_lahir'     => $data->tgl_lahir,
+            // 'jenis_kelamin' => $data->jenis_kelamin,
+            // 'tinggi_badan'  => $data->tinggi_badan,
+            // 'berat_badan'   => $data->berat_badan,
         );
 
         $this->UserModel->insert($dataUser);
@@ -63,6 +64,7 @@ class Daftar extends ResourceController
         $data = array(
             "id_user" => $this->UserModel->insertID(),
             "nama_user" => $data->nama,
+            "kode_group" => $data->kode_group,
             "id_klinik" => 1,
             "nama_klinik" => "Klinik Apadok",
             "logo_klinik" => "sample-logo.jpg",

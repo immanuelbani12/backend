@@ -36,6 +36,7 @@ $routes->group('api', ['namespace' => 'App\Controllers\api'], function ($routes)
     $routes->resource('pemeriksaan');
     $routes->resource('pemeriksaanKebugaran');
     $routes->post('login', 'Login::index');
+    $routes->post('daftar', 'Daftar::index');
 });
 // $routes->resource('pemeriksaan');
 

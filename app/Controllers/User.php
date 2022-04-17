@@ -10,15 +10,19 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\UserModel;
 use App\Models\LoginModel;
 use App\Models\KlinikModel;
+use App\Models\PemeriksaanModel;
+use App\Models\PemeriksaanKebugaranModel;
 
 class User extends BaseController
 {
     public function __construct()
     {
-        $this->session      = \Config\Services::session();
-        $this->UserModel    = new UserModel();
-        $this->LoginModel   = new LoginModel();
-        $this->KlinikModel  = new KlinikModel();
+        $this->session                      = \Config\Services::session();
+        $this->UserModel                    = new UserModel();
+        $this->LoginModel                   = new LoginModel();
+        $this->KlinikModel                  = new KlinikModel();
+        $this->PemeriksaanModel             = new PemeriksaanModel();
+        $this->PemeriksaanKebugaranModel    = new PemeriksaanKebugaranModel();
 
         helper('auth_helper');
         $this->token = checkToken($this->session->get('token'), $this->LoginModel);
@@ -32,8 +36,11 @@ class User extends BaseController
         return view('admin/view_user', $data);
     }
 
-    public function view($id_user){
-
+    public function DetailUser($id_user){
+        $data['user']       = $this->UserModel->getUserById($id_user);
+        $data['risiko']     = $this->PemeriksaanModel->get_user_by_id_all($id_user);
+        $data['kebugaran']  = $this->PemeriksaanKebugaranModel->get_user_by_id_all($id_user);
+        return view('admin/view_detail_user', $data);
     }
 
     public function add(){

@@ -66,7 +66,7 @@ class Daftar extends ResourceController
             "nama_user" => $data->nama,
             "kode_group" => $data->kode_group,
             "id_klinik" => 1,
-            "nama_klinik" => "Klinik Apadok",
+            "nama_klinik" => "Apadok",
             "logo_klinik" => "sample-logo.jpg",
             "token"   => $token
         );

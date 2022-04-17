@@ -107,7 +107,7 @@
 									<!--end::Label-->
 									<!--begin::Col-->
 									<div class="col-lg-8 fv-row">
-										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->tgl_lahir ?></span>
+										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->tgl_lahir == "0000-00-00" ? "-" : $user[0]->tgl_lahir ?></span>
 									</div>
 									<!--end::Col-->
 								</div>
@@ -119,7 +119,11 @@
 									<!--end::Label-->
 									<!--begin::Col-->
 									<div class="col-lg-8 fv-row">
-										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->jenis_kelamin=="L" ? "Laki-Laki" : "Perempuan" ?></span>
+										<?php 
+											$jenis_kelamin = $user[0]->jenis_kelamin=="L" ? "Laki-Laki" : "Perempuan";
+											$jenis_kelamin = $user[0]->jenis_kelamin=="" ? "-" : $jenis_kelamin;
+										?>
+										<span class="fw-bold text-gray-800 fs-6"><?= $jenis_kelamin ?></span>
 									</div>
 									<!--end::Col-->
 								</div>
@@ -131,7 +135,7 @@
 									<!--end::Label-->
 									<!--begin::Col-->
 									<div class="col-lg-8 fv-row">
-										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->tinggi_badan." cm" ?></span>
+										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->tinggi_badan == 0 ? "-" : $user[0]->tinggi_badan." cm" ?></span>
 									</div>
 									<!--end::Col-->
 								</div>
@@ -143,7 +147,7 @@
 									<!--end::Label-->
 									<!--begin::Col-->
 									<div class="col-lg-8 fv-row">
-										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->berat_badan." kg" ?></span>
+										<span class="fw-bold text-gray-800 fs-6"><?= $user[0]->berat_badan == 0 ? "-" : $user[0]->berat_badan." kg" ?></span>
 									</div>
 									<!--end::Col-->
 								</div>

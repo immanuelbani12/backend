@@ -255,7 +255,7 @@ class Pemeriksaan extends ResourceController
 
         if($data->aktivitas_fisik == 1){
             $low++;
-        } else if($data->aktivitas_fisik == 2) {
+        } else if($data->aktivitas_fisik == 3) {
             $medium++;
         } else {
             $high++;

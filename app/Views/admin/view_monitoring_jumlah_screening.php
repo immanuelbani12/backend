@@ -152,7 +152,7 @@
 											<th class="min-w-125px">Nama Pasien</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Status</th>
-											<th class="text-center min-w-100px">Lihat</th>
+											<th class="text-center min-w-100px">Actions</th>
 										</tr>
 										<!--end::Table row-->
 									</thead>
@@ -206,7 +206,14 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table-jumlah-screening.js')?>"></script>
+
+	<style>
+		table.dataTable tbody tr.selected {
+			color: white;
+			background-color: #A1A5B7;
+		}
+	</style>
 	
 	<!--end::Page Custom Javascript-->
 	<!--end::Javascript-->

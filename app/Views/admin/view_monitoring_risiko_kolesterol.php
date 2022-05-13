@@ -66,27 +66,27 @@
 						<div class="row" style="--bs-gutter-x: 0;">
 							<div class="card card-bordered" style="margin-bottom: 30px">
 								<!--begin::Card header-->
-								<div class="card-header border-0 pt-6">
+								<!-- <div class="card-header border-0 pt-6"> -->
 									<!--begin::Card title-->
-									<div class="card-title">
-										<div class="fv-row mb-7">
+									<!-- <div class="card-title">
+										<div class="fv-row mb-7"> -->
 											<!--begin::Input-->
-											<select name="jenis_kelamin" id="jenis_kelamin" data-control="select2" data-placeholder="Grafik Berdasarkan" data-hide-search="true" class="form-select form-select-solid fw-bolder">
+											<!-- <select name="jenis_kelamin" id="jenis_kelamin" data-control="select2" data-placeholder="Grafik Berdasarkan" data-hide-search="true" class="form-select form-select-solid fw-bolder">
 												<option></option>
 												<option value="jenis_kelamin">Jenis Kelamin</option>
 												<option value="merokok">Merokok</option>
 												<option value="obat_hipertensi">Obat Hipertensi</option>
 												<option value="kadar_gula">Kadar Gula</option>
 												<option value="kadar_kolesterol">Kadar Kolesterol</option>
-											</select>
+											</select> -->
 											<!--end::Input-->
-										</div>
+										<!-- </div> -->
 										<!-- <div class="d-flex align-items-center position-relative my-1"> -->
 											<!-- <input type="text" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Pasien" /> -->
 										<!-- </div> -->
-									</div>
+									<!-- </div> -->
 									<!--begin::Card title-->
-								</div>
+								<!-- </div> -->
 								<!--end::Card header-->
 								<div class="card-body">
 									<div id="kt_amcharts_3" style="height: 500px;"></div>

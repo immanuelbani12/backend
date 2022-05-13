@@ -65,21 +65,20 @@
                     <div class="separator my-2"></div>
                     <!--end::Menu separator-->
                     <!--begin::Menu item-->
-                    <div class="menu-item px-5">
+                    <!-- <div class="menu-item px-5">
                         <a href="?page=account/overview" class="menu-link px-5">My Profile</a>
-                    </div>
+                    </div> -->
                     <!--end::Menu item-->
                     <!--begin::Menu item-->
                     <div class="menu-item px-5">
-                        <a href="<?= site_url('Auth/logout') ?>" class="menu-link px-5">Sign
-                            Out</a>
+                        <a href="<?= site_url('Auth/logout') ?>" class="menu-link px-5">Keluar</a>
                     </div>
                     <!--end::Menu item-->
                     <!--begin::Menu separator-->
-                    <div class="separator my-2"></div>
+                    <!-- <div class="separator my-2"></div> -->
                     <!--end::Menu separator-->
                     <!--begin::Menu item-->
-                    <div class="menu-item px-5">
+                    <!-- <div class="menu-item px-5">
                         <div class="menu-content px-5">
                             <label class="form-check form-switch form-check-custom form-check-solid pulse pulse-success" for="kt_user_menu_dark_mode_toggle">
                                 <input class="form-check-input w-30px h-20px" type="checkbox" value="1" name="mode" id="kt_user_menu_dark_mode_toggle" data-kt-url="../../demo11/dist/?page=index&amp;mode=dark" />
@@ -87,7 +86,7 @@
                                 <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                     <!--end::Menu item-->
                 </div>
                 <!--end::User account menu-->

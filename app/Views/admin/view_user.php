@@ -333,10 +333,10 @@
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
 											<th class="min-w-125px">Nama Pasien</th>
 											<th class="min-w-125px">Nomor Telepon</th>
-											<th class="min-w-125px">Tanggal Lahir</th>
+											<!-- <th class="min-w-125px">Tanggal Lahir</th>
 											<th class="min-w-125px">Jenis Kelamin</th>
 											<th class="min-w-125px">Tinggi Badan</th>
-											<th class="min-w-125px">Berat Badan</th>
+											<th class="min-w-125px">Berat Badan</th> -->
 											<th class="text-end min-w-100px">Actions</th>
 										</tr>
 										<!--end::Table row-->
@@ -353,12 +353,6 @@
 											<td>
 												<div class="badge badge-light fw-bolder telpPasien"><?= $row->no_telp; ?></div>
 											</td>
-											<td class="tanggalLahirPasien"><?= $row->tgl_lahir=="0000-00-00"? "" : $row->tgl_lahir; ?></td>
-											<td>
-												<div class="badge badge-light-success fw-bolder jenisKelaminPasien"><?php if($row->jenis_kelamin != "") echo $row->jenis_kelamin=="L"? "Laki-Laki" : "Perempuan"; ?></div>
-											</td>
-											<td class="tinggiBadanPasien"><?= $row->tinggi_badan==0? "" : $row->tinggi_badan; ?></td>
-											<td class="beratBadanPasien"><?= $row->berat_badan==0? "" : $row->berat_badan; ?></td>
 											<td class="text-end">
 												<a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->

@@ -14,6 +14,8 @@ class Monitoring extends BaseController
 
     public function __construct()
     {
+        $this->cachePage(1);
+
         $this->session = \Config\Services::session();
         
         $this->LoginModel = new loginModel();

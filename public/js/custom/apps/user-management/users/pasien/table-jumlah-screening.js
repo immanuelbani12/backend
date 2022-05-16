@@ -24,7 +24,7 @@ var KTUsersList = function () {
                         var text = "Sudah waktunya untuk screening risiko penyakit anda, pastikan anda terbebas dari risiko penyakit Diabetes, Kolesterol dan Stroke! Silahkan install aplikasi apadok di link berikut https://play.google.com/store/apps/details?id=com.apadok.emrpreventive"
 
                         for (let index = 0; index < data.length; ++index) {
-                            const nomor = "6281227676935"
+                            const nomor = data[index][1];
                             
                             $.ajax({
                                 url : "https://api.chat-api.com/instance216488/sendMessage?token=cls7zrc15wq7o1sm",

@@ -132,6 +132,7 @@ class Pemeriksaan extends ResourceController
             'risiko_diabetes'   => $diabetes['hasil'] == 'Risiko Tinggi' || $diabetes['hasil'] == 'Risiko Sangat Tinggi' ? 1 : 0,
             'risiko_kolesterol' => $kolesterol['hasil'] == 'Risiko Tinggi' ? 1 : 0,
             'risiko_stroke'     => $stroke['hasil'] == 'Risiko Tinggi' ? 1 : 0,
+            
         );
 
         $this->UserModel->update_data($data->id_user, $data_update);
@@ -241,6 +242,10 @@ class Pemeriksaan extends ResourceController
         $high = 0;
         $medium = 0;
         $low = 0;
+        // Add check for Tidak Diketahui(Boolean)
+        // $kadar_gula_tidakdiketahui = 0;
+        // $tekanan_darah_tidakdiketahui = 0;
+        // $kadar_kolesterol_tidakdiketahui = 0;
 
         $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
@@ -274,6 +279,9 @@ class Pemeriksaan extends ResourceController
         } else if($data->tekanan_darah == 2) {
             $medium++;
         } else {
+            // if($data->tekanan_darah == 4){
+            //     $tekanan_darah_tidakdiketahui++;
+            // }
             $high++;
         }
 
@@ -282,6 +290,9 @@ class Pemeriksaan extends ResourceController
         } else if($data->kadar_kolesterol  == 2) {
             $medium++;
         } else {
+            // if($data->kadar_kolesterol == 4){
+            //     $kadar_kolesterol_tidakdiketahui++;
+            // }
             $high++;
         }
 
@@ -306,27 +317,26 @@ class Pemeriksaan extends ResourceController
         } else if($data->kadar_gula == 2) {
             $medium++;
         } else {
+            // if($data->kadar_gula == 4){
+            //     $kadar_gula_tidakdiketahui++;
+            // }
             $high++;
         }
 
         $hasil = "";
-        //Use Complex Nested IF for Now
+        //Rework Stroke Scoring based on Checklist
         if ($high >= 3) {
             $hasil = "Risiko Tinggi";
         } else {
             if ($high == 2){
-                if ($medium >= 3) {
-                    $hasil = "Risiko Tinggi";
-                } else if ($medium >= 2) {
+                if ($medium >= 2) {
                     $hasil = "Risiko Menengah";
                 } else {
                     $hasil = "Risiko Rendah";
                 }
             }
             else if ($high == 1){
-                if ($medium >= 5) {
-                    $hasil = "Risiko Tinggi";
-                } else if ($medium >= 3) {
+                if ($medium >= 3) {
                     $hasil = "Risiko Menengah";
                 } else {
                     $hasil = "Risiko Rendah";
@@ -335,23 +345,7 @@ class Pemeriksaan extends ResourceController
             else if ($medium >= 4) {
                 $hasil = "Risiko Menengah";
             } else {
-                if ($medium == 3){
-                    if ($low >= 3) {
-                        $hasil = "Risiko Menengah";
-                    } else {
-                        $hasil = "Risiko Rendah";
-                    }
-                }
-                else if ($medium == 2){
-                    if ($low >= 5) {
-                        $hasil = "Risiko Menengah";
-                    } else {
-                        $hasil = "Risiko Rendah";
-                    }
-                }
-                else if ($low >= 6){
-                    $hasil = "Risiko Rendah";
-                }
+                $hasil = "Risiko Rendah";
             }
         }
 
@@ -359,6 +353,9 @@ class Pemeriksaan extends ResourceController
             'high' => $high,
             'medium' => $medium,
             'low' => $low,
+            // 'kadar_gula_tidakdiketahui' => $kadar_gula_tidakdiketahui,
+            // 'tekanan_darah_tidakdiketahui' => $tekanan_darah_tidakdiketahui,
+            // 'kadar_kolesterol_tidakdiketahui' => $kadar_kolesterol_tidakdiketahui,
             'hasil' => $hasil
         );
     }

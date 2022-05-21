@@ -60,6 +60,14 @@ class UserModel extends Model
         return $query->getResult();
     }
 
+    function cekNoTelp($no_telp){
+        $builder = $this->db->table('user');
+        $builder->select('COUNT(1) AS jumlah');
+        $builder->where('no_telp', $no_telp);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function update_data($where,$data){
         $builder = $this->db->table('user');
         $builder->where('id_user', $where);

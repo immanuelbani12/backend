@@ -44,6 +44,14 @@ class User extends BaseController
     }
 
     public function add(){
+        // cek if number is used
+        $cek_no_telp = $this->UserModel->cekNoTelp($this->request->getPost('no_telp'));
+
+        if (count($cek_no_telp) > 0) {
+            $this->session->setFlashdata('error', 'No Telp sudah digunakan');
+            return redirect()->to('/User');
+        }
+
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
@@ -68,11 +76,19 @@ class User extends BaseController
 
         $this->UserModel->insert($data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil ditambahkan');
+        $this->session->setFlashdata('success', 'Data berhasil ditambahkan');
         return redirect()->to('/User');
     }
 
     public function update(){
+        // cek if number is used
+        $cek_no_telp = $this->UserModel->cekNoTelp($this->request->getPost('no_telp'));
+
+        if (count($cek_no_telp) > 0) {
+            $this->session->setFlashdata('error', 'No Telp sudah digunakan');
+            return redirect()->to('/User');
+        }
+
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
@@ -91,7 +107,7 @@ class User extends BaseController
 
         $this->UserModel->update($this->request->getPost('id_user'), $data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil di edit');
+        $this->session->setFlashdata('success', 'Data berhasil di edit');
         return redirect()->to('/User');
     }
 
@@ -99,7 +115,7 @@ class User extends BaseController
         $this->UserModel->delete(['id_user' => $id_user]);
         $this->LoginModel->delete(['id_login' => $id_login]);
 
-        $this->session->setFlashdata('msg', 'Data berhasil dihapus');
+        $this->session->setFlashdata('success', 'Data berhasil dihapus');
 
         echo site_url('/User');
     }
@@ -147,6 +163,13 @@ class User extends BaseController
             $nama       = $row[1];
             $no_telp    = $row[2];
 
+            // cek if number is used
+            $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
+
+            if (count($cek_no_telp) > 1) {
+                continue;
+            }
+
             $data = array(
                 'nama'      => $nama,
                 'username'  => $no_telp,
@@ -166,7 +189,7 @@ class User extends BaseController
             
         }
         
-        $this->session->setFlashdata('msg', 'Berhasil import excel');
+        $this->session->setFlashdata('success', 'Berhasil import excel');
         return redirect()->to('/User');
     }
 }

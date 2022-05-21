@@ -426,10 +426,10 @@
 	<script>
 		<?php
 		$session = session(); 
-		if (isset($_SESSION['msg'])){?>
+		if (isset($_SESSION['success'])){?>
 			// Show popup confirmation 
 			Swal.fire({
-				text: "<?= $_SESSION['msg']; ?>",
+				text: "<?= $_SESSION['success']; ?>",
 				icon: "success",
 				buttonsStyling: false,
 				confirmButtonText: "Baik, mengerti!",
@@ -437,7 +437,19 @@
 					confirmButton: "btn btn-primary"
 				}
 			});
-		<?php }?>
+		<?php }
+		else if (isset($_SESSION['error'])) { ?>
+			// Show popup confirmation 
+			Swal.fire({
+				text: "<?= $_SESSION['error']; ?>",
+				icon: "error",
+				buttonsStyling: false,
+				confirmButtonText: "Baik, mengerti!",
+				customClass: {
+					confirmButton: "btn btn-primary"
+				}
+			});
+		<?php } ?>
 
 		$('.btnEdit').on('click', function() {
             $('.form').attr('action', "<?php echo site_url('/User/update')?>");

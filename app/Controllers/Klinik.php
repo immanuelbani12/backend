@@ -12,6 +12,7 @@ class Klinik extends BaseController
 {
     public function __construct()
     {
+        $this->session      = \Config\Services::session();
         $this->KlinikModel  = new KlinikModel();
         $this->LoginModel   = new LoginModel();
     }
@@ -23,7 +24,13 @@ class Klinik extends BaseController
     }
 
     public function add(){
-        $session = session();
+         // cek if email is used
+         $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
+
+         if (count($cek_email) > 0) {
+             $this->session->setFlashdata('error', 'Email sudah digunakan');
+             return redirect()->to('/Klinik');
+         }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),
@@ -46,7 +53,7 @@ class Klinik extends BaseController
         if(($img->getName() != '')){
             $logo = $this->uploadImage($img);
             if(isset($logo['errors'])){
-                $session->setFlashdata('msg', $logo['errors']);
+                $this->session->setFlashdata('msg', $logo['errors']);
                 return redirect()->to(base_url('/Klinik'));
             }else{
                 $data['logo'] = $logo['path'];
@@ -55,12 +62,18 @@ class Klinik extends BaseController
 
         $this->KlinikModel->insert($data);
 
-        $session->setFlashdata('msg', 'Data berhasil ditambahkan');
+        $this->session->setFlashdata('msg', 'Data berhasil ditambahkan');
         return redirect()->to('/Klinik');
     }
 
     public function update(){
-        $session = session();
+        // cek if email is used
+        $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
+
+        if (count($cek_email) > 0) {
+            $this->session->setFlashdata('error', 'Email sudah digunakan');
+            return redirect()->to('/Klinik');
+        }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),
@@ -84,7 +97,7 @@ class Klinik extends BaseController
         if(($img->getName() != '')){
             $logo = $this->uploadImage($img);
             if(isset($logo['errors'])){
-                $session->setFlashdata('errors', $logo['errors']);
+                $this->session->setFlashdata('errors', $logo['errors']);
                 return redirect()->to(base_url('/Klinik'));
             }else{
                 $data['logo'] = $logo['path'];
@@ -93,17 +106,15 @@ class Klinik extends BaseController
 
         $this->KlinikModel->update($this->request->getPost('id_klinik'), $data);
 
-        $session->setFlashdata('msg', 'Data berhasil di edit');
+        $this->session->setFlashdata('msg', 'Data berhasil di edit');
         return redirect()->to('/Klinik');
     }
 
     public function delete($id_klinik, $id_login){
-        $session = session();
-
         $this->KlinikModel->delete(['id_klinik' => $id_klinik]);
         $this->LoginModel->delete(['id_login' => $id_login]);
 
-        $session->setFlashdata('msg', 'Data berhasil dihapus');
+        $this->session->setFlashdata('msg', 'Data berhasil dihapus');
 
         echo site_url('/Klinik');
     }

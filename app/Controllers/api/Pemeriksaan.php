@@ -140,7 +140,21 @@ class Pemeriksaan extends ResourceController
         $this->StrokeModel->save($data);
         $this->KolesterolModel->save($data);
 
-        return $this->respondCreated($this->model->find($data->id_pemeriksaan), 'Pemeriksaan created');
+
+        $result = $this->model->find($data->id_pemeriksaan);
+        $respond = array(
+            "id_pemeriksaan" => $result['id_pemeriksaan'],
+            "id_user" => $result['id_user'],
+            "hasil_diabetes" => $result['hasil_diabetes'],
+            "hasil_kolesterol" => $result['hasil_kolesterol'],
+            "hasil_stroke" => $result['hasil_stroke'],
+            "kadar_gula_tidakdiketahu" => $stroke['kadar_gula_tidakdiketahui'],
+            "tekanan_darah_tidakdiketahui" => $stroke['tekanan_darah_tidakdiketahui'],
+            "kadar_kolesterol_tidakdiketahui'" => $stroke['kadar_kolesterol_tidakdiketahui'],
+            "updated_at" => $result['updated_at'],
+            "created_at" => $result['created_at']
+        );
+        return $this->respondCreated($respond, 'Pemeriksaan created');
     }
 
     // Update All Indicator
@@ -243,9 +257,9 @@ class Pemeriksaan extends ResourceController
         $medium = 0;
         $low = 0;
         // Add check for Tidak Diketahui(Boolean)
-        // $kadar_gula_tidakdiketahui = 0;
-        // $tekanan_darah_tidakdiketahui = 0;
-        // $kadar_kolesterol_tidakdiketahui = 0;
+        $kadar_gula_tidakdiketahui = 0;
+        $tekanan_darah_tidakdiketahui = 0;
+        $kadar_kolesterol_tidakdiketahui = 0;
 
         $bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
         if ($bmi <= 25){
@@ -279,9 +293,9 @@ class Pemeriksaan extends ResourceController
         } else if($data->tekanan_darah == 2) {
             $medium++;
         } else {
-            // if($data->tekanan_darah == 4){
-            //     $tekanan_darah_tidakdiketahui++;
-            // }
+            if($data->tekanan_darah == 4){
+                $tekanan_darah_tidakdiketahui++;
+            }
             $high++;
         }
 
@@ -290,9 +304,9 @@ class Pemeriksaan extends ResourceController
         } else if($data->kadar_kolesterol  == 2) {
             $medium++;
         } else {
-            // if($data->kadar_kolesterol == 4){
-            //     $kadar_kolesterol_tidakdiketahui++;
-            // }
+            if($data->kadar_kolesterol == 4){
+                $kadar_kolesterol_tidakdiketahui++;
+            }
             $high++;
         }
 
@@ -317,9 +331,9 @@ class Pemeriksaan extends ResourceController
         } else if($data->kadar_gula == 2) {
             $medium++;
         } else {
-            // if($data->kadar_gula == 4){
-            //     $kadar_gula_tidakdiketahui++;
-            // }
+            if($data->kadar_gula == 4){
+                $kadar_gula_tidakdiketahui++;
+            }
             $high++;
         }
 
@@ -353,9 +367,9 @@ class Pemeriksaan extends ResourceController
             'high' => $high,
             'medium' => $medium,
             'low' => $low,
-            // 'kadar_gula_tidakdiketahui' => $kadar_gula_tidakdiketahui,
-            // 'tekanan_darah_tidakdiketahui' => $tekanan_darah_tidakdiketahui,
-            // 'kadar_kolesterol_tidakdiketahui' => $kadar_kolesterol_tidakdiketahui,
+            'kadar_gula_tidakdiketahui' => $kadar_gula_tidakdiketahui,
+            'tekanan_darah_tidakdiketahui' => $tekanan_darah_tidakdiketahui,
+            'kadar_kolesterol_tidakdiketahui' => $kadar_kolesterol_tidakdiketahui,
             'hasil' => $hasil
         );
     }

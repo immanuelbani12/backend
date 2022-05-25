@@ -70,7 +70,7 @@ class Klinik extends BaseController
         // cek if email is used
         $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
 
-        if (intval($cek_email[0]->jumlah) > 0) {
+        if (count($cek_email) > 0) {
             $this->session->setFlashdata('error', 'Email sudah digunakan');
             return redirect()->to('/Klinik');
         }

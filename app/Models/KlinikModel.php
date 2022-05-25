@@ -61,4 +61,12 @@ class KlinikModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getKlinikbyEmail($email){
+        $builder = $this->db->table('klinik');
+        $builder->select('*');
+        $builder->where('email_klinik', $email);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

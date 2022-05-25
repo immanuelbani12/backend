@@ -84,7 +84,7 @@ class User extends BaseController
         // cek if number is used
         $cek_no_telp = $this->UserModel->cekNoTelp($this->request->getPost('no_telp'));
 
-        if (intval($cek_no_telp[0]->jumlah) > 0) {
+        if (intval($cek_no_telp[0]->jumlah) > 1) {
             $this->session->setFlashdata('error', 'No Telp sudah digunakan');
             return redirect()->to('/User');
         }
@@ -166,7 +166,7 @@ class User extends BaseController
             // cek if number is used
             $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
 
-            if (count($cek_no_telp) > 1) {
+            if (intval($cek_no_telp[0]->jumlah) > 0) {
                 continue;
             }
 

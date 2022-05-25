@@ -148,7 +148,7 @@ class Pemeriksaan extends ResourceController
             "hasil_diabetes" => $result['hasil_diabetes'],
             "hasil_kolesterol" => $result['hasil_kolesterol'],
             "hasil_stroke" => $result['hasil_stroke'],
-            "kadar_gula_tidakdiketahu" => $stroke['kadar_gula_tidakdiketahui'],
+            "kadar_gula_tidakdiketahui" => $stroke['kadar_gula_tidakdiketahui'],
             "tekanan_darah_tidakdiketahui" => $stroke['tekanan_darah_tidakdiketahui'],
             "kadar_kolesterol_tidakdiketahui'" => $stroke['kadar_kolesterol_tidakdiketahui'],
             "updated_at" => $result['updated_at'],

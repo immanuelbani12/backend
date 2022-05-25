@@ -68,12 +68,12 @@ class Klinik extends BaseController
 
     public function update(){
         // cek if email is used
-        $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
+        // $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
 
-        if (count($cek_email) > 0) {
-            $this->session->setFlashdata('error', 'Email sudah digunakan');
-            return redirect()->to('/Klinik');
-        }
+        // if (count($cek_email) > 0) {
+        //     $this->session->setFlashdata('error', 'Email sudah digunakan');
+        //     return redirect()->to('/Klinik');
+        // }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),

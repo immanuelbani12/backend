@@ -69,8 +69,10 @@ class Filters extends BaseConfig
         'authfilter' => [
             'before' => [
                 'Monitoring/*',
-                'Klinik', 
-                'Klinik/*', 
+                'Institusi', 
+                'Institusi/*',
+                'JenisInstitusi', 
+                'JenisInstitusi/*',  
                 'User',
                 'User/*'
             ]

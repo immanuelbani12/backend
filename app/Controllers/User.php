@@ -9,7 +9,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 use App\Models\UserModel;
 use App\Models\LoginModel;
-use App\Models\KlinikModel;
+use App\Models\InstitusiModel;
 use App\Models\PemeriksaanModel;
 use App\Models\PemeriksaanKebugaranModel;
 
@@ -20,7 +20,7 @@ class User extends BaseController
         $this->session                      = \Config\Services::session();
         $this->UserModel                    = new UserModel();
         $this->LoginModel                   = new LoginModel();
-        $this->KlinikModel                  = new KlinikModel();
+        $this->InstitusiModel                  = new InstitusiModel();
         $this->PemeriksaanModel             = new PemeriksaanModel();
         $this->PemeriksaanKebugaranModel    = new PemeriksaanKebugaranModel();
 
@@ -30,9 +30,9 @@ class User extends BaseController
 
     public function index()
     {
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
+        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
-        $data['pasien'] = $this->UserModel->getUser($klinik[0]->id_klinik);
+        $data['pasien'] = $this->UserModel->getUser($institusi[0]->id_institusi);
         return view('admin/view_user', $data);
     }
 
@@ -59,13 +59,13 @@ class User extends BaseController
             'role'      => "U",
         );
 
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
+        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         $this->LoginModel->insert($data);
 
         $data = array(
             'id_login'      => $this->LoginModel->insertID(),
-            'id_klinik'     => $klinik[0]->id_klinik,
+            'id_institusi'     => $institusi[0]->id_institusi,
             'nama_user'     => $this->request->getPost('nama'),
             'no_telp'       => $this->request->getPost('no_telp'),
             'tgl_lahir'     => $this->request->getPost('tgl_lahir'),
@@ -151,7 +151,7 @@ class User extends BaseController
 
         $data = $spreadsheet->getActiveSheet()->toArray();
 
-        $klinik = $this->KlinikModel->getKlinik_by_id_login($this->token->id_login);
+        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         foreach($data as $x => $row) {
             $db = \Config\Database::connect();
@@ -180,7 +180,7 @@ class User extends BaseController
     
             $data = array(
                 'id_login'      => $this->LoginModel->insertID(),
-                'id_klinik'     => $klinik[0]->id_klinik,
+                'id_institusi'     => $institusi[0]->id_institusi,
                 'nama_user'     => $nama,
                 'no_telp'       => $no_telp
             );

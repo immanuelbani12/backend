@@ -11,7 +11,7 @@
             ?>
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <div data-kt-menu-trigger="click" class="menu-item here menu-accordion <?= $monitoring? "hover show" : "" ?>">
-                    <?php if (in_array($_SESSION['role'], ['K'])) { ?>
+                    <?php if (in_array($_SESSION['role'], ['I'])) { ?>
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/graphs/gra003.svg-->
@@ -88,7 +88,7 @@
 
                     <?php if (in_array($_SESSION['role'], ['A'])) { ?>
                         <div class="menu-item">
-                            <a class="menu-link <?= $request->uri->getSegment(1) == 'Klinik'? 'active' : '' ?>" href="<?= site_url('/Klinik') ?>">
+                            <a class="menu-link <?= $request->uri->getSegment(1) == 'Institusi'? 'active' : '' ?>" href="<?= site_url('/Institusi') ?>">
                                 <span class="menu-icon">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -98,12 +98,12 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Klinik</span>
+                                <span class="menu-title">Institusi</span>
                             </a>
                         </div>
                     <?php } ?>
 
-                    <?php if (in_array($_SESSION['role'], ['K'])) { ?>
+                    <?php if (in_array($_SESSION['role'], ['I'])) { ?>
                         <div class="menu-item">
                             <a class="menu-link <?= $request->uri->getSegment(1) == 'User'? 'active' : '' ?>" href="<?= site_url('/User') ?>">
                                 <span class="menu-icon">

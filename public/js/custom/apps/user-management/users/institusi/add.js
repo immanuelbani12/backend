@@ -18,7 +18,7 @@ var KTUsersAddUser = function () {
                     'nama': {
                         validators: {
                             notEmpty: {
-                                message: 'Nama klinik wajib di isi'
+                                message: 'Nama institusi wajib di isi'
                             }
                         }
                     },
@@ -52,7 +52,7 @@ var KTUsersAddUser = function () {
                     'alamat': {
                         validators: {
                             notEmpty: {
-                                message: 'Alamat klinik wajib di isi'
+                                message: 'Alamat institusi wajib di isi'
                             }
                         }
                     },

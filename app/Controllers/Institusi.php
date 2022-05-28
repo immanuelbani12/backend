@@ -5,74 +5,79 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\Files\File;
 
-use App\Models\KlinikModel;
+use App\Models\InstitusiModel;
+use App\Models\JenisInstitusiModel;
 use App\Models\LoginModel;
 
-class Klinik extends BaseController
+class Institusi extends BaseController
 {
     public function __construct()
     {
-        $this->session      = \Config\Services::session();
-        $this->KlinikModel  = new KlinikModel();
-        $this->LoginModel   = new LoginModel();
+        $this->session              = \Config\Services::session();
+        $this->InstitusiModel       = new InstitusiModel();
+        $this->JenisInstitusiModel  = new JenisInstitusiModel();
+        $this->LoginModel           = new LoginModel();
     }
 
     public function index()
     {
-        $data['klinik'] = $this->KlinikModel->getKlinik();
-        return view('admin/view_klinik', $data);
+        $data['institusi']  = $this->InstitusiModel->getInstitusi();
+        $data['jenis']      = $this->JenisInstitusiModel->getJenis();
+
+        return view('admin/view_institusi', $data);
     }
 
     public function add(){
          // cek if email is used
-         $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
+         $cek_email = $this->InstitusiModel->cekEmail($this->request->getPost('email'));
 
          if (intval($cek_email[0]->jumlah) > 0) {
              $this->session->setFlashdata('error', 'Email sudah digunakan');
-             return redirect()->to('/Klinik');
+             return redirect()->to('/Institusi');
          }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('email'),
             'password'  => md5($this->request->getPost('password')),
-            'role'      => "K",
+            'role'      => "I",
         );
 
         $this->LoginModel->insert($data);
 
         $data = array(
             'id_login'          => $this->LoginModel->insertID(),
-            'nama_klinik'       => $this->request->getPost('nama'),
-            'email_klinik'      => $this->request->getPost('email'),
-            'no_telp_klinik'    => $this->request->getPost('no_telp'),
-            'alamat_klinik'     => $this->request->getPost('alamat'),
+            'id_jenis'          => $this->request->getPost('id_jenis'),
+            'nama_institusi'    => $this->request->getPost('nama'),
+            'email_institusi'   => $this->request->getPost('email'),
+            'no_telp_institusi' => $this->request->getPost('no_telp'),
+            'alamat_institusi'  => $this->request->getPost('alamat'),
         );
 
         $img = $this->request->getFile('logo');
         if(($img->getName() != '')){
             $logo = $this->uploadImage($img);
             if(isset($logo['errors'])){
-                $this->session->setFlashdata('msg', $logo['errors']);
-                return redirect()->to(base_url('/Klinik'));
+                $this->session->setFlashdata('error', $logo['errors']);
+                return redirect()->to(base_url('/Institusi'));
             }else{
                 $data['logo'] = $logo['path'];
             }
         }
 
-        $this->KlinikModel->insert($data);
+        $this->InstitusiModel->insert($data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil ditambahkan');
-        return redirect()->to('/Klinik');
+        $this->session->setFlashdata('success', 'Data berhasil ditambahkan');
+        return redirect()->to('/Institusi');
     }
 
     public function update(){
         // cek if email is used
-        // $cek_email = $this->KlinikModel->cekEmail($this->request->getPost('email'));
+        // $cek_email = $this->InstitusiModel->cekEmail($this->request->getPost('email'));
 
         // if (count($cek_email) > 0) {
         //     $this->session->setFlashdata('error', 'Email sudah digunakan');
-        //     return redirect()->to('/Klinik');
+        //     return redirect()->to('/Institusi');
         // }
 
         $data = array(
@@ -87,36 +92,37 @@ class Klinik extends BaseController
         $this->LoginModel->update($this->request->getPost('id_login'), $data);
 
         $data = array(
-            'nama_klinik'       => $this->request->getPost('nama'),
-            'email_klinik'      => $this->request->getPost('email'),
-            'no_telp_klinik'    => $this->request->getPost('no_telp'),
-            'alamat_klinik'     => $this->request->getPost('alamat')
+            'id_jenis'          => $this->request->getPost('id_jenis'),
+            'nama_institusi'    => $this->request->getPost('nama'),
+            'email_institusi'   => $this->request->getPost('email'),
+            'no_telp_institusi' => $this->request->getPost('no_telp'),
+            'alamat_institusi'  => $this->request->getPost('alamat')
         );
 
         $img = $this->request->getFile('logo');
         if(($img->getName() != '')){
             $logo = $this->uploadImage($img);
             if(isset($logo['errors'])){
-                $this->session->setFlashdata('errors', $logo['errors']);
-                return redirect()->to(base_url('/Klinik'));
+                $this->session->setFlashdata('error', $logo['errors']);
+                return redirect()->to(base_url('/Institusi'));
             }else{
                 $data['logo'] = $logo['path'];
             }
         }
 
-        $this->KlinikModel->update($this->request->getPost('id_klinik'), $data);
+        $this->InstitusiModel->update($this->request->getPost('id_institusi'), $data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil di edit');
-        return redirect()->to('/Klinik');
+        $this->session->setFlashdata('success', 'Data berhasil di edit');
+        return redirect()->to('/Institusi');
     }
 
-    public function delete($id_klinik, $id_login){
-        $this->KlinikModel->delete(['id_klinik' => $id_klinik]);
+    public function delete($id_institusi, $id_login){
+        $this->InstitusiModel->delete(['id_institusi' => $id_institusi]);
         $this->LoginModel->delete(['id_login' => $id_login]);
 
-        $this->session->setFlashdata('msg', 'Data berhasil dihapus');
+        $this->session->setFlashdata('success', 'Data berhasil dihapus');
 
-        echo site_url('/Klinik');
+        echo site_url('/Institusi');
     }
 
     public function uploadImage($img){
@@ -135,11 +141,11 @@ class Klinik extends BaseController
             return $data;
         }
 
-        // dd(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'klinik'.DIRECTORY_SEPARATOR);
+        // dd(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'institusi'.DIRECTORY_SEPARATOR);
 
         if (! $img->hasMoved()) {
             $name = $img->getRandomName();
-            $img->move(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'klinik'.DIRECTORY_SEPARATOR, $name, true);
+            $img->move(getcwd().DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'institusi'.DIRECTORY_SEPARATOR, $name, true);
 
             $data = ['path' => $name];
             return $data;

@@ -11,7 +11,7 @@ class UserModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_login', 
-        'id_klinik', 
+        'id_institusi', 
         'kode_group',
         'nama_user', 
         'no_telp', 
@@ -27,7 +27,7 @@ class UserModel extends Model
 
     protected $validationRules = [
         'id_login'      => 'required',
-        'id_klinik'     => 'required',
+        'id_institusi'     => 'required',
         'nama_user'     => 'required',
         'no_telp'       => 'required',
         // 'tgl_lahir'     => 'required',
@@ -36,10 +36,10 @@ class UserModel extends Model
         // 'berat_badan'   => 'required'
     ];
 
-    function getUser($id_klinik){
+    function getUser($id_institusi){
         $builder = $this->db->table('user');
         $builder->select('*');
-        $builder->where('id_klinik', $id_klinik);
+        $builder->where('id_institusi', $id_institusi);
         $query = $builder->get();
         return $query->getResult();
     }

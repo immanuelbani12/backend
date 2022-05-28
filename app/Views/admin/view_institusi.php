@@ -30,7 +30,7 @@
 						<!--begin::Page title-->
 						<div class="page-title d-flex flex-column me-3">
 							<!--begin::Title-->
-							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">List Klinik</h1>
+							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">List Institusi</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -40,7 +40,7 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Klinik</li>
+								<li class="breadcrumb-item text-gray-600">Institusi</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->
@@ -77,7 +77,7 @@
 											</svg>
 										</span>
 										<!--end::Svg Icon-->
-										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Klinik" />
+										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Institusi" />
 									</div>
 									<!--end::Search-->
 								</div>
@@ -95,7 +95,7 @@
 												<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
 											</svg>
 										</span>
-										<!--end::Svg Icon-->Tambah Klinik</button>
+										<!--end::Svg Icon-->Tambah Institusi</button>
 										<!--end::Add user-->
 									</div>
 									<!--end::Toolbar-->
@@ -108,7 +108,7 @@
 												<!--begin::Modal header-->
 												<div class="modal-header" id="kt_modal_add_user_header">
 													<!--begin::Modal title-->
-													<h2 class="fw-bolder" >Data Klinik</h2>
+													<h2 class="fw-bolder" >Data Institusi</h2>
 													<!--end::Modal title-->
 													<!--begin::Close-->
 													<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -127,18 +127,33 @@
 												<!--begin::Modal body-->
 												<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 													<!--begin::Form-->
-													<form id="kt_modal_add_user_form" class="form" method="post" action="<?= site_url('Klinik/add') ?>" enctype="multipart/form-data">
+													<form id="kt_modal_add_user_form" class="form" method="post" action="<?= site_url('Institusi/add') ?>" enctype="multipart/form-data">
 														<input type="hidden" name="id_login" id="id_login">
-														<input type="hidden" name="id_klinik" id="id_klinik">
+														<input type="hidden" name="id_institusi" id="id_institusi">
 														<!--begin::Scroll-->
 														<div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 															<!--begin::Input group-->
 															<div class="fv-row mb-7">
 																<!--begin::Label-->
-																<label class="required fw-bold fs-6 mb-2">Nama Klinik</label>
+																<label class="required fw-bold fs-6 mb-2">Nama Institusi</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<input type="text" name="nama" id="nama" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama Klinik" autocomplete="off"/>
+																<input type="text" name="nama" id="nama" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama Institusi" autocomplete="off"/>
+																<!--end::Input-->
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="fv-row mb-7">
+																<!--begin::Label-->
+																<label class="required fw-bold fs-6 mb-2">Jenis</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<select class="form-select form-select-solid" name="id_jenis" id="id_jenis" data-control="select2" data-placeholder="Select an option">
+																	<option></option>
+																	<?php foreach ($jenis as $row): ?>
+																		<option value="<?= $row->id_jenis ?>"><?= $row->nama_jenis ?></option>
+																	<?php endforeach; ?>
+																</select>
 																<!--end::Input-->
 															</div>
 															<!--end::Input group-->
@@ -226,7 +241,8 @@
 									<thead>
 										<!--begin::Table row-->
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-											<th class="min-w-125px">Nama Klinik</th>
+											<th class="min-w-125px">Nama Institusi</th>
+											<th class="min-w-125px">Jenis</th>
 											<th class="min-w-125px">Email</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Alamat</th>
@@ -238,17 +254,20 @@
 									<!--begin::Table body-->
 									<tbody class="text-gray-600 fw-bold">
 										<!--begin::Table row-->
-										<?php foreach ($klinik as $row):?>
+										<?php foreach ($institusi as $row):?>
 										<tr>
-											<input type="hidden" name="id_klinik" class="idKlinik" value="<?=  $row->id_klinik; ?>">
+											<input type="hidden" name="id_institusi" class="idInstitusi" value="<?=  $row->id_institusi; ?>">
 											<input type="hidden" name="id_login" class="idLogin" value="<?=  $row->id_login; ?>">
-											<td class="namaKlinik"><?= $row->nama_klinik; ?></td>
+											<td class="namaInstitusi"><?= $row->nama_institusi; ?></td>
 											<td>
-												<div class="badge badge-light fw-bolder emailKlinik"><?= $row->email_klinik; ?></div>
+												<div class="badge badge-success fw-bolder jenisInstitusi"><?= $row->nama_jenis; ?></div>
 											</td>
-											<td class="noTelp"><?= $row->no_telp_klinik; ?></td>
 											<td>
-												<div class="badge badge-light-success fw-bolder alamatKlinik"><?= $row->alamat_klinik; ?></div>
+												<div class="badge badge-light fw-bolder emailInstitusi"><?= $row->email_institusi; ?></div>
+											</td>
+											<td class="noTelp"><?= $row->no_telp_institusi; ?></td>
+											<td>
+												<div class="badge badge-light-success fw-bolder alamatInstitusi"><?= $row->alamat_institusi; ?></div>
 											</td>
 											<!--begin::Action=-->
 											<td class="text-end">
@@ -312,8 +331,8 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/klinik/table.js')?>"></script>
-	<script src="<?= base_url('/js/custom/apps/user-management/users/klinik/add.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/institusi/table.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/institusi/add.js')?>"></script>
 	
 	<script>
 		<?php
@@ -345,14 +364,14 @@
 
 		$('.btnEdit').on('click', function() {
 			console.log('edit');
-            $('.form').attr('action', "<?php echo site_url('/Klinik/update')?>");
+            $('.form').attr('action', "<?php echo site_url('/Institusi/update')?>");
             var $item = $(this).closest("tr");
             $("#id_login").val($.trim($item.find(".idLogin").val()));
-            $("#id_klinik").val($.trim($item.find(".idKlinik").val()));
-            $("#nama").val($.trim($item.find(".namaKlinik").text()));
-            $("#email").val($.trim($item.find(".emailKlinik").text()));
+            $("#id_institusi").val($.trim($item.find(".idInstitusi").val()));
+            $("#nama").val($.trim($item.find(".namaInstitusi").text()));
+            $("#email").val($.trim($item.find(".emailInstitusi").text()));
             $("#no_telp").val($.trim($item.find(".noTelp").text()));
-            $("#alamat").val($.trim($item.find(".alamatKlinik").text()));
+            $("#alamat").val($.trim($item.find(".alamatInstitusi").text()));
         });
 
 		// Select all delete buttons
@@ -370,13 +389,13 @@
                 var $item = $(this).closest("tr");
 
                 // Get user name
-                const id_klinik = $.trim($item.find(".idKlinik").val());
+                const id_institusi = $.trim($item.find(".idInstitusi").val());
                 const id_login  = $.trim($item.find(".idLogin").val());
-                const nama      = $.trim($item.find(".namaKlinik").text());
+                const nama      = $.trim($item.find(".namaInstitusi").text());
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Apakah anda yakin ingin menghapus data klinik dengan nama " + nama + "?",
+                    text: "Apakah anda yakin ingin menghapus data institusi dengan nama " + nama + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -389,7 +408,7 @@
                 }).then(function (result) {
                     if (result.value) {
                         $.ajax({
-                            url: "<?= site_url('/Klinik/delete/'); ?>" + id_klinik + "/" + id_login,
+                            url: "<?= site_url('/Institusi/delete/'); ?>" + id_institusi + "/" + id_login,
                             success: function (result) {
                                 window.location.href = result;
                             }

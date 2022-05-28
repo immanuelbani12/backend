@@ -40,7 +40,7 @@ class Daftar extends ResourceController
 
         $dataUser = array(
             'id_login'      => $id_login,
-            'id_klinik'     => 1,
+            'id_institusi'  => 1,
             'nama_user'     => $data->nama,
             'no_telp'       => $data->username,
             'kode_group'    => $data->kode_group,
@@ -65,9 +65,9 @@ class Daftar extends ResourceController
             "id_user" => $this->UserModel->insertID(),
             "nama_user" => $data->nama,
             "kode_group" => $data->kode_group,
-            "id_klinik" => 1,
-            "nama_klinik" => "Apadok",
-            "logo_klinik" => "sample-logo.jpg",
+            "id_institusi" => 1,
+            "nama_institusi" => "Apadok",
+            "logo_institusi" => "sample-logo.jpg",
             "token"   => $token
         );
         $this->LoginModel->update_data('id_login', 'login', $id_login, array('token' => $token));

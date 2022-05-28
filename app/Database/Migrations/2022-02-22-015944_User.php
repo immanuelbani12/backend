@@ -20,7 +20,7 @@ class User extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
-            'id_klinik' => [
+            'id_institusi' => [
                 'type' => 'INT',
                 'unsigned' => true,
             ],
@@ -85,7 +85,7 @@ class User extends Migration
         ]);
         $this->forge->addKey('id_user', true);
         $this->forge->addForeignKey('id_login', 'login', 'id_login');
-        $this->forge->addForeignKey('id_klinik', 'klinik', 'id_klinik');
+        $this->forge->addForeignKey('id_institusi', 'institusi', 'id_institusi');
         $this->forge->createTable('user', true);
 
         $this->db->enableForeignKeyChecks();

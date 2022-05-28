@@ -21,7 +21,7 @@ class LoginSeeder extends Seeder
             'nama'     => 'Klinik Apadok',
             'username' => 'apadok@gmail.com',
             'password' => md5('apadok'),
-            'role' => 'K',
+            'role' => 'I',
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -30,7 +30,7 @@ class LoginSeeder extends Seeder
             'nama'     => 'Klinik Sutorejo',
             'username' => 'klinik@gmail.com',
             'password' => md5('klinik'),
-            'role' => 'K',
+            'role' => 'I',
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);

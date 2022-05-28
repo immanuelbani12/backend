@@ -6,7 +6,7 @@ use CodeIgniter\RESTful\ResourceController;
 use Firebase\JWT\JWT;
 
 use App\Models\UserModel;
-use App\Models\KlinikModel;
+use App\Models\InstitusiModel;
 
 class Login extends ResourceController
 {
@@ -15,7 +15,7 @@ class Login extends ResourceController
 
     public function __construct()
     {
-        $this->KlinikModel  = new KlinikModel();
+        $this->InstitusiModel  = new InstitusiModel();
         $this->UserModel    = new UserModel();
     }
 
@@ -43,16 +43,16 @@ class Login extends ResourceController
         );
 
         $userData = $this->UserModel->getUserData($user['id_login']);
-        $klinikData = $this->KlinikModel->getKlinik_by_id($userData[0]->id_klinik);
+        $institusiData = $this->InstitusiModel->getInstitusi_by_id($userData[0]->id_institusi);
  
         $token = JWT::encode($payload, $key, "HS256");
         $data = array(
             "id_user" => $userData[0]->id_user,
             "nama_user" => $userData[0]->nama_user,
             "role" => $user['role'],
-            "id_klinik" => $userData[0]->id_klinik,
-            "nama_klinik" => $klinikData[0]->nama_klinik,
-            "logo_klinik" => $klinikData[0]->logo,
+            "id_institusi" => $userData[0]->id_institusi,
+            "nama_institusi" => $institusiData[0]->nama_institusi,
+            "logo_institusi" => $institusiData[0]->logo,
             "token"   => $token
         );
         $this->model->update_data('id_login', 'login', $user['id_login'], array('token' => $token));

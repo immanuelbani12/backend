@@ -4,14 +4,14 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Klinik extends Migration
+class Institusi extends Migration
 {
     public function up()
     {
         $this->db->disableForeignKeyChecks();
 
         $this->forge->addField([
-            'id_klinik' => [
+            'id_institusi' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'auto_increment' => true,
@@ -20,20 +20,24 @@ class Klinik extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
-            'nama_klinik' => [
+            'id_jenis' => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
+            'nama_institusi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'email_klinik' => [
+            'email_institusi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'unique' => true,
             ],
-            'no_telp_klinik' => [
+            'no_telp_institusi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 20,
             ],
-            'alamat_klinik' => [
+            'alamat_institusi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ],
@@ -47,15 +51,16 @@ class Klinik extends Migration
             ],
             'created_at datetime default current_timestamp',
         ]);
-        $this->forge->addKey('id_klinik', true);
+        $this->forge->addKey('id_institusi', true);
         $this->forge->addForeignKey('id_login', 'login', 'id_login');
-        $this->forge->createTable('klinik', true);
+        $this->forge->addForeignKey('id_jenis', 'jenis_institusi', 'id_jenis');
+        $this->forge->createTable('institusi', true);
 
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('klinik', true);
+        $this->forge->dropTable('institusi', true);
     }
 }

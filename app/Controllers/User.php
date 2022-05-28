@@ -81,13 +81,16 @@ class User extends BaseController
     }
 
     public function update(){
-        // cek if number is used
-        // $cek_no_telp = $this->UserModel->cekNoTelp($this->request->getPost('no_telp'));
 
-        // if (intval($cek_no_telp[0]->jumlah) > 1) {
-        //     $this->session->setFlashdata('error', 'No Telp sudah digunakan');
-        //     return redirect()->to('/User');
-        // }
+        // cek if number is used
+        $no_telp = $this->request->getPost('no_telp');
+        $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
+        $user = $this->UserModel->getUserById($this->request->getPost('id_user'));
+
+        if ($user[0]->no_telp != $no_telp && intval($cek_no_telp[0]->jumlah) > 0) {
+            $this->session->setFlashdata('error', 'No Telp sudah digunakan');
+            return redirect()->to('/User');
+        }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),

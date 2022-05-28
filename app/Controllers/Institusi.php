@@ -73,16 +73,18 @@ class Institusi extends BaseController
 
     public function update(){
         // cek if email is used
-        // $cek_email = $this->InstitusiModel->cekEmail($this->request->getPost('email'));
+        $email = $this->request->getPost('email');
+        $institusi = $this->InstitusiModel->getInstitusi_by_id($this->request->getPost('id_institusi'));
+        $cek_email = $this->InstitusiModel->cekEmail($email);
 
-        // if (count($cek_email) > 0) {
-        //     $this->session->setFlashdata('error', 'Email sudah digunakan');
-        //     return redirect()->to('/Institusi');
-        // }
+        if ($institusi[0]->email_institusi != $email && intval($cek_email[0]->jumlah) > 0) {
+            $this->session->setFlashdata('error', 'Email sudah digunakan');
+            return redirect()->to('/Institusi');
+        }
 
         $data = array(
             'nama'      => $this->request->getPost('nama'),
-            'username'  => $this->request->getPost('email'),
+            'username'  => $email,
         );
 
         if($this->request->getPost('password') != ''){
@@ -94,7 +96,7 @@ class Institusi extends BaseController
         $data = array(
             'id_jenis'          => $this->request->getPost('id_jenis'),
             'nama_institusi'    => $this->request->getPost('nama'),
-            'email_institusi'   => $this->request->getPost('email'),
+            'email_institusi'   => $email,
             'no_telp_institusi' => $this->request->getPost('no_telp'),
             'alamat_institusi'  => $this->request->getPost('alamat')
         );

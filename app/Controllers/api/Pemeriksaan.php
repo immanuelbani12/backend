@@ -132,7 +132,10 @@ class Pemeriksaan extends ResourceController
             'risiko_diabetes'   => $diabetes['hasil'] == 'Risiko Tinggi' || $diabetes['hasil'] == 'Risiko Sangat Tinggi' ? 1 : 0,
             'risiko_kolesterol' => $kolesterol['hasil'] == 'Risiko Tinggi' ? 1 : 0,
             'risiko_stroke'     => $stroke['hasil'] == 'Risiko Tinggi' ? 1 : 0,
-            
+            'tgl_lahir'         => date("Y-m-d", strtotime($data->tanggal_lahir)),
+            'jenis_kelamin'     => $data->jenis_kelamin,
+            'tinggi_badan'      => $data->tinggi_badan,
+            'berat_badan'       => $data->berat_badan
         );
 
         $this->UserModel->update_data($data->id_user, $data_update);

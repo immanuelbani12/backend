@@ -32,6 +32,13 @@ var KTUsersAddUser = function () {
 							}
                         }
                     },
+                    'id_jenis': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Wajib memilih jenis institusi'
+                            }
+                        }
+                    },
                     'no_telp': {
                         validators: {
                             notEmpty: {

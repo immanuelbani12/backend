@@ -65,7 +65,7 @@ class User extends BaseController
 
         $data = array(
             'id_login'      => $this->LoginModel->insertID(),
-            'id_institusi'     => $institusi[0]->id_institusi,
+            'id_institusi'  => $institusi[0]->id_institusi,
             'nama_user'     => $this->request->getPost('nama'),
             'no_telp'       => $this->request->getPost('no_telp'),
             'tgl_lahir'     => $this->request->getPost('tgl_lahir'),

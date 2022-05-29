@@ -258,6 +258,7 @@
 										<tr>
 											<input type="hidden" name="id_institusi" class="idInstitusi" value="<?=  $row->id_institusi; ?>">
 											<input type="hidden" name="id_login" class="idLogin" value="<?=  $row->id_login; ?>">
+											<input type="hidden" name="id_jenis" class="idJenis" value="<?=  $row->id_jenis; ?>">
 											<td class="namaInstitusi"><?= $row->nama_institusi; ?></td>
 											<td>
 												<div class="badge badge-success fw-bolder jenisInstitusi"><?= $row->nama_jenis; ?></div>
@@ -370,6 +371,7 @@
             $("#id_institusi").val($.trim($item.find(".idInstitusi").val()));
             $("#nama").val($.trim($item.find(".namaInstitusi").text()));
             $("#email").val($.trim($item.find(".emailInstitusi").text()));
+			$("#id_jenis").select2("val", $item.find(".idJenis").val());
             $("#no_telp").val($.trim($item.find(".noTelp").text()));
             $("#alamat").val($.trim($item.find(".alamatInstitusi").text()));
         });

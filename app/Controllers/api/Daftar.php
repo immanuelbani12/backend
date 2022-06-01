@@ -59,7 +59,7 @@ class Daftar extends ResourceController
         $token = JWT::encode($payload, $key, "HS256");
         $data = array(
             "id_user" => $user['id_user'],
-            "nama_user" => $user['nama'],
+            "nama_user" => $user['nama_user'],
             "kode_user" => $data->kode_user,
             "id_institusi" => $user['id_institusi'],
             "nama_institusi" => $institusi['nama_institusi'],

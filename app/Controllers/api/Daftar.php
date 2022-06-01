@@ -7,13 +7,15 @@ use Firebase\JWT\JWT;
 
 use App\Models\UserModel;
 use App\Models\LoginModel;
+use App\Models\InstitusiModel;
 
 class Daftar extends ResourceController
 {
     public function __construct()
     {
-        $this->UserModel    = new UserModel();
-        $this->LoginModel   = new LoginModel();
+        $this->UserModel        = new UserModel();
+        $this->LoginModel       = new LoginModel();
+        $this->InstitusiModel   = new InstitusiModel();
     }
 
     /**
@@ -25,52 +27,46 @@ class Daftar extends ResourceController
     {
         $data = $this->request->getJSON();
 
-        $user = $this->LoginModel->where("username", $data->username)->first();
-        if($user) return $this->failNotFound('Nomor telepon sudah terdaftar');
+        $login = $this->LoginModel->where("username", $data->username)->first();
+        if($login) return $this->failNotFound('Nomor telepon sudah terdaftar');
+
+        $user = $this->UserModel->where("kode_user", $data->kode_user)->first();
+        if(!$user) return $this->failNotFound('Nomor peserta tidak ditemukan');
+
+        $institusi = $this->InstitusiModel->where("id_institusi", $user['id_institusi'])->first();
+        if(!$institusi) return $this->failNotFound('Institusi tidak ditemukan');
 
         $dataLogin = array(
-            'nama'      => $data->nama,
             'username'  => $data->username,
-            // 'password'  => md5($data->password),
-            'role'      => "N",
         );
 
-        $this->LoginModel->insert($dataLogin);
-        $id_login = $this->LoginModel->insertID();
+        $this->LoginModel->update_data($user['id_login'], $dataLogin);
 
         $dataUser = array(
-            'id_login'      => $id_login,
-            'id_institusi'  => 1,
-            'nama_user'     => $data->nama,
             'no_telp'       => $data->username,
-            'kode_group'    => $data->kode_group,
-            // 'tgl_lahir'     => $data->tgl_lahir,
-            // 'jenis_kelamin' => $data->jenis_kelamin,
-            // 'tinggi_badan'  => $data->tinggi_badan,
-            // 'berat_badan'   => $data->berat_badan,
         );
 
-        $this->UserModel->insert($dataUser);
+        $this->UserModel->update_data($user['id_user'], $dataUser);
  
         $key = getenv('TOKEN_SECRET');
         $payload = array(
             "iat" => 1356999524,
             "nbf" => 1357000000,
-            "id_login" => $id_login,
+            "id_login" => $user['id_login'],
             "username" => $data->username
         );
  
         $token = JWT::encode($payload, $key, "HS256");
         $data = array(
-            "id_user" => $this->UserModel->insertID(),
+            "id_user" => $user['id_user'],
             "nama_user" => $data->nama,
-            "kode_group" => $data->kode_group,
-            "id_institusi" => 1,
-            "nama_institusi" => "Apadok",
-            "logo_institusi" => "sample-logo.jpg",
+            "kode_user" => $data->kode_user,
+            "id_institusi" => $user['id_institusi'],
+            "nama_institusi" => $institusi['nama_institusi'],
+            "logo_institusi" => $institusi['logo'],
             "token"   => $token
         );
-        $this->LoginModel->update_data('id_login', 'login', $id_login, array('token' => $token));
+        $this->LoginModel->update_data($user['id_login'], array('token' => $token));
         return $this->respond($data);
     }
 }

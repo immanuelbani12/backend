@@ -55,7 +55,7 @@ class Login extends ResourceController
             "logo_institusi" => $institusiData[0]->logo,
             "token"   => $token
         );
-        $this->model->update_data('id_login', 'login', $user['id_login'], array('token' => $token));
+        $this->model->update_data($user['id_login'], array('token' => $token));
         return $this->respond($data);
     }
 }

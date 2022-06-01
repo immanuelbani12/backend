@@ -47,7 +47,7 @@ class Auth extends BaseController
  
             $token = JWT::encode($payload, $key, "HS256");
 
-            $this->LoginModel->update_data('id_login', 'login', $query[0]->id_login, array('token' => $token));
+            $this->LoginModel->update_data($query[0]->id_login, array('token' => $token));
         }
 
         if (count($query)>0){

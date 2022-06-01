@@ -206,7 +206,7 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table-jumlah-screening.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table-jumlah-screening.js')?>"></script>
 
 	<style>
 		table.dataTable tbody tr.selected {

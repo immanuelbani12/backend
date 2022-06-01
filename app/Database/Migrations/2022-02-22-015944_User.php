@@ -28,6 +28,10 @@ class User extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '20',
             ],
+            'kode_user' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
             'nama_user' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
@@ -86,6 +90,7 @@ class User extends Migration
         $this->forge->addKey('id_user', true);
         $this->forge->addForeignKey('id_login', 'login', 'id_login');
         $this->forge->addForeignKey('id_institusi', 'institusi', 'id_institusi');
+        $this->forge->addUniqueKey(['id_institusi', 'kode_user']);
         $this->forge->createTable('user', true);
 
         $this->db->enableForeignKeyChecks();

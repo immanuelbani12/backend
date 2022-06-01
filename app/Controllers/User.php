@@ -20,7 +20,7 @@ class User extends BaseController
         $this->session                      = \Config\Services::session();
         $this->UserModel                    = new UserModel();
         $this->LoginModel                   = new LoginModel();
-        $this->InstitusiModel                  = new InstitusiModel();
+        $this->InstitusiModel               = new InstitusiModel();
         $this->PemeriksaanModel             = new PemeriksaanModel();
         $this->PemeriksaanKebugaranModel    = new PemeriksaanKebugaranModel();
 
@@ -32,7 +32,7 @@ class User extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
-        $data['pasien'] = $this->UserModel->getUser($institusi[0]->id_institusi);
+        $data['peserta'] = $this->UserModel->getUser($institusi[0]->id_institusi);
         return view('admin/view_user', $data);
     }
 
@@ -66,6 +66,7 @@ class User extends BaseController
         $data = array(
             'id_login'      => $this->LoginModel->insertID(),
             'id_institusi'  => $institusi[0]->id_institusi,
+            'kode_user'     => $this->request->getPost('kode_user'),
             'nama_user'     => $this->request->getPost('nama'),
             'no_telp'       => $this->request->getPost('no_telp'),
             'tgl_lahir'     => $this->request->getPost('tgl_lahir'),
@@ -100,6 +101,7 @@ class User extends BaseController
         $this->LoginModel->update($this->request->getPost('id_login'), $data);
 
         $data = array(
+            'kode_user'     => $this->request->getPost('kode_user'),
             'nama_user'     => $this->request->getPost('nama'),
             'no_telp'       => $this->request->getPost('no_telp'),
             'tgl_lahir'     => $this->request->getPost('tgl_lahir'),
@@ -124,7 +126,7 @@ class User extends BaseController
     }
 
     public function UserTemplate(){
-        $inputFileName = '../public/excel/data_pasien.xlsx';
+        $inputFileName = '../public/excel/data_peserta.xlsx';
 
         /** Load $inputFileName to a Spreadsheet Object  **/
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
@@ -142,7 +144,7 @@ class User extends BaseController
     }
 
     public function UserUpload(){
-        $file_excel = $this->request->getFile('data_pasien');
+        $file_excel = $this->request->getFile('data_peserta');
         
         $ext = $file_excel->getClientExtension();
         if($ext == 'xls') {

@@ -15,10 +15,17 @@ var KTUsersAddUser = function () {
             form,
             {
                 fields: {
+                    'kode_user': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Nomor peserta wajib di isi'
+                            }
+                        }
+                    },
                     'nama': {
                         validators: {
                             notEmpty: {
-                                message: 'Nama pasien wajib di isi'
+                                message: 'Nama peserta wajib di isi'
                             }
                         }
                     },

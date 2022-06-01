@@ -3,7 +3,7 @@
 	
 <!--begin::Head-->
 <head>
-	<title>Apadok - Pasien</title>
+	<title>Apadok - Peserta</title>
 	<?php echo view('partials/_css');?>
 </head>
 <!--end::Head-->
@@ -30,7 +30,7 @@
 						<!--begin::Page title-->
 						<div class="page-title d-flex flex-column me-3">
 							<!--begin::Title-->
-							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">List Pasien</h1>
+							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">List Peserta</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -40,7 +40,7 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Pasien</li>
+								<li class="breadcrumb-item text-gray-600">Peserta</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->
@@ -77,7 +77,7 @@
 											</svg>
 										</span>
 										<!--end::Svg Icon-->
-										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Pasien" />
+										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Peserta" />
 									</div>
 									<!--end::Search-->
 								</div>
@@ -107,7 +107,7 @@
 												<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
 											</svg>
 										</span>
-										<!--end::Svg Icon-->Tambah Pasien</button>
+										<!--end::Svg Icon-->Tambah Peserta</button>
 										<!--end::Add user-->
 									</div>
 									<!--end::Toolbar-->
@@ -120,7 +120,7 @@
 												<!--begin::Modal header-->
 												<div class="modal-header" id="kt_modal_add_user_header">
 													<!--begin::Modal title-->
-													<h2 class="fw-bolder" >Data Pasien</h2>
+													<h2 class="fw-bolder" >Data Peserta</h2>
 													<!--end::Modal title-->
 													<!--begin::Close-->
 													<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -145,10 +145,19 @@
 															<!--begin::Input group-->
 															<div class="fv-row mb-7">
 																<!--begin::Label-->
-																<label class="required fw-bold fs-6 mb-2">Nama Pasien</label>
+																<label class="required fw-bold fs-6 mb-2">Nomor Peserta</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<input type="text" name="nama" id="nama" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama Pasien" autocomplete="off"/>
+																<input type="text" name="kode_user" id="kode_user" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nomor Peserta" autocomplete="off"/>
+																<!--end::Input-->
+															</div>
+															<!--begin::Input group-->
+															<div class="fv-row mb-7">
+																<!--begin::Label-->
+																<label class="required fw-bold fs-6 mb-2">Nama Peserta</label>
+																<!--end::Label-->
+																<!--begin::Input-->
+																<input type="text" name="nama" id="nama" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama Peserta" autocomplete="off"/>
 																<!--end::Input-->
 															</div>
 															<!--end::Input group-->
@@ -293,7 +302,7 @@
 																<label class="fw-bold fs-6 mb-2">Unggah Data</label>
 																<!--end::Label-->
 																<!--begin::Input-->
-																<input type="file" name="data_pasien" id="data_pasien" class="form-control form-control-solid mb-3 mb-lg-0"/>
+																<input type="file" name="data_peserta" id="data_peserta" class="form-control form-control-solid mb-3 mb-lg-0"/>
 																<!--end::Input-->
 															</div>
 															<!--end::Input group-->
@@ -331,7 +340,8 @@
 									<thead>
 										<!--begin::Table row-->
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-											<th class="min-w-125px">Nama Pasien</th>
+											<th class="min-w-125px">Nomor Peserta</th>	
+											<th class="min-w-125px">Nama Peserta</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<!-- <th class="min-w-125px">Tanggal Lahir</th>
 											<th class="min-w-125px">Jenis Kelamin</th>
@@ -345,13 +355,14 @@
 									<!--begin::Table body-->
 									<tbody class="text-gray-600 fw-bold">
 										<!--begin::Table row-->
-										<?php foreach ($pasien as $row):?>
+										<?php foreach ($peserta as $row):?>
 										<tr>
-											<input type="hidden" class="idPasien" value="<?=  $row->id_user; ?>">
+											<input type="hidden" class="idPeserta" value="<?=  $row->id_user; ?>">
 											<input type="hidden" class="idLogin" value="<?=  $row->id_login; ?>">
-											<td class="namaPasien"><?= $row->nama_user; ?></td>
+											<td class="kodePeserta"><?= $row->kode_user; ?></td>
+											<td class="namaPeserta"><?= $row->nama_user; ?></td>
 											<td>
-												<div class="badge badge-light fw-bolder telpPasien"><?= $row->no_telp; ?></div>
+												<div class="badge badge-light fw-bolder telpPeserta"><?= $row->no_telp; ?></div>
 											</td>
 											<td class="text-end">
 												<a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -419,9 +430,9 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table.js')?>"></script>
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/add.js')?>"></script>
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/upload.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/add.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/upload.js')?>"></script>
 	
 	<script>
 		<?php
@@ -455,18 +466,19 @@
             $('.form').attr('action', "<?php echo site_url('/User/update')?>");
             var $item = $(this).closest("tr");
             $("#id_login").val($.trim($item.find(".idLogin").val()));
-            $("#id_user").val($.trim($item.find(".idPasien").val()));
-            $("#nama").val($.trim($item.find(".namaPasien").text()));
-            $("#no_telp").val($.trim($item.find(".telpPasien").text()));
-            $("#tgl_lahir").val($.trim($item.find(".tanggalLahirPasien").text()));
-			var jenis_kelamin = $.trim($item.find(".jenisKelaminPasien").text())
+            $("#id_user").val($.trim($item.find(".idPeserta").val()));
+			$("#kode_user").val($.trim($item.find(".kodePeserta").text()));
+            $("#nama").val($.trim($item.find(".namaPeserta").text()));
+            $("#no_telp").val($.trim($item.find(".telpPeserta").text()));
+            $("#tgl_lahir").val($.trim($item.find(".tanggalLahirPeserta").text()));
+			var jenis_kelamin = $.trim($item.find(".jenisKelaminPeserta").text())
 
 			if (jenis_kelamin != "") {
             	$("#jenis_kelamin").val(jenis_kelamin=="Laki-Laki"? "L" : "P").trigger('change');
 			}
 			
-			$("#tinggi_badan").val($.trim($item.find(".tinggiBadanPasien").text()));
-			$("#berat_badan").val($.trim($item.find(".beratBadanPasien").text()));
+			$("#tinggi_badan").val($.trim($item.find(".tinggiBadanPeserta").text()));
+			$("#berat_badan").val($.trim($item.find(".beratBadanPeserta").text()));
         });
 
 		// Select all delete buttons
@@ -484,13 +496,13 @@
                 var $item = $(this).closest("tr");
 
                 // Get user name
-                const id_user = $.trim($item.find(".idPasien").val());
+                const id_user = $.trim($item.find(".idPeserta").val());
                 const id_login  = $.trim($item.find(".idLogin").val());
-                const nama      = $.trim($item.find(".namaPasien").text());
+                const nama      = $.trim($item.find(".namaPeserta").text());
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Apakah anda yakin ingin menghapus data pasien dengan nama " + nama + "?",
+                    text: "Apakah anda yakin ingin menghapus data peserta dengan nama " + nama + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,

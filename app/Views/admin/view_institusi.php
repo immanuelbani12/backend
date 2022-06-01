@@ -241,11 +241,11 @@
 									<thead>
 										<!--begin::Table row-->
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-											<th class="min-w-125px">Nama Institusi</th>
-											<th class="min-w-125px">Jenis</th>
-											<th class="min-w-125px">Email</th>
-											<th class="min-w-125px">Nomor Telepon</th>
-											<th class="min-w-125px">Alamat</th>
+											<th>Nama Institusi</th>
+											<th>Jenis</th>
+											<th>Email</th>
+											<th>Nomor Telepon</th>
+											<th>Alamat</th>
 											<th class="text-end min-w-100px">Actions</th>
 										</tr>
 										<!--end::Table row-->

@@ -13,6 +13,7 @@ class UserModel extends Model
         'id_login', 
         'id_institusi', 
         'kode_group',
+        'kode_user',
         'nama_user', 
         'no_telp', 
         'tgl_lahir',
@@ -27,7 +28,8 @@ class UserModel extends Model
 
     protected $validationRules = [
         'id_login'      => 'required',
-        'id_institusi'     => 'required',
+        'id_institusi'  => 'required',
+        'kode_user'     => 'required',
         'nama_user'     => 'required',
         'no_telp'       => 'required',
         // 'tgl_lahir'     => 'required',

@@ -10,7 +10,8 @@ class UserSeeder extends Seeder
     {
         $data = [
             'id_login'      => '4',
-            'id_institusi'     => '2',
+            'id_institusi'  => '2',
+            'kode_user'     => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,8),
             'nama_user'     => 'Bambang',
             'no_telp'       => '08123456789',
             'tgl_lahir'     => '1999-10-24',
@@ -23,7 +24,8 @@ class UserSeeder extends Seeder
 
         $data = [
             'id_login'      => '5',
-            'id_institusi'     => '2',
+            'id_institusi'  => '2',
+            'kode_user'     => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,8),
             'nama_user'     => 'Rahayu',
             'no_telp'       => '08111111111',
             'tgl_lahir'     => '2001-01-19',
@@ -36,7 +38,8 @@ class UserSeeder extends Seeder
 
         $data = [
             'id_login'      => '6',
-            'id_institusi'     => '2',
+            'id_institusi'  => '2',
+            'kode_user'     => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,8),
             'nama_user'     => 'Sutejo',
             'no_telp'       => '08222222222',
             'tgl_lahir'     => '1988-03-18',

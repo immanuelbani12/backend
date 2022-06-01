@@ -31,7 +31,7 @@ class UserModel extends Model
         'id_institusi'  => 'required',
         'kode_user'     => 'required',
         'nama_user'     => 'required',
-        'no_telp'       => 'required',
+        // 'no_telp'       => 'required',
         // 'tgl_lahir'     => 'required',
         // 'jenis_kelamin' => 'required',
         // 'tinggi_badan'  => 'required',
@@ -66,6 +66,15 @@ class UserModel extends Model
         $builder = $this->db->table('user');
         $builder->select('COUNT(1) AS jumlah');
         $builder->where('no_telp', $no_telp);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
+    function cekNomorPeserta($id_institusi, $no_peserta){
+        $builder = $this->db->table('user');
+        $builder->select('COUNT(1) AS jumlah');
+        $builder->where('id_institusi', $id_institusi);
+        $builder->where('kode_user', $no_peserta);
         $query = $builder->get();
         return $query->getResult();
     }

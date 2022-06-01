@@ -31,9 +31,9 @@ var KTUsersAddUser = function () {
                     },
                     'no_telp': {
                         validators: {
-                            notEmpty: {
-                                message: 'Nomor telepon wajib di isi'
-                            },
+                            // notEmpty: {
+                            //     message: 'Nomor telepon wajib di isi'
+                            // },
                             numeric: {
                                 message: 'Nomor telepon berupa angka',
                             },

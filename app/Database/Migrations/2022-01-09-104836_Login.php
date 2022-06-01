@@ -23,7 +23,7 @@ class Login extends Migration
             'username' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
-                'unique' => true,
+                // 'unique' => true,
             ],
             'password' => [
                 'type' => 'VARCHAR',

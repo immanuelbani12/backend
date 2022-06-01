@@ -164,7 +164,7 @@
 															<!--begin::Input group-->
 															<div class="fv-row mb-7">
 																<!--begin::Label-->
-																<label class="required fw-bold fs-6 mb-2">Nomor Telepon</label>
+																<label class="fw-bold fs-6 mb-2">Nomor Telepon</label>
 																<!--end::Label-->
 																<!--begin::Input-->
 																<input type="text" name="no_telp" id="no_telp" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nomor Telepon" autocomplete="off"/>

@@ -45,9 +45,10 @@ class User extends BaseController
 
     public function add(){
         // cek if number is used
-        $cek_no_telp = $this->UserModel->cekNoTelp($this->request->getPost('no_telp'));
+        $no_telp = $this->request->getPost('no_telp');
+        $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
 
-        if (intval($cek_no_telp[0]->jumlah) > 0) {
+        if (intval($cek_no_telp[0]->jumlah) > 0 && $no_telp != '') {
             $this->session->setFlashdata('error', 'No Telp sudah digunakan');
             return redirect()->to('/User');
         }
@@ -55,7 +56,6 @@ class User extends BaseController
         $data = array(
             'nama'      => $this->request->getPost('nama'),
             'username'  => $this->request->getPost('no_telp'),
-            // 'password'  => md5($this->request->getPost('password')),
             'role'      => "U",
         );
 
@@ -88,7 +88,7 @@ class User extends BaseController
         $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
         $user = $this->UserModel->getUserById($this->request->getPost('id_user'));
 
-        if ($user[0]->no_telp != $no_telp && intval($cek_no_telp[0]->jumlah) > 0) {
+        if ($user[0]->no_telp != $no_telp && intval($cek_no_telp[0]->jumlah) > 0 && $no_telp != '') {
             $this->session->setFlashdata('error', 'No Telp sudah digunakan');
             return redirect()->to('/User');
         }
@@ -160,20 +160,19 @@ class User extends BaseController
 
         foreach($data as $x => $row) {
             $db = \Config\Database::connect();
+            // cek jika sudah ada akun dengan nomor sama
             $cekLogin = $db->table('login')->getWhere(['username'=>$row[2]])->getResult();
-
-            if ($row[1] == NULL || $row[2] == NULL || $row[0] == "No" || count($cekLogin) > 0) 
+            if ($row[1] == NULL || $row[0] == "Nomor Peserta" || (count($cekLogin) > 0 && $row[2] != NULL)) 
                 continue;
-            
+        
+            // cek jika sudah ada user dengan nomor peserta yang sama
+            $cek_nomor = $this->UserModel->cekNomorPeserta($institusi[0]->id_institusi, $row[0]);
+            if (intval($cek_nomor[0]->jumlah) > 0)
+                continue;
+
+            $kode_user  = $row[0];
             $nama       = $row[1];
-            $no_telp    = $row[2];
-
-            // cek if number is used
-            $cek_no_telp = $this->UserModel->cekNoTelp($no_telp);
-
-            if (intval($cek_no_telp[0]->jumlah) > 0) {
-                continue;
-            }
+            $no_telp    = $row[2] == NULL? '': $row[2];
 
             $data = array(
                 'nama'      => $nama,
@@ -185,7 +184,8 @@ class User extends BaseController
     
             $data = array(
                 'id_login'      => $this->LoginModel->insertID(),
-                'id_institusi'     => $institusi[0]->id_institusi,
+                'id_institusi'  => $institusi[0]->id_institusi,
+                'kode_user'     => $kode_user,
                 'nama_user'     => $nama,
                 'no_telp'       => $no_telp
             );

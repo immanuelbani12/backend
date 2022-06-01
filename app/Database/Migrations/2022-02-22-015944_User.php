@@ -24,10 +24,10 @@ class User extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
-            'kode_group' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-            ],
+            // 'kode_group' => [
+            //     'type' => 'VARCHAR',
+            //     'constraint' => '20',
+            // ],
             'kode_user' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
@@ -39,7 +39,7 @@ class User extends Migration
             'no_telp' => [
                 'type' => 'VARCHAR',
                 'constraint' => 15,
-                'unique' => true,
+                // 'unique' => true,
             ],
             'tgl_lahir' => [
                 'type' => 'DATE',

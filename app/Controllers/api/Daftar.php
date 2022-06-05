@@ -30,11 +30,14 @@ class Daftar extends ResourceController
         $login = $this->LoginModel->where("username", $data->username)->first();
         if($login) return $this->failNotFound('Nomor telepon sudah terdaftar');
 
-        $user = $this->UserModel->where("kode_user", $data->kode_user)->first();
+        $group = $this->InstitusiModel->where("kode_group", $data->kode_group)->first();
+        if(!$group) return $this->failNotFound('Kode group tidak ditemukan');
+
+        $user = $this->UserModel->where("kode_user", $data->kode_user)->where("id_institusi", $group['id_institusi'])->first();
         if(!$user) return $this->failNotFound('Nomor peserta tidak ditemukan');
 
-        $institusi = $this->InstitusiModel->where("id_institusi", $user['id_institusi'])->first();
-        if(!$institusi) return $this->failNotFound('Institusi tidak ditemukan');
+        // $institusi = $this->InstitusiModel->where("id_institusi", $user['id_institusi'])->first();
+        // if(!$institusi) return $this->failNotFound('Institusi tidak ditemukan');
 
         $dataLogin = array(
             'username'  => $data->username,
@@ -62,8 +65,8 @@ class Daftar extends ResourceController
             "nama_user" => $user['nama_user'],
             "kode_user" => $data->kode_user,
             "id_institusi" => $user['id_institusi'],
-            "nama_institusi" => $institusi['nama_institusi'],
-            "logo_institusi" => $institusi['logo'],
+            "nama_institusi" => $group['nama_institusi'],
+            "logo_institusi" => $group['logo'],
             "token"   => $token
         );
         $this->LoginModel->update_data($user['id_login'], array('token' => $token));

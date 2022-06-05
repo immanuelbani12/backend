@@ -12,6 +12,7 @@ class InstitusiModel extends Model
     protected $allowedFields    = [
         'id_login',
         'id_jenis',
+        'kode_group',
         'nama_institusi', 
         'email_institusi',
         'no_telp_institusi', 
@@ -26,6 +27,7 @@ class InstitusiModel extends Model
     protected $validationRules = [
         'id_login' => 'required',
         'id_jenis' => 'required',
+        'kode_group' => 'required|min_length[7]|max_length[7]',
         'nama_institusi' => 'required',
         'email_institusi' => 'required',
         'no_telp_institusi' => 'required',

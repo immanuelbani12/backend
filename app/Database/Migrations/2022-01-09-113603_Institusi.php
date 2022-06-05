@@ -24,6 +24,10 @@ class Institusi extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
+            'kode_group' => [
+                'type' => 'VARCHAR',
+                'constraint' => '10',
+            ],
             'nama_institusi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,

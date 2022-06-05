@@ -48,6 +48,7 @@ class Institusi extends BaseController
         $data = array(
             'id_login'          => $this->LoginModel->insertID(),
             'id_jenis'          => $this->request->getPost('id_jenis'),
+            'kode_group'        => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,7),
             'nama_institusi'    => $this->request->getPost('nama'),
             'email_institusi'   => $this->request->getPost('email'),
             'no_telp_institusi' => $this->request->getPost('no_telp'),

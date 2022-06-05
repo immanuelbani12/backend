@@ -11,6 +11,7 @@ class institusiSeeder extends Seeder
         $data = [
             'id_login' => '2',
             'id_jenis' => '2',
+            'kode_group'       => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,7),
             'nama_institusi'   => 'Klinik Apadok',
             'email_institusi'  => 'apadok@gmail.com',
             'no_telp_institusi'=> '08123456789',
@@ -23,6 +24,7 @@ class institusiSeeder extends Seeder
         $data = [
             'id_login' => '3',
             'id_jenis' => '2',
+            'kode_group'       => substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,7),
             'nama_institusi'   => 'Klinik Sutorejo',
             'email_institusi'  => 'klinik@gmail.com',
             'no_telp_institusi'=> '08123456789',

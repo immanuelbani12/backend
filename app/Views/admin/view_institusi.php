@@ -241,6 +241,7 @@
 									<thead>
 										<!--begin::Table row-->
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+											<th>Kode Group</th>
 											<th>Nama Institusi</th>
 											<th>Jenis</th>
 											<th>Email</th>
@@ -259,6 +260,9 @@
 											<input type="hidden" name="id_institusi" class="idInstitusi" value="<?=  $row->id_institusi; ?>">
 											<input type="hidden" name="id_login" class="idLogin" value="<?=  $row->id_login; ?>">
 											<input type="hidden" name="id_jenis" class="idJenis" value="<?=  $row->id_jenis; ?>">
+											<td>
+												<div class="badge badge-light-primary fw-bolder kodeGroup"><?= $row->kode_group; ?></div>
+											</td>
 											<td class="namaInstitusi"><?= $row->nama_institusi; ?></td>
 											<td>
 												<div class="badge badge-success fw-bolder jenisInstitusi"><?= $row->nama_jenis; ?></div>

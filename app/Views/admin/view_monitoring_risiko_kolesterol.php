@@ -27,28 +27,34 @@
 				<div class="toolbar py-5 py-lg-5" id="kt_toolbar">
 					<!--begin::Container-->
 					<div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
-						<!--begin::Page title-->
-						<div class="page-title d-flex flex-column me-3">
-							<!--begin::Title-->
-							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Monitoring Risiko Kolesterol</h1>
-							<!--end::Title-->
-							<!--begin::Breadcrumb-->
-							<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
-								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">
-									<a href="../../demo11/dist/index.html" class="text-gray-600 text-hover-primary">Home</a>
-								</li>
-								<!--end::Item-->
-								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Monitoring</li>
-								<!--end::Item-->
-								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Risiko Kolesterol</li>
-								<!--end::Item-->
-							</ul>
-							<!--end::Breadcrumb-->
+						<div class="col-md-3">
+							<!--begin::Page title-->
+							<div class="page-title d-flex flex-column me-3">
+								<!--begin::Title-->
+								<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Monitoring Risiko Kolesterol</h1>
+								<!--end::Title-->
+								<!--begin::Breadcrumb-->
+								<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">
+										<a href="../../demo11/dist/index.html" class="text-gray-600 text-hover-primary">Home</a>
+									</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">Monitoring</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">Risiko Kolesterol</li>
+									<!--end::Item-->
+								</ul>
+								<!--end::Breadcrumb-->
+							</div>
+							<!--end::Page title-->
 						</div>
-						<!--end::Page title-->
+
+						<div class="col-md-9">
+							<center><h1><?= $institusi[0]->nama_institusi ?></h1></center>
+						</div>
 					</div>
 					<!--end::Container-->
 				</div>

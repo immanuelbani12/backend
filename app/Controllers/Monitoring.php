@@ -30,6 +30,7 @@ class Monitoring extends BaseController
     {   
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['sudah_screening']    = $this->MonitoringModel->getTotalSudahScreening($institusi[0]->id_institusi);
         $data['belum_screening']    = $this->MonitoringModel->getTotalBelumScreening($institusi[0]->id_institusi);
         $data['list']               = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
@@ -41,6 +42,7 @@ class Monitoring extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['diabetes']   = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
         $data['kolesterol'] = $this->MonitoringModel->getTotalKolesterol($institusi[0]->id_institusi);
         $data['stroke']     = $this->MonitoringModel->getTotalStroke($institusi[0]->id_institusi);
@@ -53,6 +55,7 @@ class Monitoring extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['diabetes']       = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
         $data['tidak_diabetes'] = $this->MonitoringModel->getTotalTidakDiabetes($institusi[0]->id_institusi);
         $data['list']           = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
@@ -64,6 +67,7 @@ class Monitoring extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['stroke']         = $this->MonitoringModel->getTotalStroke($institusi[0]->id_institusi);
         $data['tidak_stroke']   = $this->MonitoringModel->getTotalTidakStroke($institusi[0]->id_institusi);
         $data['list']           = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
@@ -75,6 +79,7 @@ class Monitoring extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['kolesterol']         = $this->MonitoringModel->getTotalKolesterol($institusi[0]->id_institusi);
         $data['tidak_kolesterol']   = $this->MonitoringModel->getTotalTidakKolesterol($institusi[0]->id_institusi);
         $data['list']               = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);

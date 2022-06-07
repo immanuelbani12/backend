@@ -116,7 +116,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Pasien</span>
+                                <span class="menu-title">Peserta</span>
                             </a>
                         </div>
                     <?php } ?>

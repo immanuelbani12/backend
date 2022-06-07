@@ -61,6 +61,31 @@
 					<!--begin::Post-->
 					<div class="content flex-row-fluid" id="kt_content">
 
+						<div class="row" style="--bs-gutter-x: 0;">
+							<div class="col-md-6">
+								<div class="card overflow-hidden mb-5 mb-xl-10">
+									<!--begin::Card body-->
+									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<!--begin::Statistics-->
+										<div class="mb-4 px-9">
+											<!--begin::Info-->
+											<div class="d-flex align-items-center mb-2">
+												<!--begin::Value-->
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $institusi[0]->kode_group ?></span>
+												<!--end::Value-->
+											</div>
+											<!--end::Info-->
+											<!--begin::Description-->
+											<span class="fs-6 fw-bold text-gray-400">Kode Group</span>
+											<!--end::Description-->
+										</div>
+										<!--end::Statistics-->
+									</div>
+									<!--end::Card body-->
+								</div>
+							</div>
+						</div>
+
 						<!--begin::Card-->
 						<div class="card">
 							<!--begin::Card header-->

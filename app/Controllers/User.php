@@ -32,6 +32,7 @@ class User extends BaseController
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
+        $data['institusi'] = $institusi;
         $data['peserta'] = $this->UserModel->getUser($institusi[0]->id_institusi);
         return view('admin/view_user', $data);
     }

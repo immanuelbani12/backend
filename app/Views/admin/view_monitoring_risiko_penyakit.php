@@ -65,6 +65,9 @@
 					<div class="content flex-row-fluid" id="kt_content">
 						<div class="row" style="--bs-gutter-x: 0;">
 							<div class="card card-bordered" style="margin-bottom: 30px">
+								<div class="card-header">
+									<h3 class="card-title">Grafik Risiko Penyakit</h3>
+								</div>
 								<div class="card-body">
 									<div id="kt_amcharts_3" style="height: 500px;"></div>
 								</div>

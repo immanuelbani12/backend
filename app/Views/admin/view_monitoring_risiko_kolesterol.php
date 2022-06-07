@@ -65,6 +65,9 @@
 					<div class="content flex-row-fluid" id="kt_content">
 						<div class="row" style="--bs-gutter-x: 0;">
 							<div class="card card-bordered" style="margin-bottom: 30px">
+								<div class="card-header">
+									<h3 class="card-title">Grafik Risiko Kolesterol</h3>
+								</div>
 								<!--begin::Card header-->
 								<!-- <div class="card-header border-0 pt-6"> -->
 									<!--begin::Card title-->

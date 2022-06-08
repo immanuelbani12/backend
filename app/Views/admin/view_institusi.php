@@ -271,8 +271,8 @@
 												<div class="badge badge-light fw-bolder emailInstitusi"><?= $row->email_institusi; ?></div>
 											</td>
 											<td class="noTelp"><?= $row->no_telp_institusi; ?></td>
-											<td>
-												<div class="badge badge-light-success fw-bolder alamatInstitusi"><?= $row->alamat_institusi; ?></div>
+											<td class='alamatInstitusi'>
+												<?= $row->alamat_institusi; ?>
 											</td>
 											<!--begin::Action=-->
 											<td class="text-end">

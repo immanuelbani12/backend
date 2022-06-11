@@ -15,10 +15,10 @@ var KTUUpload = function () {
             form,
             {
                 fields: {
-                    'data_pasien': {
+                    'data_peserta': {
                         validators: {
                             notEmpty: {
-                                message: 'Data pasien wajib di pilih'
+                                message: 'Data peserta wajib di pilih'
                             }
                         }
                     },

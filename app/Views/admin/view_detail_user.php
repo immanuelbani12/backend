@@ -339,7 +339,7 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/pasien/table_detail_user.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table_detail_user.js')?>"></script>
 	
 	<!--end::Page Custom Javascript-->
 	<!--end::Javascript-->

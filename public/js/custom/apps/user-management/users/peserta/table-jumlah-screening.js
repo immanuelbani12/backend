@@ -18,7 +18,7 @@ var KTUsersList = function () {
                 'selectAll',
                 'selectNone',
                 {
-                    text: 'Ingatkan pasien',
+                    text: 'Ingatkan peserta',
                     action: function () {
                         var data = datatable.rows( { selected: true } ).data();
                         var text = "Sudah waktunya untuk screening risiko penyakit anda, pastikan anda terbebas dari risiko penyakit Diabetes, Kolesterol dan Stroke! Silahkan install aplikasi apadok di link berikut https://play.google.com/store/apps/details?id=com.apadok.emrpreventive"

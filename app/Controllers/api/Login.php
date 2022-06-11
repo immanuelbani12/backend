@@ -33,18 +33,18 @@ class Login extends ResourceController
  
         // $verify = strcmp(md5($data->password), $user['password']);
         // if($verify) return $this->fail('Wrong Password');
+        $userData = $this->UserModel->getUserData($user['id_login']);
+        $institusiData = $this->InstitusiModel->getInstitusi_by_id($userData[0]->id_institusi);
  
         $key = getenv('TOKEN_SECRET');
         $payload = array(
             "iat" => 1356999524,
             "nbf" => 1357000000,
             "id_login" => $user['id_login'],
+            "id_institusi" => $userData[0]->id_institusi,
             "username" => $user['username']
         );
 
-        $userData = $this->UserModel->getUserData($user['id_login']);
-        $institusiData = $this->InstitusiModel->getInstitusi_by_id($userData[0]->id_institusi);
- 
         $token = JWT::encode($payload, $key, "HS256");
         $data = array(
             "id_user" => $userData[0]->id_user,

@@ -71,6 +71,8 @@ class Filters extends BaseConfig
                 'Monitoring/*',
                 'Institusi', 
                 'Institusi/*',
+                'Artikel', 
+                'Artikel/*',
                 'JenisInstitusi', 
                 'JenisInstitusi/*',  
                 'User',

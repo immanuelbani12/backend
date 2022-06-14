@@ -53,7 +53,7 @@
 						</div>
 
 						<div class="col-md-9">
-							<center><h1><?= $institusi[0]->nama_institusi ?></h1></center>
+							<center><h1><?php //echo $institusi[0]->nama_institusi ?></h1></center>
 						</div>
 					</div>
 					<!--end::Container-->

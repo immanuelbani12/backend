@@ -32,6 +32,13 @@ class ArtikelModel extends Model
         'jenis_artikel' => 'required',
     ];
 
+    function getAllArtikel(){
+        $builder = $this->db->table('artikel');
+        $builder->select('*');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function getArtikel($id_login){
         $builder = $this->db->table('artikel');
         $builder->select('*');

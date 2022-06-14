@@ -23,26 +23,26 @@ class Artikel extends BaseController
 
     public function index()
     {
-        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
+        //$institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
-        $data['institusi'] = $institusi;
+        // $data['institusi'] = $institusi;
         $data['artikel'] = $this->ArtikelModel->getArtikel($this->token->id_login);
         return view('admin/view_artikel', $data);
     }
 
     public function tambahArtikel()
     {
-        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
+        // $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
-        $data['institusi'] = $institusi;
-        return view('admin/view_tambah_artikel', $data);
+        // $data['institusi'] = $institusi;
+        return view('admin/view_tambah_artikel');
     }
 
     public function editArtikel($id_artikel)
     {
-        $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
+        // $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
-        $data['institusi'] = $institusi;
+        // $data['institusi'] = $institusi;
         $data['artikel'] = $this->ArtikelModel->getArtikelById($id_artikel);
         return view('admin/view_edit_artikel', $data);
     }

@@ -103,7 +103,7 @@
                         </div>
                     <?php } ?>
 
-                    <?php if (in_array($_SESSION['role'], ['I'])) { ?>
+                    <?php if (in_array($_SESSION['role'], ['A'])) { ?>
                         <div class="menu-item">
                             <a class="menu-link <?= $request->uri->getSegment(1) == 'Artikel'? 'active' : '' ?>" href="<?= site_url('/Artikel') ?>">
                                 <span class="menu-icon">

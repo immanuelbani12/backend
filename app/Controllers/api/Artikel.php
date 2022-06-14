@@ -4,7 +4,7 @@ namespace App\Controllers\api;
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\LoginModel;
-use App\Models\InstitusiModel;
+// use App\Models\InstitusiModel;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -17,7 +17,7 @@ class Artikel extends ResourceController
     public function __construct()
     {
         $this->LoginModel       = new LoginModel();
-        $this->InstitusiModel   = new InstitusiModel();
+        // $this->InstitusiModel   = new InstitusiModel();
     }
 
     public function checkToken(){
@@ -43,7 +43,7 @@ class Artikel extends ResourceController
         $token = $this->checkToken();
         if(!$token) return $this->fail('Invalid Token');
         
-        $institusi = $this->InstitusiModel->getInstitusi_by_id($token->id_institusi);
-        return $this->respond($this->model->getArtikel($institusi[0]->id_login));
+        // $institusi = $this->InstitusiModel->getInstitusi_by_id($token->id_institusi);
+        return $this->respond($this->model->getAllArtikel());
     }
 }

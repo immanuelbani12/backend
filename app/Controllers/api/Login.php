@@ -47,6 +47,7 @@ class Login extends ResourceController
 
         $token = JWT::encode($payload, $key, "HS256");
         $data = array(
+            "id_login" => $user['id_login'],
             "id_user" => $userData[0]->id_user,
             "nama_user" => $userData[0]->nama_user,
             "role" => $user['role'],

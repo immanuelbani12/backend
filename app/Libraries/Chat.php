@@ -3,6 +3,8 @@ namespace App\Libraries;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
+use App\Models\LoginModel;
+
 class Chat implements MessageComponentInterface {
     protected $clients;
 
@@ -12,7 +14,14 @@ class Chat implements MessageComponentInterface {
 
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
+        echo "Connect!";
         $this->clients->attach($conn);
+
+        $queryString = $conn->httpRequest->getUri()->getQuery();
+        parse_str($queryString, $queryArray);
+
+        $LoginModel = new LoginModel();
+        $LoginModel->update_data($queryArray['id_login'], array('id_connection' => $conn->resourceId));
 
         echo "New connection! ({$conn->resourceId})\n";
     }

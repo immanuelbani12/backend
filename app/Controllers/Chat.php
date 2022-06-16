@@ -27,6 +27,9 @@ class Chat extends BaseController
         $data['list_users'] = $this->ChatModel->getUserWithStatus($this->token->id_login, $institusi[0]->id_institusi);
 
         $data['nama_institusi'] = $this->session->get('nama');
+        $data['id_login']       = $this->token->id_login;
+        $data['token']          = $this->session->get('token');
+
         return view('admin/view_chat', $data);
     }
 

@@ -100,9 +100,7 @@
 										<div class="card-body pt-5" id="kt_chat_contacts_body">
 											<!--begin::List-->
 											<div class="scroll-y me-n5 pe-5 h-200px h-lg-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header" data-kt-scroll-wrappers="#kt_content, #kt_chat_contacts_body" data-kt-scroll-offset="5px">
-												<?php foreach ($list_users as $row){ 
-													$id_login = $row->id_login;
-													?>
+												<?php foreach ($list_users as $row){ ?>
 												<!--begin::User-->
 												<div class="d-flex flex-stack py-4">
 													<!--begin::Details-->
@@ -279,13 +277,18 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
-		var conn = new WebSocket('ws://localhost:31686');
+		var conn = new WebSocket("ws://localhost:31686/?id_login=<?= $id_login ?>");
+		
 		conn.onopen = function(e) {
 			console.log("Connection established!");
 		};
 
 		conn.onmessage = function(e) {
 			console.log(e.data);
+		};
+
+		conn.onclose = function() {
+			console.log("Connection close");
 		};
 	</script>
 	

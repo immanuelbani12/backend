@@ -295,6 +295,14 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
+		var conn = new WebSocket('ws://localhost:31686');
+		conn.onopen = function(e) {
+			console.log("Connection established!");
+		};
+
+		conn.onmessage = function(e) {
+			console.log(e.data);
+		};
 	</script>
 	
 	<!--end::Page Custom Javascript-->

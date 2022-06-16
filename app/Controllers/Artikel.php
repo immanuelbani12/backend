@@ -70,7 +70,6 @@ class Artikel extends BaseController
             $data['isi_artikel'] = $this->request->getPost('text_artikel');
         } else {
             $data['isi_artikel'] = $this->request->getPost('video_artikel');
-            $data['gambar_artikel'] = null;
         }
 
         $this->ArtikelModel->insert($data);
@@ -101,7 +100,6 @@ class Artikel extends BaseController
             $data['isi_artikel'] = $this->request->getPost('text_artikel');
         } else {
             $data['isi_artikel'] = $this->request->getPost('video_artikel');
-            $data['gambar_artikel'] = null;
         }
 
         $this->ArtikelModel->update($this->request->getPost('id_artikel'), $data);

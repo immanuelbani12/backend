@@ -118,14 +118,14 @@
 										</div>
 									</div>
 
-									<div class="textArtikel">
-										<div class="fv-row mb-7">
-											<!--begin::Label-->
-											<label class="fs-6 fw-bold form-label mb-2">Ilustrasi</label>
-											<!--end::Label-->
-											<input type="file" name="gambar_artikel" id="gambar_artikel" class="form-control form-control-solid mb-3 mb-lg-0">
-										</div>
+									<div class="fv-row mb-7">
+										<!--begin::Label-->
+										<label class="fs-6 fw-bold form-label mb-2">Ilustrasi</label>
+										<!--end::Label-->
+										<input type="file" name="gambar_artikel" id="gambar_artikel" class="form-control form-control-solid mb-3 mb-lg-0">
+									</div>
 
+									<div class="textArtikel">
 										<div class="fv-row mb-7">
 											<!--begin::Label-->
 											<label class="fs-6 fw-bold form-label mb-2">Isi</label>

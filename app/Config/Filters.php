@@ -73,6 +73,8 @@ class Filters extends BaseConfig
                 'Institusi/*',
                 'Artikel', 
                 'Artikel/*',
+                'Chat', 
+                'Chat/*',
                 'JenisInstitusi', 
                 'JenisInstitusi/*',  
                 'User',

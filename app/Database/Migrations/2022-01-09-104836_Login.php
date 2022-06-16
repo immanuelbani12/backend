@@ -39,6 +39,16 @@ class Login extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 1,
             ],
+            'id_connection' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'null' => true,
+            ],
+            'login_status' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'comment' => '1 = Online, 0 = Offline'
+            ],
             'updated_at' => [
                 'type' => 'datetime',
                 'null' => true,

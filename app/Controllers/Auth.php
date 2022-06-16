@@ -46,8 +46,13 @@ class Auth extends BaseController
             );
  
             $token = JWT::encode($payload, $key, "HS256");
+            
+            $dataUpdate = array(
+                'token' => $token,
+                'login_status' => '1',
+            );
 
-            $this->LoginModel->update_data($query[0]->id_login, array('token' => $token));
+            $this->LoginModel->update_data($query[0]->id_login, $dataUpdate);
         }
 
         if (count($query)>0){
@@ -73,7 +78,16 @@ class Auth extends BaseController
     public function logout()
     {
         $session = \Config\Services::session();
+
+        $dataUpdate = array(
+            'token' => null,
+            'login_status' => '0',
+        );
+
+        $this->LoginModel->updateByToken($session->get('token'), $dataUpdate);
+
         $session->destroy();
+
         return redirect()->to('/Auth/masuk');
     }
 

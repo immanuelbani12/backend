@@ -50,4 +50,10 @@ class LoginModel extends Model
         $builder->where('id_login', $where);
         return $builder->update($data);
     }
+
+    function updateByToken($where,$data){
+        $builder = $this->db->table('login');
+        $builder->where('token', $where);
+        return $builder->update($data);
+    }
 }

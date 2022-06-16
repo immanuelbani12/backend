@@ -100,28 +100,36 @@
 										<div class="card-body pt-5" id="kt_chat_contacts_body">
 											<!--begin::List-->
 											<div class="scroll-y me-n5 pe-5 h-200px h-lg-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header" data-kt-scroll-wrappers="#kt_content, #kt_chat_contacts_body" data-kt-scroll-offset="5px">
+												<?php foreach ($list_users as $row){ 
+													$id_login = $row->id_login;
+													?>
 												<!--begin::User-->
 												<div class="d-flex flex-stack py-4">
 													<!--begin::Details-->
 													<div class="d-flex align-items-center">
 														<!--begin::Avatar-->
 														<div class="symbol symbol-45px symbol-circle">
-															<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
+															<span class="symbol-label bg-light-primary text-primary fs-6 fw-bolder"><?= substr($row->nama, 0, 1) ?></span>
+															
+															<?php if ($row->login_status == '1'){ ?>
 															<div class="symbol-badge bg-success start-100 top-100 border-4 h-15px w-15px ms-n2 mt-n2"></div>
+															<?php }?>
 														</div>
 														<!--end::Avatar-->
 														<!--begin::Details-->
 														<div class="ms-5">
-															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-															<div class="fw-bold text-muted">melody@altbox.com</div>
+															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2"><?= $row->nama ?></a>
+															<div class="fw-bold text-muted"><?= $row->username ?></div>
 														</div>
 														<!--end::Details-->
 													</div>
 													<!--end::Details-->
 													<!--begin::Lat seen-->
 													<div class="d-flex flex-column align-items-end ms-2">
-														<span class="text-muted fs-7 mb-1">1 day</span>
-														<span class="badge badge-sm badge-circle badge-light-success">6</span>
+														<!-- <span class="text-muted fs-7 mb-1">1 day</span> -->
+														<?php if ($row->count_status != '0'){ ?>
+															<span class="badge badge-sm badge-circle badge-light-success"><?= $row->count_status ?></span>
+														<?php }?>
 													</div>
 													<!--end::Lat seen-->
 												</div>
@@ -129,31 +137,7 @@
 												<!--begin::Separator-->
 												<div class="separator separator-dashed d-none"></div>
 												<!--end::Separator-->
-												<!--begin::User-->
-												<div class="d-flex flex-stack py-4">
-													<!--begin::Details-->
-													<div class="d-flex align-items-center">
-														<!--begin::Avatar-->
-														<div class="symbol symbol-45px symbol-circle">
-															<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
-															<div class="symbol-badge bg-success start-100 top-100 border-4 h-15px w-15px ms-n2 mt-n2"></div>
-														</div>
-														<!--end::Avatar-->
-														<!--begin::Details-->
-														<div class="ms-5">
-															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-															<div class="fw-bold text-muted">melody@altbox.com</div>
-														</div>
-														<!--end::Details-->
-													</div>
-													<!--end::Details-->
-													<!--begin::Lat seen-->
-													<div class="d-flex flex-column align-items-end ms-2">
-														<span class="text-muted fs-7 mb-1">1 day</span>
-													</div>
-													<!--end::Lat seen-->
-												</div>
-												<!--end::User-->
+												<?php }; ?>
 											</div>
 											<!--end::List-->
 										</div>

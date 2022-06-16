@@ -13,6 +13,7 @@ class LoginSeeder extends Seeder
             'username' => 'admin@gmail.com',
             'password' => md5('admin'),
             'role' => 'A',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -22,6 +23,7 @@ class LoginSeeder extends Seeder
             'username' => 'apadok@gmail.com',
             'password' => md5('apadok'),
             'role' => 'I',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -31,6 +33,7 @@ class LoginSeeder extends Seeder
             'username' => 'klinik@gmail.com',
             'password' => md5('klinik'),
             'role' => 'I',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -40,6 +43,7 @@ class LoginSeeder extends Seeder
             'username' => '08123456789',
             // 'password' => md5('user'),
             'role' => 'U',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -49,6 +53,7 @@ class LoginSeeder extends Seeder
             'username' => '08111111111',
             // 'password' => md5('user'),
             'role' => 'U',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);
@@ -58,6 +63,7 @@ class LoginSeeder extends Seeder
             'username' => '08222222222',
             // 'password' => md5('user'),
             'role' => 'U',
+            'login_status' => '0'
         ];
         // Using Query Builder
         $this->db->table('login')->insert($data);

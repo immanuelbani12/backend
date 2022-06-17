@@ -5,7 +5,6 @@
 <head>
 	<title>Apadok - Chat</title>
 	<?php echo view('partials/_css');?>
-	<link href="<?= base_url('/css/parsley.css')?>" rel="stylesheet" type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -102,9 +101,8 @@
 											<!--begin::List-->
 											<div class="scroll-y me-n5 pe-5 h-200px h-lg-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header" data-kt-scroll-wrappers="#kt_content, #kt_chat_contacts_body" data-kt-scroll-offset="5px">
 												<?php foreach ($list_users as $row){ ?>
-
 												<!--begin::User-->
-												<div class="d-flex flex-stack py-4 select_user" style="cursor: pointer">
+												<div class="d-flex flex-stack py-4">
 													<!--begin::Details-->
 													<div class="d-flex align-items-center">
 														<!--begin::Avatar-->
@@ -117,9 +115,8 @@
 														</div>
 														<!--end::Avatar-->
 														<!--begin::Details-->
-														<div class="ms-5 detailUser">
-															<input type="hidden" class="idLogin" value="<?= $row->id_login ?>">
-															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2 namaUser"><?= $row->nama ?></a>
+														<div class="ms-5">
+															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2"><?= $row->nama ?></a>
 															<div class="fw-bold text-muted"><?= $row->username ?></div>
 														</div>
 														<!--end::Details-->
@@ -148,10 +145,104 @@
 								</div>
 								<!--end::Sidebar-->
 								<!--begin::Content-->
-								<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10" id="message_area">
+								<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10">
 									<!--begin::Messenger-->
-									
-
+									<div class="card" id="kt_chat_messenger">
+										<!--begin::Card header-->
+										<div class="card-header" id="kt_chat_messenger_header">
+											<!--begin::Title-->
+											<div class="card-title">
+												<!--begin::User-->
+												<div class="d-flex justify-content-center flex-column me-3">
+													<a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1">Brian Cox</a>
+													<!--begin::Info-->
+													<div class="mb-0 lh-1">
+														<span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
+														<span class="fs-7 fw-bold text-muted">Active</span>
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::User-->
+											</div>
+											<!--end::Title-->
+										</div>
+										<!--end::Card header-->
+										<!--begin::Card body-->
+										<div class="card-body" id="kt_chat_messenger_body">
+											<!--begin::Messages-->
+											<div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
+												<!--begin::Message(in)-->
+												<div class="d-flex justify-content-start mb-10">
+													<!--begin::Wrapper-->
+													<div class="d-flex flex-column align-items-start">
+														<!--begin::User-->
+														<div class="d-flex align-items-center mb-2">
+															<!--begin::Avatar-->
+															<div class="symbol symbol-45px symbol-circle">
+																<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
+															</div>
+															<!--end::Avatar-->
+															<!--begin::Details-->
+															<div class="ms-3">
+																<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">Brian Cox</a>
+																<span class="text-muted fs-7 mb-1">2 mins</span>
+															</div>
+															<!--end::Details-->
+														</div>
+														<!--end::User-->
+														<!--begin::Text-->
+														<div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start" data-kt-element="message-text">How likely are you to recommend our company to your friends and family ?</div>
+														<!--end::Text-->
+													</div>
+													<!--end::Wrapper-->
+												</div>
+												<!--end::Message(in)-->
+												<!--begin::Message(out)-->
+												<div class="d-flex justify-content-end mb-10">
+													<!--begin::Wrapper-->
+													<div class="d-flex flex-column align-items-end">
+														<!--begin::User-->
+														<div class="d-flex align-items-center mb-2">
+															<!--begin::Details-->
+															<div class="me-3">
+																<span class="text-muted fs-7 mb-1">5 mins</span>
+																<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">You</a>
+															</div>
+															<!--end::Details-->
+															<!--begin::Avatar-->
+															<div class="symbol symbol-45px symbol-circle">
+																<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">Y</span>
+															</div>
+															<!--end::Avatar-->
+														</div>
+														<!--end::User-->
+														<!--begin::Text-->
+														<div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-end" data-kt-element="message-text">Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.</div>
+														<!--end::Text-->
+													</div>
+													<!--end::Wrapper-->
+												</div>
+												<!--end::Message(out)-->
+											</div>
+											<!--end::Messages-->
+										</div>
+										<!--end::Card body-->
+										<!--begin::Card footer-->
+										<div class="card-footer pt-4" id="kt_chat_messenger_footer">
+											<!--begin::Input-->
+											
+											<!--end::Input-->
+											<!--begin:Toolbar-->
+											<div class="d-flex flex-stack">
+												<!--begin::Send-->
+												<textarea class="form-control form-control-solid form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Type a message"></textarea>
+												<button class="btn btn-primary" type="button" data-kt-element="send">Kirim</button>
+												<!--end::Send-->
+											</div>
+											<!--end::Toolbar-->
+										</div>
+										<!--end::Card footer-->
+									</div>
 									<!--end::Messenger-->
 								</div>
 								<!--end::Content-->
@@ -183,7 +274,6 @@
 
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
-	<script src="<?= base_url('/js/parsley.min.js')?>"></script>
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
@@ -200,69 +290,6 @@
 		conn.onclose = function() {
 			console.log("Connection close");
 		};
-
-		function make_chat_area(namaUser){
-			var html = `
-			<div class="card" id="kt_chat_messenger">
-				<!--begin::Card header-->
-				<div class="card-header" id="kt_chat_messenger_header">
-					<!--begin::Title-->
-					<div class="card-title">
-						<!--begin::User-->
-						<div class="d-flex justify-content-center flex-column me-3">
-							<a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1">`+ namaUser +`</a>
-							<!--begin::Info-->
-							<div class="mb-0 lh-1">
-								<span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-								<span class="fs-7 fw-bold text-muted">Active</span>
-							</div>
-							<!--end::Info-->
-						</div>
-						<!--end::User-->
-					</div>
-					<!--end::Title-->
-				</div>
-				<!--end::Card header-->
-				<!--begin::Card body-->
-				<div class="card-body" id="kt_chat_messenger_body">
-					<!--begin::Messages-->
-					<div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
-						
-					
-									
-					</div>
-					<!--end::Messages-->
-				</div>
-				<!--end::Card body-->
-				<!--begin::Card footer-->
-				<div class="card-footer pt-4" id="kt_chat_messenger_footer">
-					<!--begin:Toolbar-->
-					<form method="post" id="chat_form" data-parsley-validate>
-						<textarea class="form-control form-control-solid mb-3" rows="3"
-							id="chat_message" name="chat_message" placeholder="Type a message"
-							data-parsley-pattern="/^[a-zA-Z0-9 ]+$/" 
-							data-parsley-maxlenght="250" required></textarea>
-						<button class="btn btn-primary col-md-12" type="submit" id="send">Kirim</button>
-					</form>
-					<!--end::Toolbar-->
-				</div>
-				<!--end::Card footer-->
-			</div>
-			`;
-
-			$('#message_area').html(html);
-			$('#chat_form').parsley();
-		}
-
-		$('.select_user').on('click', function() {
-            var $item = $(this).closest("div");
-
-			var receiver_login_id = $item.find(".idLogin").val()
-			var receiver_name = $item.find(".namaUser").text()
-			var from_login_id = <?= $id_login ?>
-
-			make_chat_area(receiver_name);
-        });
 	</script>
 	
 	<!--end::Page Custom Javascript-->

@@ -242,6 +242,40 @@
 			console.log("Connection close");
 		};
 
+		function timeDifference(timestamp) {
+			var msPerMinute = 60 * 1000;
+			var msPerHour = msPerMinute * 60;
+			var msPerDay = msPerHour * 24;
+			var msPerMonth = msPerDay * 30;
+			var msPerYear = msPerDay * 365;
+
+			var elapsed = Math.round(new Date().getTime() - new Date(timestamp).getTime());
+
+			if (elapsed < msPerMinute) {
+				return Math.round(elapsed/1000) + ' detik yang lalu';   
+			}
+
+			else if (elapsed < msPerHour) {
+				return Math.round(elapsed/msPerMinute) + ' menit yang lalu';   
+			}
+
+			else if (elapsed < msPerDay ) {
+				return Math.round(elapsed/msPerHour ) + ' jam yang lalu';   
+			}
+
+			else if (elapsed < msPerMonth) {
+				return Math.round(elapsed/msPerDay) + ' hari yang lalu';   
+			}
+
+			else if (elapsed < msPerYear) {
+				return Math.round(elapsed/msPerMonth) + ' bulan yang lalu';   
+			}
+
+			else {
+				return Math.round(elapsed/msPerYear ) + ' tahun yang lalu';   
+			}
+		}
+
 		function make_chat_area(namaUser, body_html){
 			var html = `
 			<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10">
@@ -324,7 +358,7 @@
 								chat_html = `
 								<!--begin::Details-->
 								<div class="me-3">
-									<span class="text-muted fs-7 mb-1">`+ data[count].created_at +`</span>
+									<span class="text-muted fs-7 mb-1">`+ timeDifference(data[count].created_at) +`</span>
 									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
 								</div>
 								<!--end::Details-->
@@ -347,7 +381,7 @@
 								<!--begin::Details-->
 								<div class="ms-3">
 									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data[count].from_user_name +`</a>
-									<span class="text-muted fs-7 mb-1">`+  data[count].created_at +`</span>
+									<span class="text-muted fs-7 mb-1">`+ timeDifference(data[count].created_at) +`</span>
 								</div>
 								<!--end::Details-->
 								`;

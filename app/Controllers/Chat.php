@@ -33,4 +33,16 @@ class Chat extends BaseController
         return view('admin/view_chat', $data);
     }
 
+    public function getChat()
+    {
+        $to_login_id    = $this->request->getPost('to_login_id');
+        $from_login_id  = $this->request->getPost('from_login_id');
+
+        $data = $this->ChatModel->getAllChatByUser($to_login_id, $from_login_id);
+
+        echo json_encode($data);
+        
+        // echo site_url('/Institusi');
+    }
+
 }

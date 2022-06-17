@@ -35,4 +35,15 @@ class ChatModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function getAllChatByUser($to_login_id, $from_login_id){
+        $builder = $this->db->table('chat c');
+        $builder->select('a.nama as from_user_name, b.nama as to_user_name, c.*');
+        $builder->join('login a', 'a.id_login = c.from_login_id');
+        $builder->join('login b', 'b.id_login = c.to_login_id');
+        $builder->where('(c.from_login_id = '.$from_login_id.' AND c.to_login_id = '.$to_login_id.')
+        OR (c.from_login_id = '.$to_login_id.' AND c.to_login_id = '.$from_login_id.')');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

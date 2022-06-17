@@ -148,10 +148,51 @@
 								</div>
 								<!--end::Sidebar-->
 								<!--begin::Content-->
-								<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10" id="message_area">
+								<div id="message_area" class="flex-lg-row-fluid ms-lg-7 ms-xl-10" style="display: none">
 									<!--begin::Messenger-->
-									
-
+									<div class="card" id="kt_chat_messenger">
+										<!--begin::Card header-->
+										<div class="card-header" id="kt_chat_messenger_header">
+											<!--begin::Title-->
+											<div class="card-title">
+												<!--begin::User-->
+												<div class="d-flex justify-content-center flex-column me-3">
+													<a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1" id="message_name" >Brian Cox</a>
+													<!--begin::Info-->
+													<div class="mb-0 lh-1">
+														<span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
+														<span class="fs-7 fw-bold text-muted">Active</span>
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::User-->
+											</div>
+											<!--end::Title-->
+										</div>
+										<!--end::Card header-->
+										<!--begin::Card body-->
+										<div class="card-body" id="kt_chat_messenger_body">
+											<!--begin::Messages-->
+											<div id="message_body" class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
+												
+											</div>
+											<!--end::Messages-->
+										</div>
+										<!--end::Card body-->
+										<!--begin::Card footer-->
+										<div class="card-footer pt-4" id="kt_chat_messenger_footer">
+											<!--begin:Toolbar-->
+											<form method="post" id="chat_form" data-parsley-validate>
+												<textarea class="form-control form-control-solid mb-3" rows="3"
+													id="chat_message" name="chat_message" placeholder="Type a message"
+													data-parsley-pattern="/^[a-zA-Z0-9 ]+$/" 
+													data-parsley-maxlenght="250" required></textarea>
+												<button class="btn btn-primary col-md-12" type="submit" id="send">Kirim</button>
+											</form>
+											<!--end::Toolbar-->
+										</div>
+										<!--end::Card footer-->
+									</div>
 									<!--end::Messenger-->
 								</div>
 								<!--end::Content-->
@@ -201,8 +242,9 @@
 			console.log("Connection close");
 		};
 
-		function make_chat_area(namaUser){
+		function make_chat_area(namaUser, body_html){
 			var html = `
+			<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10">
 			<div class="card" id="kt_chat_messenger">
 				<!--begin::Card header-->
 				<div class="card-header" id="kt_chat_messenger_header">
@@ -224,12 +266,10 @@
 				</div>
 				<!--end::Card header-->
 				<!--begin::Card body-->
-				<div class="card-body" id="kt_chat_messenger_body">
+				<div class="card-body" id="kt_chat_messenger_body" >
 					<!--begin::Messages-->
-					<div class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
-						
-					
-									
+					<div id="message_body" class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
+						`+ body_html +`
 					</div>
 					<!--end::Messages-->
 				</div>
@@ -248,6 +288,7 @@
 				</div>
 				<!--end::Card footer-->
 			</div>
+			</div>
 			`;
 
 			$('#message_area').html(html);
@@ -261,7 +302,83 @@
 			var receiver_name = $item.find(".namaUser").text()
 			var from_login_id = <?= $id_login ?>
 
-			make_chat_area(receiver_name);
+			$.ajax({
+				url: '<?= site_url('/Chat/getChat')?>',
+				method: 'POST',
+				data: {
+					to_login_id: receiver_login_id, 
+					from_login_id: from_login_id
+				},
+				dataType: 'json',
+				success: function (data) {
+					var body_html = '';
+
+					if(data.length > 0) {
+						for(var count = 0; count < data.length; count++) {
+							var align = '';
+							var chat_html = '';
+
+							if(data[count].from_login_id == from_login_id){
+								align = 'end';
+
+								chat_html = `
+								<!--begin::Details-->
+								<div class="me-3">
+									<span class="text-muted fs-7 mb-1">`+ data[count].created_at +`</span>
+									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
+								</div>
+								<!--end::Details-->
+								<!--begin::Avatar-->
+								<div class="symbol symbol-45px symbol-circle">
+									<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">S</span>
+								</div>
+								<!--end::Avatar-->
+								`;					
+							}
+							else {
+								align = 'start';
+
+								chat_html = `
+								<!--begin::Avatar-->
+								<div class="symbol symbol-45px symbol-circle">
+									<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
+								</div>
+								<!--end::Avatar-->
+								<!--begin::Details-->
+								<div class="ms-3">
+									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data[count].from_user_name +`</a>
+									<span class="text-muted fs-7 mb-1">`+  data[count].created_at +`</span>
+								</div>
+								<!--end::Details-->
+								`;
+							}
+
+							body_html += `
+								<div class="d-flex justify-content-`+ align +` mb-10">
+									<!--begin::Wrapper-->
+									<div class="d-flex flex-column align-items-`+ align +`">
+										<!--begin::User-->
+										<div class="d-flex align-items-center mb-2">
+											`+ chat_html +`
+										</div>
+										<!--end::User-->
+										<!--begin::Text-->
+										<div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-`+ align +`" data-kt-element="message-text" >`+ data[count].message +`</div>
+										<!--end::Text-->
+									</div>
+									<!--end::Wrapper-->
+								</div>
+							`;
+						}
+					}
+
+					$('#message_name').text(receiver_name);
+					$('#message_area').show();
+					// $('#message_area').scrollTop(100);
+					$('#message_body').html(body_html);
+					$('#message_body').scrollTop($('#message_body')[0].scrollHeight);
+				}
+			});
         });
 	</script>
 	

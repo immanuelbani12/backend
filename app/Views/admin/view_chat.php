@@ -126,7 +126,8 @@
 													</div>
 													<!--end::Details-->
 													<!--begin::Lat seen-->
-													<div class="d-flex flex-column align-items-end ms-2">
+													<input type="hidden" class="countStatus-<?= $row->id_login ?>" value="<?= $row->count_status; ?>" >
+													<div class="d-flex flex-column align-items-end ms-2 notifChat-<?= $row->id_login ?>">
 														<!-- <span class="text-muted fs-7 mb-1">1 day</span> -->
 														<?php if ($row->count_status != '0'){ ?>
 															<span class="badge badge-sm badge-circle badge-light-success"><?= $row->count_status ?></span>
@@ -228,80 +229,6 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
-		var receiver_login_id = '';
-		var conn = new WebSocket("ws://localhost:31686/?id_login=<?= $id_login ?>");
-		
-		conn.onopen = function(e) {
-			console.log("Connection established!");
-		};
-
-		conn.onmessage = function(e) {
-			var data = JSON.parse(e.data);
-
-			if(data.from == 'Saya'){
-				align = 'end';
-
-				chat_html = `
-				<!--begin::Details-->
-				<div class="me-3">
-					<span class="text-muted fs-7 mb-1">`+ timeDifference(data.timestamp) +`</span>
-					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
-				</div>
-				<!--end::Details-->
-				<!--begin::Avatar-->
-				<div class="symbol symbol-45px symbol-circle">
-					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">S</span>
-				</div>
-				<!--end::Avatar-->
-				`;					
-			}
-			else {
-				align = 'start';
-
-				chat_html = `
-				<!--begin::Avatar-->
-				<div class="symbol symbol-45px symbol-circle">
-					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
-				</div>
-				<!--end::Avatar-->
-				<!--begin::Details-->
-				<div class="ms-3">
-					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data.from +`</a>
-					<span class="text-muted fs-7 mb-1">`+ timeDifference(data.timestamp) +`</span>
-				</div>
-				<!--end::Details-->
-				`;
-			}
-
-			if(receiver_login_id == data.from_login_id || data.from == 'Saya') {
-				var body_html = `
-					<div class="d-flex justify-content-`+ align +` mb-10">
-						<!--begin::Wrapper-->
-						<div class="d-flex flex-column align-items-`+ align +`">
-							<!--begin::User-->
-							<div class="d-flex align-items-center mb-2">
-								`+ chat_html +`
-							</div>
-							<!--end::User-->
-							<!--begin::Text-->
-							<div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-`+ align +`" data-kt-element="message-text" >`+ data.message +`</div>
-							<!--end::Text-->
-						</div>
-						<!--end::Wrapper-->
-					</div>
-				`;
-
-				$('#message_body').append(body_html);
-				$('#message_body').scrollTop($('#message_body')[0].scrollHeight);
-				$('#chat_message').val('');
-			}
-			
-		};
-
-		conn.onclose = function() {
-			console.log("Connection close");
-		};
-
 		function timeDifference(timestamp) {
 			var msPerMinute = 60 * 1000;
 			var msPerHour = msPerMinute * 60;
@@ -336,6 +263,89 @@
 			}
 		}
 
+		var receiver_login_id = '';
+		var conn = new WebSocket("ws://localhost:31686/?id_login=<?= $id_login ?>");
+		
+		conn.onopen = function(e) {
+			console.log("Connection established!");
+		};
+
+		conn.onmessage = function(e) {
+			var data = JSON.parse(e.data);
+
+			if(data.from == 'Saya'){
+				align = 'end';
+
+				chat_html = `
+				<!--begin::Details-->
+				<div class="me-3">
+					<span class="text-muted fs-7 mb-1">`+ data.datetime +`</span>
+					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
+				</div>
+				<!--end::Details-->
+				<!--begin::Avatar-->
+				<div class="symbol symbol-45px symbol-circle">
+					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">S</span>
+				</div>
+				<!--end::Avatar-->
+				`;					
+			}
+			else {
+				align = 'start';
+
+				chat_html = `
+				<!--begin::Avatar-->
+				<div class="symbol symbol-45px symbol-circle">
+					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
+				</div>
+				<!--end::Avatar-->
+				<!--begin::Details-->
+				<div class="ms-3">
+					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data.from +`</a>
+					<span class="text-muted fs-7 mb-1">`+ data.datetime +`</span>
+				</div>
+				<!--end::Details-->
+				`;
+			}
+
+			// jika usernya membuka room chat
+			if(receiver_login_id == data.from_login_id || data.from == 'Saya') {
+				var body_html = `
+					<div class="d-flex justify-content-`+ align +` mb-10">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column align-items-`+ align +`">
+							<!--begin::User-->
+							<div class="d-flex align-items-center mb-2">
+								`+ chat_html +`
+							</div>
+							<!--end::User-->
+							<!--begin::Text-->
+							<div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-`+ align +`" data-kt-element="message-text" >`+ data.message +`</div>
+							<!--end::Text-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+				`;
+
+				$('#message_body').append(body_html);
+				$('#message_body').scrollTop($('#message_body')[0].scrollHeight);
+				$('#chat_message').val('');
+			}
+			else {
+				var count_chat = $('.countStatus-'+data.from_login_id).val();
+
+				count_chat = parseInt(count_chat) + 1;
+
+				$('.countStatus-'+data.from_login_id).val(count_chat);
+				$('.notifChat-'+data.from_login_id).html('<span class="badge badge-sm badge-circle badge-light-success">'+ count_chat +'</span>');
+			}
+			
+		};
+
+		conn.onclose = function() {
+			console.log("Connection close");
+		};
+
 		$('.select_user').on('click', function() {
             var $item = $(this).closest("div");
 
@@ -365,7 +375,7 @@
 								chat_html = `
 								<!--begin::Details-->
 								<div class="me-3">
-									<span class="text-muted fs-7 mb-1">`+ timeDifference(data[count].created_at) +`</span>
+									<span class="text-muted fs-7 mb-1">`+ data[count].created_at +`</span>
 									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
 								</div>
 								<!--end::Details-->
@@ -388,7 +398,7 @@
 								<!--begin::Details-->
 								<div class="ms-3">
 									<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data[count].from_user_name +`</a>
-									<span class="text-muted fs-7 mb-1">`+ timeDifference(data[count].created_at) +`</span>
+									<span class="text-muted fs-7 mb-1">`+ data[count].created_at +`</span>
 								</div>
 								<!--end::Details-->
 								`;
@@ -412,7 +422,11 @@
 							`;
 						}
 					}
+					// remove notif
+					$('.countStatus-'+receiver_login_id).val(0);
+					$('.notifChat-'+receiver_login_id).html('');
 
+					// load message
 					$('#message_name').text(receiver_name);
 					$('#message_area').show();
 					// $('#message_area').scrollTop(100);

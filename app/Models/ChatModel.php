@@ -57,6 +57,13 @@ class ChatModel extends Model
         return $query->getResult();
     }
 
+    function updateChatStatus($to_login_id, $from_login_id, $data){
+        $builder = $this->db->table('chat');
+        $builder->where('to_login_id', $to_login_id);
+        $builder->where('from_login_id', $from_login_id);
+        return $builder->update($data);
+    }
+
     function update_data($where,$data){
         $builder = $this->db->table('chat');
         $builder->where('id_chat', $where);

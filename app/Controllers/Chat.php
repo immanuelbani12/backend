@@ -38,11 +38,10 @@ class Chat extends BaseController
         $to_login_id    = $this->request->getPost('to_login_id');
         $from_login_id  = $this->request->getPost('from_login_id');
 
+        $this->ChatModel->updateChatStatus($to_login_id, $from_login_id, array('status' => 1));
         $data = $this->ChatModel->getAllChatByUser($to_login_id, $from_login_id);
-
-        echo json_encode($data);
         
-        // echo site_url('/Institusi');
+        echo json_encode($data);
     }
 
 }

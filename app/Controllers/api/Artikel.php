@@ -41,7 +41,7 @@ class Artikel extends ResourceController
 
     public function index(){
         $token = $this->checkToken();
-        if(!$token) return $this->fail('Invalid Token');
+        if(!$token) return $this->failUnauthorized("Invalid token");    
         
         // $institusi = $this->InstitusiModel->getInstitusi_by_id($token->id_institusi);
         return $this->respond($this->model->getAllArtikel());

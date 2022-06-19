@@ -44,7 +44,7 @@ class PemeriksaanKebugaran extends ResourceController
     public function index()
     {
         $check = $this->checkToken();
-        if(!$check) return $this->fail('Invalid Token');
+        if(!$check) return $this->failUnauthorized("Invalid token"); 
         
         return $this->respond($this->model->findAll());
     }
@@ -52,7 +52,7 @@ class PemeriksaanKebugaran extends ResourceController
     public function show($slug = null, $id = null)
     {
         $check = $this->checkToken();
-        if(!$check) return $this->fail('Invalid Token');
+        if(!$check) return $this->failUnauthorized("Invalid token"); 
 
         if($slug == 'user'){
             $data = $this->model->get_user_by_id_latest($id);
@@ -79,7 +79,7 @@ class PemeriksaanKebugaran extends ResourceController
     public function create()
     {
         $check = $this->checkToken();
-        if(!$check) return $this->fail('Invalid Token');
+        if(!$check) return $this->failUnauthorized("Invalid token"); 
 
         $data = $this->request->getJSON();
 

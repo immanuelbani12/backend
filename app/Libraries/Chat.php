@@ -4,6 +4,7 @@ use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 use App\Models\LoginModel;
+use App\Models\ChatModel;
 
 class Chat implements MessageComponentInterface {
     protected $clients;
@@ -14,7 +15,6 @@ class Chat implements MessageComponentInterface {
 
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
-        echo "Connect!";
         $this->clients->attach($conn);
 
         $queryString = $conn->httpRequest->getUri()->getQuery();
@@ -31,10 +31,43 @@ class Chat implements MessageComponentInterface {
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
 
+        $data = json_decode($msg, true);
+        $ChatModel = new ChatModel();
+        $LoginModel = new LoginModel();
+
+        $chat_data = array(
+            'to_login_id' => $data['to_login_id'],
+            'from_login_id' => $data['from_login_id'],
+            'message' => $data['message'],
+            'status' => 1,
+        );
+
+        $ChatModel->insert($chat_data);
+
+        $sender_login_data = $LoginModel->getLoginById($data['from_login_id']);
+        $receiver_login_data = $LoginModel->getLoginById($data['to_login_id']);
+
+        $sender_name = $sender_login_data[0]->nama;
+        $data['datetime'] = date('Y-m-d H:i:s');
+        $receiver_connection_id = $receiver_login_data[0]->id_connection;
+
+
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                // The sender is not the receiver, send to each client connected
-                $client->send($msg);
+            if ($from == $client) {
+                $data['from'] = 'Saya';
+
+            }
+            else {
+                $data['from'] = $sender_name;
+            }
+
+            // kirim ke client yang menerima pesan
+            if($client->resourceId == $receiver_connection_id || $from == $client) {
+                $client->send(json_encode($data));
+            }
+            // jika dia offline
+            else{
+                $ChatModel->update_data($ChatModel->insertID(), array('status' => 0));
             }
         }
     }

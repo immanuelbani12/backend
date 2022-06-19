@@ -45,6 +45,14 @@ class LoginModel extends Model
         return $query->getResult();
     }
 
+    function getLoginById($id_login){
+        $builder = $this->db->table('login');
+        $builder->select('*');
+        $builder->where('id_login', $id_login);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     function update_data($where,$data){
         $builder = $this->db->table('login');
         $builder->where('id_login', $where);

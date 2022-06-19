@@ -228,6 +228,7 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
+		var receiver_login_id = '';
 		var conn = new WebSocket("ws://localhost:31686/?id_login=<?= $id_login ?>");
 		
 		conn.onopen = function(e) {
@@ -235,7 +236,66 @@
 		};
 
 		conn.onmessage = function(e) {
-			console.log(e.data);
+			var data = JSON.parse(e.data);
+
+			if(data.from == 'Saya'){
+				align = 'end';
+
+				chat_html = `
+				<!--begin::Details-->
+				<div class="me-3">
+					<span class="text-muted fs-7 mb-1">`+ timeDifference(data.timestamp) +`</span>
+					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary ms-1">Saya</a>
+				</div>
+				<!--end::Details-->
+				<!--begin::Avatar-->
+				<div class="symbol symbol-45px symbol-circle">
+					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">S</span>
+				</div>
+				<!--end::Avatar-->
+				`;					
+			}
+			else {
+				align = 'start';
+
+				chat_html = `
+				<!--begin::Avatar-->
+				<div class="symbol symbol-45px symbol-circle">
+					<span class="symbol-label bg-light-danger text-danger fs-6 fw-bolder">M</span>
+				</div>
+				<!--end::Avatar-->
+				<!--begin::Details-->
+				<div class="ms-3">
+					<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary me-1">`+  data.from +`</a>
+					<span class="text-muted fs-7 mb-1">`+ timeDifference(data.timestamp) +`</span>
+				</div>
+				<!--end::Details-->
+				`;
+			}
+
+			if(receiver_login_id == data.from_login_id || data.from == 'Saya') {
+				var body_html = `
+					<div class="d-flex justify-content-`+ align +` mb-10">
+						<!--begin::Wrapper-->
+						<div class="d-flex flex-column align-items-`+ align +`">
+							<!--begin::User-->
+							<div class="d-flex align-items-center mb-2">
+								`+ chat_html +`
+							</div>
+							<!--end::User-->
+							<!--begin::Text-->
+							<div class="p-5 rounded bg-light-primary text-dark fw-bold mw-lg-400px text-`+ align +`" data-kt-element="message-text" >`+ data.message +`</div>
+							<!--end::Text-->
+						</div>
+						<!--end::Wrapper-->
+					</div>
+				`;
+
+				$('#message_body').append(body_html);
+				$('#message_body').scrollTop($('#message_body')[0].scrollHeight);
+				$('#chat_message').val('');
+			}
+			
 		};
 
 		conn.onclose = function() {
@@ -276,63 +336,10 @@
 			}
 		}
 
-		function make_chat_area(namaUser, body_html){
-			var html = `
-			<div class="flex-lg-row-fluid ms-lg-7 ms-xl-10">
-			<div class="card" id="kt_chat_messenger">
-				<!--begin::Card header-->
-				<div class="card-header" id="kt_chat_messenger_header">
-					<!--begin::Title-->
-					<div class="card-title">
-						<!--begin::User-->
-						<div class="d-flex justify-content-center flex-column me-3">
-							<a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1">`+ namaUser +`</a>
-							<!--begin::Info-->
-							<div class="mb-0 lh-1">
-								<span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-								<span class="fs-7 fw-bold text-muted">Active</span>
-							</div>
-							<!--end::Info-->
-						</div>
-						<!--end::User-->
-					</div>
-					<!--end::Title-->
-				</div>
-				<!--end::Card header-->
-				<!--begin::Card body-->
-				<div class="card-body" id="kt_chat_messenger_body" >
-					<!--begin::Messages-->
-					<div id="message_body" class="scroll-y me-n5 pe-5 h-300px h-lg-auto" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer" data-kt-scroll-wrappers="#kt_content, #kt_chat_messenger_body" data-kt-scroll-offset="5px">
-						`+ body_html +`
-					</div>
-					<!--end::Messages-->
-				</div>
-				<!--end::Card body-->
-				<!--begin::Card footer-->
-				<div class="card-footer pt-4" id="kt_chat_messenger_footer">
-					<!--begin:Toolbar-->
-					<form method="post" id="chat_form" data-parsley-validate>
-						<textarea class="form-control form-control-solid mb-3" rows="3"
-							id="chat_message" name="chat_message" placeholder="Type a message"
-							data-parsley-pattern="/^[a-zA-Z0-9 ]+$/" 
-							data-parsley-maxlenght="250" required></textarea>
-						<button class="btn btn-primary col-md-12" type="submit" id="send">Kirim</button>
-					</form>
-					<!--end::Toolbar-->
-				</div>
-				<!--end::Card footer-->
-			</div>
-			</div>
-			`;
-
-			$('#message_area').html(html);
-			$('#chat_form').parsley();
-		}
-
 		$('.select_user').on('click', function() {
             var $item = $(this).closest("div");
 
-			var receiver_login_id = $item.find(".idLogin").val()
+			receiver_login_id = $item.find(".idLogin").val()
 			var receiver_name = $item.find(".namaUser").text()
 			var from_login_id = <?= $id_login ?>
 
@@ -414,6 +421,24 @@
 				}
 			});
         });
+		
+		$('#chat_form').on('submit', function (e) {
+			e.preventDefault();
+
+			var id_login = '<?= $id_login ?>'
+			var message = $('#chat_message').val();
+
+			var data = {
+				from_login_id: id_login,
+				message: message,
+				to_login_id: receiver_login_id
+			}
+
+			// console.log(data);
+
+			conn.send(JSON.stringify(data));
+
+		});
 	</script>
 	
 	<!--end::Page Custom Javascript-->

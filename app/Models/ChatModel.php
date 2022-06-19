@@ -31,10 +31,20 @@ class ChatModel extends Model
         $builder->select('id_login, nama, username, login_status, 
         (SELECT COUNT(*) FROM chat 
         WHERE to_login_id = '.$id_login.' AND from_login_id = login.id_login AND status = 0) AS count_status');
-        $builder->where('id_login IN (SELECT id_login FROM user WHERE id_institusi = '.$id_institusi.')');
+        // $builder->where('id_login IN (SELECT id_login FROM user WHERE id_institusi = '.$id_institusi.')');
         $query = $builder->get();
         return $query->getResult();
     }
+
+    // function getUserWithStatus($id_login, $id_institusi){
+    //     $builder = $this->db->table('login');
+    //     $builder->select('id_login, nama, username, login_status, 
+    //     (SELECT COUNT(*) FROM chat 
+    //     WHERE to_login_id = '.$id_login.' AND from_login_id = login.id_login AND status = 0) AS count_status');
+    //     $builder->where('id_login IN (SELECT id_login FROM user WHERE id_institusi = '.$id_institusi.')');
+    //     $query = $builder->get();
+    //     return $query->getResult();
+    // }
 
     function getAllChatByUser($to_login_id, $from_login_id){
         $builder = $this->db->table('chat c');
@@ -45,5 +55,11 @@ class ChatModel extends Model
         OR (c.from_login_id = '.$to_login_id.' AND c.to_login_id = '.$from_login_id.')');
         $query = $builder->get();
         return $query->getResult();
+    }
+
+    function update_data($where,$data){
+        $builder = $this->db->table('chat');
+        $builder->where('id_chat', $where);
+        return $builder->update($data);
     }
 }

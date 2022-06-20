@@ -52,6 +52,7 @@ class Login extends ResourceController
             "nama_user" => $userData[0]->nama_user,
             "role" => $user['role'],
             "id_institusi" => $userData[0]->id_institusi,
+            "id_login_institusi" => $institusiData[0]->id_login,
             "nama_institusi" => $institusiData[0]->nama_institusi,
             "logo_institusi" => $institusiData[0]->logo,
             "token"   => $token

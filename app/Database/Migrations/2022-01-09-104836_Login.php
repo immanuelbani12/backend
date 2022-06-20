@@ -41,7 +41,7 @@ class Login extends Migration
             ],
             'id_connection' => [
                 'type' => 'INT',
-                'constraint' => 1,
+                'constraint' => 10,
                 'null' => true,
             ],
             'login_status' => [

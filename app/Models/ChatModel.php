@@ -31,7 +31,7 @@ class ChatModel extends Model
         $builder->select('id_login, nama, username, login_status, 
         (SELECT COUNT(*) FROM chat 
         WHERE to_login_id = '.$id_login.' AND from_login_id = login.id_login AND status = 0) AS count_status');
-        // $builder->where('id_login IN (SELECT id_login FROM user WHERE id_institusi = '.$id_institusi.')');
+        $builder->where('id_login IN (SELECT id_login FROM user WHERE id_institusi = '.$id_institusi.')');
         $query = $builder->get();
         return $query->getResult();
     }

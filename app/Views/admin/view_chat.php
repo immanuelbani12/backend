@@ -264,7 +264,7 @@
 		}
 
 		var receiver_login_id = '';
-		var conn = new WebSocket("ws://127.0.0.1:31686/?id_login=<?= $id_login ?>");
+		var conn = new WebSocket("http://127.0.0.1:31686/?id_login=<?= $id_login ?>");
 		
 		conn.onopen = function(e) {
 			console.log("Connection established!");

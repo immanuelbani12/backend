@@ -91,7 +91,7 @@
 												<!--end::Svg Icon-->
 												<!--end::Icon-->
 												<!--begin::Input-->
-												<input type="text" class="form-control form-control-solid px-15" name="search" value="" placeholder="Search by username or email..." />
+												<input type="text" class="form-control form-control-solid px-15" id="search_user" onkeyup="searchUser()" name="search" value="" placeholder="Search by username or email..." />
 												<!--end::Input-->
 											</form>
 											<!--end::Form-->
@@ -100,7 +100,7 @@
 										<!--begin::Card body-->
 										<div class="card-body pt-5" id="kt_chat_contacts_body">
 											<!--begin::List-->
-											<div class="scroll-y me-n5 pe-5 h-200px h-lg-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header" data-kt-scroll-wrappers="#kt_content, #kt_chat_contacts_body" data-kt-scroll-offset="5px">
+											<div class="scroll-y me-n5 pe-5 h-200px h-lg-auto" id="list_users" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_chat_contacts_header" data-kt-scroll-wrappers="#kt_content, #kt_chat_contacts_body" data-kt-scroll-offset="5px">
 												<?php foreach ($list_users as $row){ ?>
 
 												<!--begin::User-->
@@ -120,7 +120,7 @@
 														<div class="ms-5 detailUser">
 															<input type="hidden" class="idLogin" value="<?= $row->id_login ?>">
 															<a href="#" class="fs-5 fw-bolder text-gray-900 text-hover-primary mb-2 namaUser"><?= $row->nama ?></a>
-															<div class="fw-bold text-muted"><?= $row->username ?></div>
+															<div class="fw-bold text-muted usernameUser"><?= $row->username ?></div>
 														</div>
 														<!--end::Details-->
 													</div>
@@ -229,6 +229,28 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
+		function searchUser(){
+			var input = $('#search_user');
+			var filter = input.val().toUpperCase();
+			var list = document.getElementById('list_users');
+			var users = document.getElementsByClassName('select_user');
+
+			// console.log(users);
+
+			for(i=0; i<users.length; i++){
+				var namaUser = users[i].getElementsByClassName('namaUser')[0].innerHTML.toUpperCase();
+				var usernameUser = users[i].getElementsByClassName('usernameUser')[0].innerHTML.toUpperCase();
+
+				if(namaUser.indexOf(filter) > - 1 || usernameUser.indexOf(filter) > - 1){
+					users[i].style.setProperty('display', '', '');
+					console.log(users[i]);
+				}
+				else {
+					users[i].style.setProperty('display', 'none', 'important');
+				}
+			}
+		}
+
 		function timeDifference(timestamp) {
 			var msPerMinute = 60 * 1000;
 			var msPerHour = msPerMinute * 60;

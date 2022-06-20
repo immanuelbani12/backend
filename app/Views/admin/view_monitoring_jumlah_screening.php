@@ -167,7 +167,14 @@
 										<?php foreach ($list as $row): ?>
 											<tr>
 												<td><?= $row->nama_user ?></td>
-												<td><?= $row->no_telp ?></td>
+												<td><?php
+												if(substr($row->no_telp, 0, 1) == '0'){
+													echo '62'.substr($row->no_telp, 1);
+												}
+												else {
+													echo $row->no_telp;
+												}
+												?></td>
 												<td>
 													<div class="badge badge-<?=  $row->sudah_screening? "primary" : "light" ?> fw-bolder">
 														<?= $row->sudah_screening? "Sudah Screening" : "Belum Screening" ?>

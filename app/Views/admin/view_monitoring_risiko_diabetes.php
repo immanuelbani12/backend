@@ -103,7 +103,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -112,7 +112,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $diabetes[0]->jumlah ?></span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_sangat_tinggi ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -120,7 +120,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Memiliki Risiko Tinggi Diabetes</span>
+											<span class="fs-6 fw-bold text-gray-400">Risiko Sangat Tinggi</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -129,7 +129,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-2">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -138,7 +138,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $tidak_diabetes[0]->jumlah ?></span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_tinggi ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -146,7 +146,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Tidak Risiko Tinggi Diabetes</span>
+											<span class="fs-6 fw-bold text-gray-400">Risiko Tinggi</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -154,6 +154,85 @@
 									<!--end::Card body-->
 								</div>
 							</div>
+
+							<div class="col-md-2">
+								<div class="card overflow-hidden mb-5 mb-xl-10">
+									<!--begin::Card body-->
+									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<!--begin::Statistics-->
+										<div class="mb-4 px-9">
+											<!--begin::Info-->
+											<div class="d-flex align-items-center mb-2">
+												<!--begin::Value-->
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_sedang ?></span>
+												<!--end::Value-->
+												<!--begin::Label-->
+												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
+												<!--end::Label-->
+											</div>
+											<!--end::Info-->
+											<!--begin::Description-->
+											<span class="fs-6 fw-bold text-gray-400">Risiko Sedang</span>
+											<!--end::Description-->
+										</div>
+										<!--end::Statistics-->
+									</div>
+									<!--end::Card body-->
+								</div>
+							</div>
+
+							<div class="col-md-2">
+								<div class="card overflow-hidden mb-5 mb-xl-10">
+									<!--begin::Card body-->
+									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<!--begin::Statistics-->
+										<div class="mb-4 px-9">
+											<!--begin::Info-->
+											<div class="d-flex align-items-center mb-2">
+												<!--begin::Value-->
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_rendah ?></span>
+												<!--end::Value-->
+												<!--begin::Label-->
+												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
+												<!--end::Label-->
+											</div>
+											<!--end::Info-->
+											<!--begin::Description-->
+											<span class="fs-6 fw-bold text-gray-400">Risiko Rendah</span>
+											<!--end::Description-->
+										</div>
+										<!--end::Statistics-->
+									</div>
+									<!--end::Card body-->
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="card overflow-hidden mb-5 mb-xl-10">
+									<!--begin::Card body-->
+									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<!--begin::Statistics-->
+										<div class="mb-4 px-9">
+											<!--begin::Info-->
+											<div class="d-flex align-items-center mb-2">
+												<!--begin::Value-->
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_sangat_rendah ?></span>
+												<!--end::Value-->
+												<!--begin::Label-->
+												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
+												<!--end::Label-->
+											</div>
+											<!--end::Info-->
+											<!--begin::Description-->
+											<span class="fs-6 fw-bold text-gray-400">Risiko Sangat Rendah</span>
+											<!--end::Description-->
+										</div>
+										<!--end::Statistics-->
+									</div>
+									<!--end::Card body-->
+								</div>
+							</div>
+
 						</div>
 						
 
@@ -202,8 +281,8 @@
 												<td><?= $row->nama_user ?></td>
 												<td><?= $row->no_telp ?></td>
 												<td>
-													<div class="badge badge-<?=  $row->risiko_diabetes? "primary" : "light" ?> fw-bolder">
-														<?= $row->risiko_diabetes? "Risiko Tinggi Diabetes" : "Tidak Beresiko Tinggi" ?>
+													<div class="badge badge-light" fw-bolder">
+													<?= $row->hasil_diabetes ?>
 													</div>
 												</td>
 											</tr>
@@ -298,11 +377,20 @@
 			// Set data
 			// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
 			series.data.setAll([{
-				value: <?= $diabetes[0]->jumlah ?>,
-				category: "Risiko Tinggi Diabetes"
+				value: <?= $risiko_sangat_tinggi ?>,
+				category: "Risiko Sangat Tinggi"
 			}, {
-				value: <?= $tidak_diabetes[0]->jumlah ?>,
-				category: "Tidak Risiko Tinggi Diabetes"
+				value: <?= $risiko_tinggi ?>,
+				category: "Risiko Tinggi"
+			},{
+				value: <?= $risiko_sedang?>,
+				category: "Risiko Sedang"
+			},{
+				value: <?= $risiko_rendah ?>,
+				category: "Risiko Rendah"
+			},{
+				value: <?= $risiko_sangat_rendah ?>,
+				category: "Risiko Sangat Rendah"
 			}]);
 
 			// Create legend

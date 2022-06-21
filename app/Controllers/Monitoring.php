@@ -56,9 +56,37 @@ class Monitoring extends BaseController
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         $data['institusi'] = $institusi;
-        $data['diabetes']       = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
-        $data['tidak_diabetes'] = $this->MonitoringModel->getTotalTidakDiabetes($institusi[0]->id_institusi);
+        // $data['diabetes']       = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
+        // $data['tidak_diabetes'] = $this->MonitoringModel->getTotalTidakDiabetes($institusi[0]->id_institusi);
         $data['list']           = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
+
+        $risiko_sangat_tinggi = 0;
+        $risiko_tinggi = 0;
+        $risiko_sedang = 0;
+        $risiko_rendah = 0;
+        $risiko_sangat_rendah = 0;
+
+        foreach($data['list'] as $row){
+            switch($row->hasil_diabetes){
+                case "Risiko Sangat Tinggi": $risiko_sangat_tinggi++;
+                break;
+                case "Risiko Tinggi": $risiko_tinggi++;
+                break;
+                case "Risiko Sedang": $risiko_sedang++;
+                break;
+                case "Risiko Rendah": $risiko_rendah++;
+                break;
+                default: $risiko_sangat_rendah++; 
+            }
+        }
+
+        $data['risiko_sangat_tinggi'] = $risiko_sangat_tinggi;
+        $data['risiko_tinggi'] = $risiko_tinggi;
+        $data['risiko_sedang'] = $risiko_sedang;
+        $data['risiko_rendah'] = $risiko_rendah;
+        $data['risiko_sangat_rendah'] = $risiko_sangat_rendah;
+
+        // dd($data);
 
         return view('admin/view_monitoring_risiko_diabetes', $data);
     }

@@ -91,7 +91,7 @@
 												<!--end::Svg Icon-->
 												<!--end::Icon-->
 												<!--begin::Input-->
-												<input type="text" class="form-control form-control-solid px-15" id="search_user" onkeyup="searchUser()" name="search" value="" placeholder="Search by username or email..." />
+												<input type="text" class="form-control form-control-solid px-15" id="search_user" onkeyup="searchUser()" name="search" value="" placeholder="Cari nama atau nomor telepon" />
 												<!--end::Input-->
 											</form>
 											<!--end::Form-->

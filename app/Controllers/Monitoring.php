@@ -56,7 +56,7 @@ class Monitoring extends BaseController
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         $data['institusi'] = $institusi;
-        $data['list']      = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
+        $data['list']      = $this->MonitoringModel->getLastListScreening($institusi[0]->id_institusi);
 
         $risiko_sangat_tinggi = 0;
         $risiko_tinggi = 0;
@@ -92,17 +92,17 @@ class Monitoring extends BaseController
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         $data['institusi'] = $institusi;
-        $data['list']      = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
+        $data['list']      = $this->MonitoringModel->getLastListScreening($institusi[0]->id_institusi);
 
         $risiko_tinggi = 0;
         $risiko_menengah = 0;
         $risiko_rendah = 0;
 
         foreach($data['list'] as $row){
-            switch($row->hasil_diabetes){
+            switch($row->hasil_stroke){
                 case "Risiko Tinggi": $risiko_tinggi++;
                 break;
-                case "Risiko Sedang": $risiko_menengah++;
+                case "Risiko Menengah": $risiko_menengah++;
                 break;
                 default: $risiko_rendah++;
             }
@@ -120,9 +120,29 @@ class Monitoring extends BaseController
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
         $data['institusi'] = $institusi;
-        $data['kolesterol']         = $this->MonitoringModel->getTotalKolesterol($institusi[0]->id_institusi);
-        $data['tidak_kolesterol']   = $this->MonitoringModel->getTotalTidakKolesterol($institusi[0]->id_institusi);
-        $data['list']               = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
+        $data['list']      = $this->MonitoringModel->getLastListScreening($institusi[0]->id_institusi);
+
+        $risiko_tinggi = 0;
+        $risiko_menengah = 0;
+        $risiko_rendah = 0;
+        $tidak_berisiko = 0;
+
+        foreach($data['list'] as $row){
+            switch($row->hasil_kolesterol){
+                case "Risiko Tinggi": $risiko_tinggi++;
+                break;
+                case "Risiko Menengah": $risiko_menengah++;
+                break;
+                case "Risiko Rendah" : $risiko_rendah++;
+                break;
+                default: $tidak_berisiko++;
+            }
+        }
+
+        $data['risiko_tinggi'] = $risiko_tinggi;
+        $data['risiko_menengah'] = $risiko_menengah;
+        $data['risiko_rendah'] = $risiko_rendah;
+        $data['tidak_berisiko'] = $tidak_berisiko;
 
         return view('admin/view_monitoring_risiko_kolesterol', $data);
     }

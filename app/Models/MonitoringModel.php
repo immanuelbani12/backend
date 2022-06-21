@@ -23,6 +23,13 @@ class MonitoringModel extends Model
     }
 
     function getListScreening($id_institusi){
+        return $this->db->query("SELECT *
+         FROM `user`
+         WHERE id_institusi = $id_institusi
+         ")->getResult();
+    }
+
+    function getLastListScreening($id_institusi){
         return $this->db->query("SELECT u.`nama_user`, u.no_telp, p.* FROM pemeriksaan p, USER u, (SELECT MAX(id_pemeriksaan) AS id_pemeriksaan FROM pemeriksaan
         GROUP BY id_user) last_pemeriksaan
         WHERE p.`id_pemeriksaan` = last_pemeriksaan.id_pemeriksaan

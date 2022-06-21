@@ -105,7 +105,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -114,7 +114,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $stroke[0]->jumlah ?></span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_tinggi ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -122,7 +122,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Memiliki Risiko Tinggi Stroke</span>
+											<span class="fs-6 fw-bold text-gray-400">Risiko Tinggi</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -131,7 +131,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -140,7 +140,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $tidak_stroke[0]->jumlah ?></span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_menengah ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -148,7 +148,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Tidak Risiko Tinggi Stroke</span>
+											<span class="fs-6 fw-bold text-gray-400">Risiko Menengah</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -156,6 +156,33 @@
 									<!--end::Card body-->
 								</div>
 							</div>
+
+							<div class="col-md-4">
+								<div class="card overflow-hidden mb-5 mb-xl-10">
+									<!--begin::Card body-->
+									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<!--begin::Statistics-->
+										<div class="mb-4 px-9">
+											<!--begin::Info-->
+											<div class="d-flex align-items-center mb-2">
+												<!--begin::Value-->
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $risiko_rendah ?></span>
+												<!--end::Value-->
+												<!--begin::Label-->
+												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
+												<!--end::Label-->
+											</div>
+											<!--end::Info-->
+											<!--begin::Description-->
+											<span class="fs-6 fw-bold text-gray-400">Risiko Rendah</span>
+											<!--end::Description-->
+										</div>
+										<!--end::Statistics-->
+									</div>
+									<!--end::Card body-->
+								</div>
+							</div>
+
 						</div>
 						
 
@@ -204,8 +231,8 @@
 												<td><?= $row->nama_user ?></td>
 												<td><?= $row->no_telp ?></td>
 												<td>
-													<div class="badge badge-<?=  $row->risiko_stroke? "primary" : "light" ?> fw-bolder">
-														<?= $row->risiko_stroke? "Risiko Tinggi Stroke" : "Tidak Beresiko Tinggi" ?>
+													<div class="badge badge-light fw-bolder">
+														<?= $row->hasil_stroke ?>
 													</div>
 												</td>
 											</tr>
@@ -300,11 +327,14 @@
 			// Set data
 			// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
 			series.data.setAll([{
-				value: <?= $stroke[0]->jumlah ?>,
-				category: "Risiko Tinggi Stroke"
+				value: <?= $risiko_tinggi ?>,
+				category: "Risiko Tinggi"
 			}, {
-				value: <?= $tidak_stroke[0]->jumlah ?>,
-				category: "Tidak Risiko Tinggi Stroke"
+				value: <?= $risiko_menengah ?>,
+				category: "Risiko Menengah"
+			},{
+				value: <?= $risiko_rendah ?>,
+				category: "Risiko Rendah"
 			}]);
 
 			// Create legend

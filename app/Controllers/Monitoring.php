@@ -46,7 +46,7 @@ class Monitoring extends BaseController
         $data['diabetes']   = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
         $data['kolesterol'] = $this->MonitoringModel->getTotalKolesterol($institusi[0]->id_institusi);
         $data['stroke']     = $this->MonitoringModel->getTotalStroke($institusi[0]->id_institusi);
-        $data['list']       = $this->MonitoringModel->getListScreening($institusi[0]->id_institusi);
+        $data['list']       = $this->MonitoringModel->getListSudahScreening($institusi[0]->id_institusi);
 
         return view('admin/view_monitoring_risiko_penyakit', $data);
     }

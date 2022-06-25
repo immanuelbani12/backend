@@ -66,7 +66,9 @@ class Daftar extends ResourceController
             "nama_user" => $user['nama_user'],
             "kode_user" => $data->kode_user,
             "id_institusi" => $user['id_institusi'],
+            "id_login_institusi" => $group['id_login'],
             "nama_institusi" => $group['nama_institusi'],
+            "no_telp_institusi" => $group['no_telp_institusi'],
             "logo_institusi" => $group['logo'],
             "token"   => $token
         );

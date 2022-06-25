@@ -220,6 +220,7 @@
 											<th class="min-w-125px">Nama Pasien</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Status</th>
+											<th class="text-center min-w-100px">Actions</th>
 										</tr>
 										<!--end::Table row-->
 									</thead>
@@ -234,6 +235,9 @@
 													<div class="badge badge-light fw-bolder">
 														<?= $row->hasil_stroke ?>
 													</div>
+												</td>
+												<td class="text-center">
+													<a href="<?= site_url('/User/DetailUser/'.$row->id_user) ?>" class="btn btn-sm btn-light-primary">Detail</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>

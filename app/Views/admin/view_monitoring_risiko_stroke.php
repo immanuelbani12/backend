@@ -105,7 +105,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-4">
+							<div class="col-md-4 cardRisiko" style="cursor: pointer">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -122,7 +122,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Risiko Tinggi</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko">Risiko Tinggi</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -131,7 +131,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-4">
+							<div class="col-md-4 cardRisiko" style="cursor: pointer">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -148,7 +148,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Risiko Menengah</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko">Risiko Menengah</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -157,7 +157,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-4">
+							<div class="col-md-4 cardRisiko" style="cursor: pointer">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -174,7 +174,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400">Risiko Rendah</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko">Risiko Rendah</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -282,6 +282,14 @@
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 	<script>
+		$(".cardRisiko").click(function(){
+			var table = $('#kt_table_users').DataTable();
+			const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
+			filterSearch.value = $(this).find(".textRisiko").text();
+
+			table.search($(this).find(".textRisiko").text()).draw();
+		});
+
 		am5.ready(function () {
 			// Create root element
 			// https://www.amcharts.com/docs/v5/getting-started/#Root_element

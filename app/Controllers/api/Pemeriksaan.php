@@ -317,26 +317,11 @@ class Pemeriksaan extends ResourceController
         //Rework Stroke Scoring based on Checklist
         if ($high >= 3) {
             $hasil = "Risiko Tinggi";
+        }
+        else if ($high + $medium >= 4){
+            $hasil = "Risiko Menengah";
         } else {
-            if ($high == 2){
-                if ($medium >= 2) {
-                    $hasil = "Risiko Menengah";
-                } else {
-                    $hasil = "Risiko Rendah";
-                }
-            }
-            else if ($high == 1){
-                if ($medium >= 3) {
-                    $hasil = "Risiko Menengah";
-                } else {
-                    $hasil = "Risiko Rendah";
-                }
-            }
-            else if ($medium >= 4) {
-                $hasil = "Risiko Menengah";
-            } else {
-                $hasil = "Risiko Rendah";
-            }
+            $hasil = "Risiko Rendah";
         }
 
         return array(

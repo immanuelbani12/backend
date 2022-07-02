@@ -25,7 +25,7 @@ class Pemeriksaan extends Migration
                 'constraint' => '20',
                 'null' => true,
             ],
-            'hasil_kolesterol' => [
+            'hasil_kardiovaskular' => [
                 'type' => 'VARCHAR',
                 'constraint' => '20',
                 'null' => true,

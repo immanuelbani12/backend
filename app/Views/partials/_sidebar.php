@@ -7,7 +7,7 @@
             <!--begin::Menu-->
             <?php
                 $request = \Config\Services::request();
-                $monitoring = in_array($request->uri->getSegment(2), ['JumlahScreening', 'RisikoPenyakit', 'RisikoDiabetes', 'RisikoStroke', 'RisikoKolesterol']);
+                $monitoring = in_array($request->uri->getSegment(2), ['JumlahScreening', 'RisikoPenyakit', 'RisikoDiabetes', 'RisikoStroke', 'RisikoKardiovaskular']);
             ?>
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <div data-kt-menu-trigger="click" class="menu-item here menu-accordion <?= $monitoring? "hover show" : "" ?>">
@@ -58,11 +58,11 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoKolesterol'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoKolesterol') ?>">
+                                <a class="menu-link <?= $request->uri->getSegment(2) == 'RisikoKardiovaskular'? 'active' : '' ?>" href="<?= site_url('/Monitoring/RisikoKardiovaskular') ?>">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Risiko Kolesterol</span>
+                                    <span class="menu-title">Risiko Kardiovaskular</span>
                                 </a>
                             </div>
                         </div>

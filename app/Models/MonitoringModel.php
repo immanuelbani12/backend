@@ -54,11 +54,11 @@ class MonitoringModel extends Model
         ")->getResult();
     }
 
-    function getTotalKolesterol($id_institusi){
+    function getTotalKardiovaskular($id_institusi){
         return $this->db->query("SELECT COUNT(1) AS jumlah
         FROM `user`
         WHERE id_institusi = $id_institusi
-        AND risiko_kolesterol = 1
+        AND risiko_kardiovaskular = 1
         ")->getResult();
     }
 
@@ -86,11 +86,11 @@ class MonitoringModel extends Model
         ")->getResult();
     }
 
-    function getTotalTidakKolesterol($id_institusi){
+    function getTotalTidakKardiovaskular($id_institusi){
         return $this->db->query("SELECT COUNT(1) AS jumlah
         FROM `user`
         WHERE id_institusi = $id_institusi
-        AND risiko_kolesterol = 0
+        AND risiko_kardiovaskular = 0
         ")->getResult();
     }
 }

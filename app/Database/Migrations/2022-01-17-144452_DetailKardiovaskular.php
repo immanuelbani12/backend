@@ -4,14 +4,14 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class DetailKolesterol extends Migration
+class DetailKardiovaskular extends Migration
 {
     public function up()
     {
         $this->db->disableForeignKeyChecks();
 
         $this->forge->addField([
-            'id_detail_kolesterol' => [
+            'id_detail_kardiovaskular' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'auto_increment' => true,
@@ -50,7 +50,7 @@ class DetailKolesterol extends Migration
                 'null' => true,
                 'comment' => '1 > 240, 2 = 200-239, 3 = < 200, 4 = Tidak diketahui'
             ],
-            'score_kolesterol' => [
+            'score_kardiovaskular' => [
                 'type' => 'INT',
                 'constraint' => '2',
                 'null' => true,
@@ -62,15 +62,15 @@ class DetailKolesterol extends Migration
             ],
             'created_at datetime default current_timestamp',
         ]);
-        $this->forge->addKey('id_detail_kolesterol', true);
+        $this->forge->addKey('id_detail_kardiovaskular', true);
         $this->forge->addForeignKey('id_pemeriksaan', 'pemeriksaan', 'id_pemeriksaan');
-        $this->forge->createTable('detail_kolesterol', true);
+        $this->forge->createTable('detail_kardiovaskular', true);
 
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('detail_kolesterol', true);
+        $this->forge->dropTable('detail_kardiovaskular', true);
     }
 }

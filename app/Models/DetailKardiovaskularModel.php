@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DetailKolesterolModel extends Model
+class DetailKardiovaskularModel extends Model
 {
-    protected $table            = 'detail_kolesterol';
-    protected $primaryKey       = 'id_detail_kolesterol';
+    protected $table            = 'detail_kardiovaskular';
+    protected $primaryKey       = 'id_detail_kardiovaskular';
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id_pemeriksaan', 
@@ -16,7 +16,7 @@ class DetailKolesterolModel extends Model
         'kadar_gula',
         'tekanan_darah',
         'kadar_kolesterol',
-        'score_kolesterol'
+        'score_kardiovaskular'
     ];
 
     // Dates

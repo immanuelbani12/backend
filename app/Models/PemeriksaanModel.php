@@ -13,7 +13,7 @@ class PemeriksaanModel extends Model
     protected $allowedFields    = [
         'id_user', 
         'hasil_diabetes', 
-        'hasil_kolesterol', 
+        'hasil_kardiovaskular', 
         'hasil_stroke'
     ];
 

@@ -44,7 +44,7 @@ class Monitoring extends BaseController
 
         $data['institusi'] = $institusi;
         $data['diabetes']   = $this->MonitoringModel->getTotalDiabetes($institusi[0]->id_institusi);
-        $data['kolesterol'] = $this->MonitoringModel->getTotalKolesterol($institusi[0]->id_institusi);
+        $data['kardiovaskular'] = $this->MonitoringModel->getTotalKardiovaskular($institusi[0]->id_institusi);
         $data['stroke']     = $this->MonitoringModel->getTotalStroke($institusi[0]->id_institusi);
         $data['list']       = $this->MonitoringModel->getListSudahScreening($institusi[0]->id_institusi);
 
@@ -115,7 +115,7 @@ class Monitoring extends BaseController
         return view('admin/view_monitoring_risiko_stroke', $data);
     }
 
-    public function RisikoKolesterol()
+    public function RisikoKardiovaskular()
     {
         $institusi = $this->InstitusiModel->getInstitusi_by_id_login($this->token->id_login);
 
@@ -128,7 +128,7 @@ class Monitoring extends BaseController
         $tidak_berisiko = 0;
 
         foreach($data['list'] as $row){
-            switch($row->hasil_kolesterol){
+            switch($row->hasil_kardiovaskular){
                 case "Risiko Tinggi": $risiko_tinggi++;
                 break;
                 case "Risiko Menengah": $risiko_menengah++;
@@ -144,6 +144,6 @@ class Monitoring extends BaseController
         $data['risiko_rendah'] = $risiko_rendah;
         $data['tidak_berisiko'] = $tidak_berisiko;
 
-        return view('admin/view_monitoring_risiko_kolesterol', $data);
+        return view('admin/view_monitoring_risiko_kardiovaskular', $data);
     }
 }

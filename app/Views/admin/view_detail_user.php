@@ -216,7 +216,7 @@
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
 											<th class="min-w-125px">Hasil Diabetes</th>
 											<th class="min-w-125px">Hasil Stroke</th>
-											<th class="min-w-125px">Hasil Kolesterol</th>
+											<th class="min-w-125px">Hasil Kardiovaskular</th>
 											<th class="min-w-125px">Waktu Pemeriksaan</th>
 										</tr>
 										<!--end::Table row-->
@@ -240,9 +240,9 @@
 											</td>
 
 											<td>
-											<?php if(strpos($row->hasil_kolesterol, 'Tinggi')){?>
-												<div class="badge badge-light-primary fw-bolder"><?= $row->hasil_kolesterol ?></div>
-											<?php } else { echo $row->hasil_kolesterol; } ?>
+											<?php if(strpos($row->hasil_kardiovaskular, 'Tinggi')){?>
+												<div class="badge badge-light-primary fw-bolder"><?= $row->hasil_kardiovaskular ?></div>
+											<?php } else { echo $row->hasil_kardiovaskular; } ?>
 											</td>
 
 											<td><?= $row->created_at; ?></td>

@@ -140,7 +140,7 @@
 											<!--begin::Info-->
 											<div class="d-flex align-items-center mb-2">
 												<!--begin::Value-->
-												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $kolesterol[0]->jumlah ?></span>
+												<span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2"><?= $kardiovaskular[0]->jumlah ?></span>
 												<!--end::Value-->
 												<!--begin::Label-->
 												<span class="d-flex align-items-end text-gray-400 fs-6 fw-bold">Orang</span>
@@ -148,7 +148,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400 textRisiko">Risiko Kolesterol</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko">Risiko Kardiovaskular</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -205,14 +205,14 @@
 												<td><?= $row->nama_user ?></td>
 												<td><?= $row->no_telp ?></td>
 												<td>
-													<div class="badge badge-<?=  $row->risiko_diabetes || $row->risiko_kolesterol || $row->risiko_stroke? "primary" : "light" ?> fw-bolder">
+													<div class="badge badge-<?=  $row->risiko_diabetes || $row->risiko_kardiovaskular || $row->risiko_stroke? "primary" : "light" ?> fw-bolder">
 														<?php
-														if($row->risiko_diabetes || $row->risiko_kolesterol || $row->risiko_stroke) {
+														if($row->risiko_diabetes || $row->risiko_kardiovaskular || $row->risiko_stroke) {
 															if($row->risiko_diabetes){
 																echo "Risiko Diabetes<br>";
 															}
-															if($row->risiko_kolesterol){
-																echo "Risiko Kolesterol<br>";
+															if($row->risiko_kardiovaskular){
+																echo "Risiko Kardiovaskular<br>";
 															}
 															if($row->risiko_stroke){
 																echo "Risiko Stroke<br>";
@@ -332,8 +332,8 @@
 				value: <?= $stroke[0]->jumlah ?>,
 				category: "Stroke"
 			}, {
-				value: <?= $kolesterol[0]->jumlah ?>,
-				category: "Kolesterol"
+				value: <?= $kardiovaskular[0]->jumlah ?>,
+				category: "Kardiovaskular"
 			}]);
 
 			// Create legend

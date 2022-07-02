@@ -66,7 +66,7 @@ class User extends Migration
                 'constraint' => 1,
                 'default' => 0,
             ],
-            'risiko_kolesterol' => [
+            'risiko_kardiovaskular' => [
                 'type' => 'INT',
                 'constraint' => 1,
                 'default' => 0,

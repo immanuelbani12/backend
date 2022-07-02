@@ -5,7 +5,7 @@ namespace App\Controllers\api;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\DetailStrokeModel;
 use App\Models\DetailDiabetesModel;
-use App\Models\DetailKolesterolModel;
+use App\Models\DetailKardiovaskularModel;
 use App\Models\LoginModel;
 use App\Models\UserModel;
 
@@ -21,7 +21,7 @@ class Pemeriksaan extends ResourceController
     {
         $this->DiabetesModel    = new DetailDiabetesModel();
         $this->StrokeModel      = new DetailStrokeModel();
-        $this->KolesterolModel  = new DetailKolesterolModel();
+        $this->KardiovaskularModel  = new DetailKardiovaskularModel();
         $this->LoginModel       = new LoginModel();
         $this->UserModel        = new UserModel();
     }
@@ -104,12 +104,12 @@ class Pemeriksaan extends ResourceController
 
         $diabetes   = $this->get_diabetes($data);
         $stroke     = $this->get_stroke($data);
-        $kolesterol = $this->get_kolesterol($data);
+        $kardiovaskular = $this->get_kardiovaskular($data);
 
         $data_pemeriksaan = array(
             'id_user' => $data->id_user,
             'hasil_diabetes' => $diabetes['hasil'],
-            'hasil_kolesterol' => $kolesterol['hasil'],
+            'hasil_kardiovaskular' => $kardiovaskular['hasil'],
             'hasil_stroke' => $stroke['hasil']
         );
 
@@ -130,7 +130,7 @@ class Pemeriksaan extends ResourceController
         $data_update = array(
             'sudah_screening'   => 1,
             'risiko_diabetes'   => $diabetes['hasil'] == 'Risiko Tinggi' || $diabetes['hasil'] == 'Risiko Sangat Tinggi' ? 1 : 0,
-            'risiko_kolesterol' => $kolesterol['hasil'] == 'Risiko Tinggi' ? 1 : 0,
+            'risiko_kardiovaskular' => $kardiovaskular['hasil'] == 'Risiko Tinggi' ? 1 : 0,
             'risiko_stroke'     => $stroke['hasil'] == 'Risiko Tinggi' ? 1 : 0,
             'tgl_lahir'         => date("Y-m-d", strtotime($data->tanggal_lahir)),
             'jenis_kelamin'     => $data->jenis_kelamin,
@@ -141,7 +141,7 @@ class Pemeriksaan extends ResourceController
         $this->UserModel->update_data($data->id_user, $data_update);
         $this->DiabetesModel->save($data);
         $this->StrokeModel->save($data);
-        $this->KolesterolModel->save($data);
+        $this->KardiovaskularModel->save($data);
 
         return $this->respondCreated($this->model->get_by_id($data->id_pemeriksaan), 'Pemeriksaan created');
     }
@@ -347,7 +347,7 @@ class Pemeriksaan extends ResourceController
         );
     }
 
-    public function get_kolesterol($data)
+    public function get_kardiovaskular($data)
     {
         $year = date('Y');
         $birth_day = explode("/", $data->tanggal_lahir);
@@ -516,24 +516,24 @@ class Pemeriksaan extends ResourceController
         }
 
         $pct = 1 - $s010Ret ** exp($predictRet - $mnxbRet);
-        $kolesterol_res = round($pct * 100 * 10) / 10;
+        $kardiovaskular_res = round($pct * 100 * 10) / 10;
         $hasil = "";
 
-        if ($kolesterol_res < 5){
+        if ($kardiovaskular_res < 5){
             $hasil = "Tidak Berisiko";
         }
-        elseif ($kolesterol_res >= 5 and $kolesterol_res < 7.4){
+        elseif ($kardiovaskular_res >= 5 and $kardiovaskular_res < 7.4){
             $hasil = "Risiko Rendah";
         }
-        elseif ($kolesterol_res >= 7.5 and $kolesterol_res < 19.9){
+        elseif ($kardiovaskular_res >= 7.5 and $kardiovaskular_res < 19.9){
             $hasil = "Risiko Menengah";
         }
-        elseif ($kolesterol_res >= 20){
+        elseif ($kardiovaskular_res >= 20){
             $hasil = "Risiko Tinggi";
         }
 
         return array(
-            'score' => $kolesterol_res,
+            'score' => $kardiovaskular_res,
             'hasil' => $hasil
         );
     }

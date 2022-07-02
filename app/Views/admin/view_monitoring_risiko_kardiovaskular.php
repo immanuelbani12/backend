@@ -3,7 +3,7 @@
 	
 <!--begin::Head-->
 <head>
-	<title>Apadok - Risiko Kolesterol</title>
+	<title>Apadok - Risiko Kardiovaskular</title>
 	<?php echo view('partials/_css');?>
 </head>
 <!--end::Head-->
@@ -31,7 +31,7 @@
 							<!--begin::Page title-->
 							<div class="page-title d-flex flex-column me-3">
 								<!--begin::Title-->
-								<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Monitoring Risiko Kolesterol</h1>
+								<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Monitoring Risiko Kardiovaskular</h1>
 								<!--end::Title-->
 								<!--begin::Breadcrumb-->
 								<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -44,7 +44,7 @@
 									<li class="breadcrumb-item text-gray-600">Monitoring</li>
 									<!--end::Item-->
 									<!--begin::Item-->
-									<li class="breadcrumb-item text-gray-600">Risiko Kolesterol</li>
+									<li class="breadcrumb-item text-gray-600">Risiko Kardiovaskular</li>
 									<!--end::Item-->
 								</ul>
 								<!--end::Breadcrumb-->
@@ -72,7 +72,7 @@
 						<div class="row" style="--bs-gutter-x: 0;">
 							<div class="card card-bordered" style="margin-bottom: 30px">
 								<div class="card-header">
-									<h3 class="card-title">Grafik Risiko Kolesterol</h3>
+									<h3 class="card-title">Grafik Risiko Kardiovaskular</h3>
 								</div>
 								<!--begin::Card header-->
 								<!-- <div class="card-header border-0 pt-6"> -->
@@ -256,7 +256,7 @@
 												<td><?= $row->no_telp ?></td>
 												<td>
 													<div class="badge badge-light fw-bolder">
-														<?= $row->hasil_kolesterol ?>
+														<?= $row->hasil_kardiovaskular ?>
 													</div>
 												</td>
 												<td class="text-center">

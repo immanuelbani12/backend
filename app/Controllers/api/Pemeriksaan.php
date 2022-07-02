@@ -227,10 +227,10 @@ class Pemeriksaan extends ResourceController
             $diabetes_risk = "Risiko Sedang";
         }
         elseif($score >= 7){
-            $diabetes_risk = "Risiko Rendah";
+            $diabetes_risk = "Risiko Sedikit Tinggi";
         }
         else{
-            $diabetes_risk = "Risiko Sangat Rendah";
+            $diabetes_risk = "Risiko Rendah";
         }
 
         return array(

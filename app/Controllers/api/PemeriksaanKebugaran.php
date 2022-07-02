@@ -64,7 +64,7 @@ class PemeriksaanKebugaran extends ResourceController
             return $this->respond($data);
         }
 
-        $record = $this->model->find($id);
+        $record = $this->model->get_by_id($id);
         if (!$record) {
             # code...
             return $this->failNotFound(sprintf(
@@ -116,7 +116,7 @@ class PemeriksaanKebugaran extends ResourceController
         $this->UserModel->update_data($data->id_user, $data_update);
         $this->KebugaranModel->save($data);
 
-        return $this->respondCreated($this->model->find($data->id_pemeriksaan_kebugaran), 'Pemeriksaan Kebugaran created');
+        return $this->respondCreated($this->model->get_by_id($data->id_pemeriksaan_kebugaran), 'Pemeriksaan Kebugaran created');
     }
 
     public function get_kebugaran($data)

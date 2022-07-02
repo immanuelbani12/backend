@@ -40,7 +40,7 @@ class User extends BaseController
     public function DetailUser($id_user){
         $data['user']       = $this->UserModel->getUserById($id_user);
         $data['risiko']     = $this->PemeriksaanModel->get_user_by_id_all($id_user);
-        $data['kebugaran']  = $this->PemeriksaanKebugaranModel->get_user_by_id_all($id_user);
+        $data['kebugaran']  = $this->PemeriksaanKebugaranModel->get_user_by_id($id_user);
         return view('admin/view_detail_user', $data);
     }
 

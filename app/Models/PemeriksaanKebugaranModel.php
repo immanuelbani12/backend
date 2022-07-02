@@ -45,6 +45,15 @@ class PemeriksaanKebugaranModel extends Model
         return $query->getResult();
     }
 
+    public function get_user_by_id($id){
+        $builder = $this->db->table('pemeriksaan_kebugaran');
+        $builder->select('*');
+        $builder->where('id_user', $id);
+        $builder->orderBy('created_at', 'DESC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     public function get_by_id($id){
         $builder = $this->db->table('pemeriksaan_kebugaran');
         $builder->select('id_pemeriksaan_kebugaran, id_user, score_kebugaran, updated_at, created_at');

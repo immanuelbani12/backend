@@ -22,17 +22,17 @@ class Pemeriksaan extends Migration
             ],
             'hasil_diabetes' => [
                 'type' => 'VARCHAR',
-                'constraint' => '20',
+                'constraint' => '50',
                 'null' => true,
             ],
             'hasil_kardiovaskular' => [
                 'type' => 'VARCHAR',
-                'constraint' => '20',
+                'constraint' => '50',
                 'null' => true,
             ],
             'hasil_stroke' => [
                 'type' => 'VARCHAR',
-                'constraint' => '20',
+                'constraint' => '50',
                 'null' => true,
             ],
             'updated_at' => [

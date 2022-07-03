@@ -198,7 +198,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400 textRisiko" style="cursor: pointer">Risiko Rendah</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko" style="cursor: pointer">Risiko Sedikit Tinggi</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->
@@ -224,7 +224,7 @@
 											</div>
 											<!--end::Info-->
 											<!--begin::Description-->
-											<span class="fs-6 fw-bold text-gray-400 textRisiko" style="cursor: pointer">Risiko Sangat Rendah</span>
+											<span class="fs-6 fw-bold text-gray-400 textRisiko" style="cursor: pointer">Risiko Rendah</span>
 											<!--end::Description-->
 										</div>
 										<!--end::Statistics-->

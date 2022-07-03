@@ -181,7 +181,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-2 cardRisiko" style="cursor: pointer">
+							<div class="col-md-3 cardRisiko" style="cursor: pointer">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
@@ -207,7 +207,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-3 cardRisiko" style="cursor: pointer">
+							<div class="col-md-2 cardRisiko" style="cursor: pointer">
 								<div class="card overflow-hidden mb-5 mb-xl-10">
 									<!--begin::Card body-->
 									<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">

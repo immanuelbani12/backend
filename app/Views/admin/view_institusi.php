@@ -3,7 +3,7 @@
 	
 <!--begin::Head-->
 <head>
-	<title>Apadok - Masuk</title>
+	<title>Apadok - Institusi</title>
 	<?php echo view('partials/_css');?>
 </head>
 <!--end::Head-->

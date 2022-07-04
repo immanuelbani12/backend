@@ -18,12 +18,6 @@ var KTUsersList = function () {
             "dom": 'Brtip',
             "buttons": [
                 {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [ 0, 1, 2, 3]
-                    }
-                },
-                {
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: [ 0, 1, 2, 3]
@@ -31,12 +25,6 @@ var KTUsersList = function () {
                 },
                 {
                     extend: 'csvHtml5',
-                    exportOptions: {
-                        columns: [ 0, 1, 2, 3]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
                     exportOptions: {
                         columns: [ 0, 1, 2, 3]
                     }
@@ -52,12 +40,6 @@ var KTUsersList = function () {
             "dom": 'Brtip',
             "buttons": [
                 {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [ 0, 1]
-                    }
-                },
-                {
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: [ 0, 1]
@@ -65,12 +47,6 @@ var KTUsersList = function () {
                 },
                 {
                     extend: 'csvHtml5',
-                    exportOptions: {
-                        columns: [ 0, 1]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
                     exportOptions: {
                         columns: [ 0, 1]
                     }

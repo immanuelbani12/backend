@@ -3,7 +3,7 @@
 	
 <!--begin::Head-->
 <head>
-	<title>Apadok - Artikel</title>
+	<title>Apadok - Artikel Kesehatan</title>
 	<?php echo view('partials/_css');?>
 </head>
 <!--end::Head-->

@@ -139,7 +139,7 @@
 											</svg>
 										</span>
 										<!--end::Svg Icon-->
-										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Pasien" />
+										<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Cari Peserta" />
 									</div>
 									<!--end::Search-->
 								</div>
@@ -154,7 +154,7 @@
 									<thead>
 										<!--begin::Table row-->
 										<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-											<th class="min-w-125px">Nama Pasien</th>
+											<th class="min-w-125px">Nama Peserta</th>
 											<th class="min-w-125px">Nomor Telepon</th>
 											<th class="min-w-125px">Status</th>
 											<th class="text-center min-w-100px">Actions</th>

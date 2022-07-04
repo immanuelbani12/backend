@@ -118,19 +118,19 @@
 										</div>
 									</div>
 
-									<div class="textArtikel">
-										<div class="fv-row mb-7">
-											<!--begin::Label-->
-											<label class="fs-6 fw-bold form-label mb-2">Ilustrasi</label>
-											<!--end::Label-->
-											<?php if(isset($artikel[0]->gambar_artikel)):?>
-											<img src="<?= base_url('media/artikel/'.$artikel[0]->gambar_artikel)?>" alt="Ilustrasi artikel" class="form-control">
-											<br>
-											<small class="text-primary">Upload gambar kembali jika ingin merubah</small>
-											<?php endif;?>
-											<input type="file" name="gambar_artikel" id="gambar_artikel" class="form-control form-control-solid mb-3 mb-lg-0">
-										</div>
+									<div class="fv-row mb-7">
+										<!--begin::Label-->
+										<label class="fs-6 fw-bold form-label mb-2">Ilustrasi</label>
+										<!--end::Label-->
+										<?php if(isset($artikel[0]->gambar_artikel)):?>
+										<img src="<?= base_url('media/artikel/'.$artikel[0]->gambar_artikel)?>" alt="Ilustrasi artikel" class="form-control">
+										<br>
+										<small class="text-primary">Upload gambar kembali jika ingin merubah</small>
+										<?php endif;?>
+										<input type="file" name="gambar_artikel" id="gambar_artikel" class="form-control form-control-solid mb-3 mb-lg-0">
+									</div>
 
+									<div class="textArtikel">
 										<div class="fv-row mb-7">
 											<!--begin::Label-->
 											<label class="fs-6 fw-bold form-label mb-2">Isi</label>

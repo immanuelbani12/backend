@@ -3,7 +3,7 @@
 	
 <!--begin::Head-->
 <head>
-	<title>Apadok - Pasien</title>
+	<title>Apadok - Detail Peserta</title>
 	<?php echo view('partials/_css');?>
 </head>
 <!--end::Head-->
@@ -30,7 +30,7 @@
 						<!--begin::Page title-->
 						<div class="page-title d-flex flex-column me-3">
 							<!--begin::Title-->
-							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Detail Pasien</h1>
+							<h1 class="d-flex text-dark fw-bolder my-1 fs-3">Detail Peserta</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -40,10 +40,10 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Pasien</li>
+								<li class="breadcrumb-item text-gray-600">Peserta</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-gray-600">Detail Pasien</li>
+								<li class="breadcrumb-item text-gray-600">Detail Peserta</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->
@@ -69,7 +69,7 @@
 							<div class="card-header cursor-pointer">
 								<!--begin::Card title-->
 								<div class="card-title m-0">
-									<h1 class="fw-bolder m-0">Informasi Pasien</h1>
+									<h1 class="fw-bolder m-0">Informasi Peserta</h1>
 								</div>
 								<!--end::Card title-->
 							</div>

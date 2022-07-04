@@ -16,12 +16,6 @@ var KTUsersList = function () {
             "dom": 'Brtip',
             "buttons": [
                 {
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [0]
-                    }
-                },
-                {
                     extend: 'excelHtml5',
                     exportOptions: {
                         columns: [0]
@@ -29,12 +23,6 @@ var KTUsersList = function () {
                 },
                 {
                     extend: 'csvHtml5',
-                    exportOptions: {
-                        columns: [0]
-                    }
-                },
-                {
-                    extend: 'pdfHtml5',
                     exportOptions: {
                         columns: [0]
                     }

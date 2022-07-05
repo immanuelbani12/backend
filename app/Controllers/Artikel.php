@@ -90,7 +90,7 @@ class Artikel extends BaseController
             $gambar = $this->uploadImage($img);
             if(isset($gambar['errors'])){
                 $this->session->setFlashdata('error', $gambar['errors']);
-                return redirect()->to(base_url('/Artikel/editArtikel'));
+                return redirect()->to(base_url('/Artikel/editArtikel/'.$this->request->getPost('id_artikel')));
             }else{
                 $data['gambar_artikel'] = $gambar['path'];
             }

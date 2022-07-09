@@ -221,10 +221,10 @@
 	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table-jumlah-screening.js')?>"></script>
 
 	<style>
-		table.dataTable tbody tr.selected {
+		/* table.dataTable tbody tr.selected {
 			color: white;
 			background-color: #A1A5B7;
-		}
+		} */
 	</style>
 	
 	<!--end::Page Custom Javascript-->

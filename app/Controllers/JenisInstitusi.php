@@ -27,7 +27,7 @@ class JenisInstitusi extends BaseController
 
         $this->JenisModel->insert($data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil ditambahkan');
+        $this->session->setFlashdata('success', 'Data berhasil ditambahkan');
         return redirect()->to('/JenisInstitusi');
     }
 
@@ -38,14 +38,14 @@ class JenisInstitusi extends BaseController
 
         $this->JenisModel->update($this->request->getPost('id_jenis'), $data);
 
-        $this->session->setFlashdata('msg', 'Data berhasil di edit');
+        $this->session->setFlashdata('success', 'Data berhasil di edit');
         return redirect()->to('/JenisInstitusi');
     }
 
     public function delete($id_jenis){
         $this->JenisModel->delete(['id_jenis' => $id_jenis]);
 
-        $this->session->setFlashdata('msg', 'Data berhasil dihapus');
+        $this->session->setFlashdata('success', 'Data berhasil dihapus');
 
         echo site_url('/JenisInstitusi');
     }

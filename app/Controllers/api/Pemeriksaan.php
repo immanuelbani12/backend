@@ -466,10 +466,10 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
 
         if ($kardiovaskular_res < 5){
-            $hasil = "Risiko Rendah";
+            $hasil = "Tidak Berisiko";
         }
         elseif ($kardiovaskular_res >= 5 and $kardiovaskular_res <= 7.4){
-            $hasil = "Risiko Ambang Batas";
+            $hasil = "Risiko Rendah";
         }
         elseif ($kardiovaskular_res >= 7.5 and $kardiovaskular_res <= 19.9){
             $hasil = "Risiko Menengah";

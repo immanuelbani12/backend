@@ -359,6 +359,7 @@ class Pemeriksaan extends ResourceController
         if ($data->gula_darah == 1){
            $diabetic = True;
         }
+        
         if($data->keturunan == 3){
             $diabetic = True;
         }
@@ -382,18 +383,15 @@ class Pemeriksaan extends ResourceController
             $chol = 250;
         }
 
-        if($data->kolesterol_hdl == 1){
-            $hdl = 20;
+        if($data->kolesterol_hdl == 3){
+            $hdl = 60;
         }else if($data->kolesterol_hdl == 2){
             $hdl = 40;
         }else{
-            $hdl = 60;
+            $hdl = 20;
         }
 
-        $hdl = 40;
-        $isBlack = False;
-
-        if ($age < 40 || $age > 79){
+        if ($age < 40){
             return array(
                 'score' => -1,
                 'hasil' => "Tidak Berisiko"
@@ -421,29 +419,9 @@ class Pemeriksaan extends ResourceController
         }else{
             $ageSmoke = 0;
         }
-        if ($isBlack && !$isMale){
-            $s010Ret = 0.95334;
-            $mnxbRet = 86.6081;
-            $predictRet = (
-                17.1141 * $lnAge
-                + 0.9396 * $lnTotalChol
-                + -18.9196 * $lnHdl
-                + 4.4748 * $ageHdl
-                + 29.2907 * $trlnsbp
-                + -6.4321 * $agetSbp
-                + 27.8197 * $ntlnsbp
-                + -6.0873 * $agentSbp
-            );
-            if($smoker == True){
-                $predictRet += 0.6908;
-            }
-            if($diabetic == True){
-                $predictRet += 0.8738;
-            }
-        }
-        else if (!$isBlack && !$isMale){
-            $s010Ret = 0.96652;
-            $mnxbRet = -29.1817;
+        if (!$isMale){
+            $s010Ret = 0.9665;
+            $mnxbRet = -29.18;
             $predictRet = (
                 -29.799 * $lnAge
                 + 4.884 * $lnAge ** 2
@@ -462,26 +440,9 @@ class Pemeriksaan extends ResourceController
                 $predictRet += 0.661;
             }
         }
-        else if ($isBlack && $isMale){
-            $s010Ret = 0.89536;
-            $mnxbRet = 19.5425;
-            $predictRet = (
-                2.469 * $lnAge
-                + 0.302 * $lnTotalChol
-                + -0.307 * $lnHdl
-                + 1.916 * $trlnsbp
-                + 1.809 * $ntlnsbp
-            );
-            if($smoker == True){
-                $predictRet += 0.549;
-            }
-            if($diabetic == True){
-                $predictRet += 0.645;
-            }
-        }
         else{
-            $s010Ret = 0.91436;
-            $mnxbRet = 61.1816;
+            $s010Ret = 0.9144;
+            $mnxbRet = 61.18;
             $predictRet = (
                 12.344 * $lnAge
                 + 11.853 * $lnTotalChol
@@ -505,12 +466,12 @@ class Pemeriksaan extends ResourceController
         $hasil = "";
 
         if ($kardiovaskular_res < 5){
-            $hasil = "Tidak Berisiko";
-        }
-        elseif ($kardiovaskular_res >= 5 and $kardiovaskular_res < 7.4){
             $hasil = "Risiko Rendah";
         }
-        elseif ($kardiovaskular_res >= 7.5 and $kardiovaskular_res < 19.9){
+        elseif ($kardiovaskular_res >= 5 and $kardiovaskular_res <= 7.4){
+            $hasil = "Risiko Ambang Batas";
+        }
+        elseif ($kardiovaskular_res >= 7.5 and $kardiovaskular_res <= 19.9){
             $hasil = "Risiko Menengah";
         }
         elseif ($kardiovaskular_res >= 20){

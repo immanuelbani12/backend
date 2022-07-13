@@ -394,7 +394,7 @@ class Pemeriksaan extends ResourceController
         if ($age < 40 || $age > 79){
             return array(
                 'score' => 0,
-                'hasil' => "Risiko Rendah"
+                'hasil' => "Tidak Berisiko"
             );
         }
         $lnAge = log($age);

@@ -412,8 +412,8 @@ class Pemeriksaan extends ResourceController
         }
         $ageTotalChol = $lnAge * $lnTotalChol;
         $ageHdl = $lnAge * $lnHdl;
-        $agetSbp = $lnAge * $trlnsbp;
-        $agentSbp = $lnAge * $ntlnsbp;
+        // $agetSbp = $lnAge * $trlnsbp;
+        // $agentSbp = $lnAge * $ntlnsbp;
         if($smoker == True){
             $ageSmoke = $lnAge;
         }else{

@@ -229,6 +229,9 @@
 	<!--begin::Page Custom Javascript(used by this page)-->
 	
 	<script>
+		var requestTime
+		var responseTime
+
 		function searchUser(){
 			var input = $('#search_user');
 			var filter = input.val().toUpperCase();
@@ -286,7 +289,7 @@
 		}
 
 		var receiver_login_id = '';
-		var conn = new WebSocket("ws://178.128.25.139:31686/?id_login=<?= $id_login ?>");
+		var conn = new WebSocket("ws://localhost:31686/?id_login=<?= $id_login ?>");
 		
 		conn.onopen = function(e) {
 			console.log("Connection established!");
@@ -294,6 +297,9 @@
 
 		conn.onmessage = function(e) {
 			var data = JSON.parse(e.data);
+
+			responseTime = new Date().getTime();
+			// console.log(responseTime - requestTime + ' milliseconds');
 
 			if(data.from == 'Saya'){
 				align = 'end';
@@ -471,7 +477,7 @@
 			}
 
 			// console.log(data);
-
+			requestTime = new Date().getTime();
 			conn.send(JSON.stringify(data));
 
 		});

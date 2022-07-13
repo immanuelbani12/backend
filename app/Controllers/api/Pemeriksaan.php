@@ -125,6 +125,7 @@ class Pemeriksaan extends ResourceController
         $data->high_score =$stroke['high'];
 
         $data->score_diabetes = $diabetes['score'];
+        $data->score_kardiovaskular = $kardiovaskular['score'];
         $data->bmi = intval($data->berat_badan) / pow(intval($data->tinggi_badan)/100,2);
 
         $data_update = array(

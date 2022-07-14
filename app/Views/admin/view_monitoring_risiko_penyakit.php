@@ -180,6 +180,27 @@
 									<!--end::Search-->
 								</div>
 								<!--begin::Card title-->
+								<!--begin::Card toolbar-->
+								<div class="card-toolbar">
+									<!--begin::Toolbar-->
+									<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+										<!--begin::Export-->
+										<a href="<?= site_url('Monitoring/UnduhDataScreeningPenyakit') ?>" type="button" class="btn btn-light-dark me-3">
+											<!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/files/fil017.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"/>
+													<path opacity="0.3" d="M13 14.4V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V14.4H13Z" fill="currentColor"/>
+													<path d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM13 14.4V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V14.4H8L11.3 17.7C11.7 18.1 12.3 18.1 12.7 17.7L16 14.4H13Z" fill="currentColor"/>
+												</svg>
+											</span>
+											<!--end::Svg Icon-->
+											<!--end::Svg Icon-->Unduh Data Skrining</a>
+											<!--end::Export-->
+									</div>
+									<!--end::Toolbar-->
+								</div>
+								<!--end::Card toolbar-->
 							</div>
 							<!--end::Card header-->
 							<!--begin::Card body-->
@@ -261,7 +282,7 @@
 	<!--begin::Javascript-->
 	<?php echo view('partials/_javascripts');?>
 	<!--begin::Page Custom Javascript(used by this page)-->
-	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table.js')?>"></script>
+	<script src="<?= base_url('/js/custom/apps/user-management/users/peserta/table-jumlah-screening.js')?>"></script>
 	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>

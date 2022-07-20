@@ -391,6 +391,11 @@
 										<tr>
 											<input type="hidden" class="idPeserta" value="<?=  $row->id_user; ?>">
 											<input type="hidden" class="idLogin" value="<?=  $row->id_login; ?>">
+											<input type="hidden" class="tanggalLahirPeserta" value="<?=  $row->tgl_lahir; ?>">
+											<input type="hidden" class="jenisKelaminPeserta" value="<?=  $row->jenis_kelamin; ?>">
+											<input type="hidden" class="tinggiBadanPeserta" value="<?=  $row->tinggi_badan; ?>">
+											<input type="hidden" class="beratBadanPeserta" value="<?=  $row->berat_badan; ?>">
+
 											<td class="kodePeserta"><?= $row->kode_user; ?></td>
 											<td class="namaPeserta"><?= $row->nama_user; ?></td>
 											<td>
@@ -502,15 +507,15 @@
 			$("#kode_user").val($.trim($item.find(".kodePeserta").text()));
             $("#nama").val($.trim($item.find(".namaPeserta").text()));
             $("#no_telp").val($.trim($item.find(".telpPeserta").text()));
-            $("#tgl_lahir").val($.trim($item.find(".tanggalLahirPeserta").text()));
-			var jenis_kelamin = $.trim($item.find(".jenisKelaminPeserta").text())
+            $("#tgl_lahir").val($.trim($item.find(".tanggalLahirPeserta").val()));
+			var jenis_kelamin = $.trim($item.find(".jenisKelaminPeserta").val())
 
 			if (jenis_kelamin != "") {
-            	$("#jenis_kelamin").val(jenis_kelamin=="Laki-Laki"? "L" : "P").trigger('change');
+            	$("#jenis_kelamin").val(jenis_kelamin).trigger('change');
 			}
 			
-			$("#tinggi_badan").val($.trim($item.find(".tinggiBadanPeserta").text()));
-			$("#berat_badan").val($.trim($item.find(".beratBadanPeserta").text()));
+			$("#tinggi_badan").val($.trim($item.find(".tinggiBadanPeserta").val()));
+			$("#berat_badan").val($.trim($item.find(".beratBadanPeserta").val()));
         });
 
 		// Select all delete buttons
